@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.AccessControlException;
 
-import ev3dev.EV3;
 import ev3dev.exception.InvalidPortException;
+import ev3dev.io.Sysclass;
 
 public class LegoPort {
 	
@@ -39,7 +39,7 @@ public class LegoPort {
 	public String getAddress(){
 		String address = null;
 		try { //TODO I shouldn't do like this. Do Error handling.
-			address = EV3.read("lego-port", "port" + port, "address");
+			address = Sysclass.getProperty("lego-port", "port" + port, "address");
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -49,7 +49,7 @@ public class LegoPort {
 	public String getDriverName(){
 		String drivername = null;
 		try {
-			drivername = EV3.read("lego-port", "port" + port, "driver_name");
+			drivername = Sysclass.getProperty("lego-port", "port" + port, "driver_name");
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -65,7 +65,7 @@ public class LegoPort {
 	public String getMode(){
 		String mode = null;
 		try {
-			mode = EV3.read("lego-port", "port" + port, "mode");
+			mode = Sysclass.getProperty("lego-port", "port" + port, "mode");
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public class LegoPort {
 	
 	public void setMode(String mode){
 		try {
-			EV3.write("lego-port", "port" + port, "mode", mode);
+			Sysclass.setProperty("lego-port", "port" + port, "mode", mode);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -82,7 +82,7 @@ public class LegoPort {
 	
 	public void setDevice(String driver){
 		try {
-			EV3.write("lego-port", "port" + port, "set_device", driver);
+			Sysclass.setProperty("lego-port", "port" + port, "set_device", driver);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -91,7 +91,7 @@ public class LegoPort {
 	public String getStatus(){
 		String status = null;
 		try {
-			status = EV3.read("lego-port", "port" + port, "status");
+			status = Sysclass.getProperty("lego-port", "port" + port, "status");
 		} catch (Exception e){
 			e.printStackTrace();
 		}
