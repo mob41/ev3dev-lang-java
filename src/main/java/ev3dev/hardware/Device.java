@@ -1,5 +1,7 @@
 package ev3dev.hardware;
 
+import ev3dev.hardware.ports.LegoPort;
+
 public abstract class Device {
 	
 	private LegoPort port;

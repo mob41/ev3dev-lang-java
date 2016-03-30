@@ -1,10 +1,8 @@
-package ev3dev.hardware;
+package ev3dev.hardware.motors;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.security.AccessControlException;
-
 import ev3dev.exception.InvalidPortException;
+import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Sysclass;
 
 public class Motor {

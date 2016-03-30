@@ -1,4 +1,4 @@
-package ev3dev.hardware;
+package ev3dev.hardware.ports;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,6 +7,13 @@ import java.security.AccessControlException;
 import ev3dev.exception.InvalidPortException;
 import ev3dev.io.Sysclass;
 
+/***
+ * LegoPort class for fetching data from a specified port.<br>
+ * <br>
+ * You can also use a <b>MotorPort</b> or a <b>SensorPort</b> for your device.
+ * @author Anthony
+ *
+ */
 public class LegoPort {
 	
 	private int port = 0;
