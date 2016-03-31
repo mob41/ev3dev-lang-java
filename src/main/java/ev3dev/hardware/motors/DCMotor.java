@@ -6,9 +6,9 @@ import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Sysclass;
 
-public class Motor {
+public class DCMotor {
 	
-	private static final String SYSTEM_CLASS_NAME = "tacho-motor";
+	private static final String SYSTEM_CLASS_NAME = "dc-motor";
 	
 	private static final String PROPERTY_ADDRESS = "address";
 	
@@ -27,12 +27,12 @@ public class Motor {
 	private String MOTOR_STR = "motor";
 	
 	/***
-	 * Creates a new motor object.
+	 * Creates a new DC motor object.
 	 * @param device A device object connecting a motor
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
-	public Motor(Device device) throws InvalidPortException, IOException{
+	public DCMotor(Device device) throws InvalidPortException, IOException{
 		this.port = device.getPort();
 		address = port.getAddress();
 		
@@ -128,11 +128,6 @@ public class Motor {
 		return Sysclass.separateSpace(str);
 	}
 	
-	public int getCountPerRot() throws IOException{
-		String countperrot = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "count_per_rot");
-		return Integer.parseInt(countperrot);
-	}
-	
 	public String getDriverName() throws IOException{
 		return Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "driver_name");
 	}
@@ -151,74 +146,12 @@ public class Motor {
 		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "duty_cycle_sp", Integer.toString(sp));
 	}
 	
-	public String getEncoderPolarity() throws IOException{
-		return Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "encoder_polarity");
-	}
-	
-	public void setEncoderPolarity(String encoder_polarity) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "encoder_polarity", encoder_polarity);
-	}
-	
 	public String getPolarity() throws IOException{
 		return Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "polarity");
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
 		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "polarity", polarity);
-	}
-	
-	public int getPosition() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "position_p");
-		return Integer.parseInt(str);
-	}
-	
-	public void setPosition(int position) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "position", Integer.toString(position));
-	}
-	
-	public int getPosition_P() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Kp");
-		return Integer.parseInt(str);
-	}
-	
-	public int getPosition_I() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Ki");
-		return Integer.parseInt(str);
-	}
-	
-	public int getPosition_D() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Kd");
-		return Integer.parseInt(str);
-	}
-	
-	public void setPosition_P(int position_p) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Kp", Integer.toString(position_p));
-	}
-	
-	public void setPosition_I(int position_i) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Ki", Integer.toString(position_i));
-	}
-	
-	public void setPosition_D(int position_d) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "hold_pid/Kd", Integer.toString(position_d));
-	}
-	
-	public void setPosition_SP(int position_sp) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "position_sp", Integer.toString(position_sp));
-	}
-	
-	public int getSpeed() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed");
-		return Integer.parseInt(str);
-	}
-	
-	public int getSpeed_SP() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed");
-		return Integer.parseInt(str);
-	}
-	
-	public void setSpeed_SP(int speed_sp) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_sp", Integer.toString(speed_sp));
 	}
 	
 	public int getRamp_Up_SP() throws IOException{
@@ -237,66 +170,6 @@ public class Motor {
 	
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
 		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "ramp_down_sp", Integer.toString(ramp_down_sp));
-	}
-	
-	public String getSpeedRegulationEnabled() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_regulation_enabled");
-		return str;
-	}
-	
-	public boolean isSpeedRegulationEnabled() throws IOException{
-		String str = getSpeedRegulationEnabled();
-		if (str.equals("on")){
-			return true;
-		} else if (str.equals("off")){
-			return false;
-		} else {
-			return false;
-		}
-	}
-	
-	public void setSpeedRegulationEnabled(boolean enabled) throws IOException{
-		String str = enabled ? "on" : "off";
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_regulation_enabled", str);
-	}
-	
-	public void setSpeedRegulationEnabled(String onoff) throws IOException{
-		boolean enabled = false;
-		if (onoff.equals("on")){
-			enabled = true;
-		} else if (onoff.equals("off")){
-			enabled = false;
-		} else {
-			enabled = false;
-		}
-		setSpeedRegulationEnabled(enabled);
-	}
-	
-	public int getSpeedRegulation_P() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Kp");
-		return Integer.parseInt(str);
-	}
-	
-	public void setSpeedRegulation_P(int p) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Kp", Integer.toString(p));
-	}
-	
-	public int getSpeedRegulation_I() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Ki");
-		return Integer.parseInt(str);
-	}
-	
-	public void setSpeedRegulation_I(int i) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Ki", Integer.toString(i));
-	}
-	
-	public int getSpeedRegulation_D() throws IOException{
-		String str = Sysclass.getProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Kd");
-		return Integer.parseInt(str);
-	}
-	
-	public void setSpeedRegulation_D(int d) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, MOTOR_STR, "speed_pid/Kd", Integer.toString(d));
 	}
 	
 	public String getStateViaString() throws IOException{

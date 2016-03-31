@@ -19,7 +19,7 @@ public class MotorPort extends LegoPort {
 	/***
 	 * Creates a new motor port object.<br>
 	 * <br>
-	 * <b>NOTE:</b> MotorPort only accepts sensor ports. Use LegoPort for all ports.
+	 * <b>NOTE:</b> MotorPort only accepts motors ports. Use LegoPort for all ports.
 	 * @param port A final field from the <b>MotorPort</b> class. e.g.: <b>MotorPort.MOTOR_A</b>
 	 * @throws InvalidPortException If the specified port does not exist
 	 */
