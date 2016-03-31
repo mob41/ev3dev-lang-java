@@ -18,6 +18,7 @@ A unified language binding that followed with the [language wrapper specificatio
 - [x] Lego Port
 - [x] Sensor Port (Unnecessary) (inherits from LegoPort)
 - [x] Motor Port (Unnecessary) (inherits from LegoPort)
+- [ ] Autogen Templates
 
 ### Duplication
 You might saw another language binding for Java from here.<br>
@@ -27,6 +28,7 @@ Probably, he is using a wrong name for his project. As [suggested](https://githu
 
 ## Example
 In this moment of development stage, this language binding can do:
+<div class="highlight highlight-java">
 <pre>
 public static void main(String[] args) throws Exception {
 		LegoPort port = new LegoPort(LegoPort.PORT_A);
@@ -38,3 +40,4 @@ public static void main(String[] args) throws Exception {
 		motor.stop();
 	}
 </pre>
+</div>
