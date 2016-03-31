@@ -1,5 +1,7 @@
 # ev3dev-lang-java
-A ev3dev programming language binding for Java.
+A ev3dev unified language binding for Java.
+
+A unified language binding that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 ### Stage
 - [x] Device class
