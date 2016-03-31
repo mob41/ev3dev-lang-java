@@ -194,8 +194,13 @@ public class Motor {
 		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_D, Integer.toString(position_d));
 	}
 	
+	public int getPosition_SP() throws IOException{
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP);
+		return Integer.parseInt(str);
+	}
+
 	public void setPosition_SP(int position_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, "position_sp", Integer.toString(position_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	public int getSpeed() throws IOException{

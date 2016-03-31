@@ -6,6 +6,8 @@ public class PropertyDefaults {
 	
 	public static final String DC_MOTOR_CLASS_NAME = "dc-motor";
 	
+	public static final String SERVO_MOTOR_CLASS_NAME = "servo-motor";
+	
 	public static final String PROPERTY_ADDRESS = "address";
 	
 	public static final String PROPERTY_COMMAND = "command";
@@ -32,6 +34,8 @@ public class PropertyDefaults {
 	
 	public static final String PROPERTY_POSITION_D = "hold_pid/Kd";
 	
+	public static final String PROPERTY_POSITION_SP = "position_sp";
+	
 	public static final String PROPERTY_SPEED = "speed";
 	
 	public static final String PROPERTY_SPEED_SP = "speed_sp";
@@ -56,6 +60,16 @@ public class PropertyDefaults {
 	
 	public static final String PROPERTY_TIME_SP = "time_sp";
 	
+	public static final String PROPERTY_MAX_PULSE_SP = "max_pulse_sp";
+	
+	public static final String PROPERTY_MID_PULSE_SP = "mid_pulse_sp";
+	
+	public static final String PROPERTY_MIN_PULSE_SP = "min_pulse_sp";
+	
+	public static final String PROPERTY_RATE_SP = "rate_sp";
+	
+	//Commands defaults
+	
 	public static final String COMMAND_RUN_FOREVER = "run-forever";
 	
 	public static final String COMMAND_RUN_TO_ABS_POS = "run-to-abs-pos";
@@ -69,4 +83,9 @@ public class PropertyDefaults {
 	public static final String COMMAND_STOP = "stop";
 	
 	public static final String COMMAND_RESET = "reset";
+
+	public static final String COMMAND_RUN = "run";
+
+	public static final String COMMAND_FLOAT = "float";
+	
 }
