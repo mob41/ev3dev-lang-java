@@ -24,3 +24,17 @@ You might saw another language binding for Java from here.<br>
 This is not a duplication. See Issue [#154](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758)<br>
 <br>
 Probably, he is using a wrong name for his project. As [suggested](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203538860) by @dlech, he should use another name like ev3dev-lejos-compat.
+
+## Example
+In this moment of development stage, this language binding can do:
+<pre>
+public static void main(String[] args) throws Exception {
+		LegoPort port = new LegoPort(LegoPort.PORT_A);
+		Device device = new Device(port);
+		Motor motor = new Motor(device);
+		motor.setDutyCycleSP(50);
+		motor.runForever();
+		Thread.sleep(5000);
+		motor.stop();
+	}
+</pre>
