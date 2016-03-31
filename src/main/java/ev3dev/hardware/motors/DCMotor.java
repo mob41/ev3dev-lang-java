@@ -13,8 +13,6 @@ public class DCMotor {
 
 	private String address;
 	
-	private int motornum;
-	
 	private String MOTOR_STR = "motor";
 	
 	/***
@@ -33,12 +31,11 @@ public class DCMotor {
 		} else if (!port.getStatus().equals(PropertyDefaults.DC_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
-		motornum = Sysclass.getHardwareIndex(PropertyDefaults.DC_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
-		if (motornum == -1){
+		MOTOR_STR = Sysclass.getHardwareName(PropertyDefaults.DC_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
+		if (MOTOR_STR == null){
 			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
 			//TODO This should wait until a suitable device detected.
 		}
-		MOTOR_STR = "motor" + motornum;
 	}
 	
 	/***

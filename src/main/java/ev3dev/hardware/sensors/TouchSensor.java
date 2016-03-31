@@ -13,22 +13,19 @@ public class TouchSensor extends Sensor {
 	
 	private String address;
 	
-	private int sensornum;
-	
-	private String SENSOR_STR = "sensor";
+	private String SENSOR_STR = null;
 	
 	public TouchSensor(Device device) throws IOException, InvalidPortException {
 		super(device);
 		address = device.getPort().getAddress();
-		sensornum = Sysclass.getHardwareIndex(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, address);
-		if (sensornum == -1){
+		SENSOR_STR = Sysclass.getHardwareName(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, address);
+		if (SENSOR_STR == null){
 			throw new InvalidPortException("The specified port does not connect a Touch Sensor.");
 		}
 		if (!this.getMode().equals(PropertyDefaults.PROPERTY_TOUCH_REQUIRED_MODE)){
 			throw new InvalidPortException("The specified port's device does not support the required mode: " + PropertyDefaults.PROPERTY_TOUCH_REQUIRED_MODE);
 		}
 		this.device = device;
-		SENSOR_STR = "sensor" + sensornum;
 	}
 	
 	public boolean isPressed() throws IOException{

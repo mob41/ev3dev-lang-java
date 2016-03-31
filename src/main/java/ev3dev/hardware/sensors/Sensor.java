@@ -11,17 +11,14 @@ public class Sensor {
 
 	private Device device;
 	
-	private String SENSOR_STR = "sensor";
-	
-	private int sensornum;
+	private String SENSOR_STR = null;
 	
 	public Sensor(Device device) throws IOException, InvalidPortException{
 		this.device = device;
-		sensornum = Sysclass.getHardwareIndex(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, device.getPort().getAddress());
-		if (sensornum == -1){
+		SENSOR_STR = Sysclass.getHardwareName(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, device.getPort().getAddress());
+		if (SENSOR_STR == null){
 			throw new InvalidPortException("The sensor does not exist. (Future plan: Wait until a suitable device)");
 		}
-		SENSOR_STR = "sensor" + sensornum;
 	}
 	
 	public String getAddress() throws IOException{

@@ -13,9 +13,7 @@ public class I2CSensor extends Sensor {
 	
 	private Device device;
 	
-	private int sensornum;
-	
-	private String SENSOR_STR = "sensor";
+	private String SENSOR_STR = null;
 
 	public I2CSensor(Device device) throws IOException, InvalidPortException {
 		super(device);
@@ -23,11 +21,10 @@ public class I2CSensor extends Sensor {
 			throw new InvalidPortException("The specified device is not a I2C sensor. (Future plan: Check device until a suitable device detected)");
 		}
 		this.device = device;
-		sensornum = getSensorNumber(device.getPort().getAddress());
-		if (sensornum == -1){
+		SENSOR_STR = Sysclass.getHardwareName(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, device.getPort().getAddress());
+		if (SENSOR_STR == null){
 			throw new InvalidPortException("The specified device does not exist.");
 		}
-		SENSOR_STR = "sensor" + sensornum;
 	}
 	
 	public String getFirmwareVersion() throws IOException{
@@ -41,21 +38,5 @@ public class I2CSensor extends Sensor {
 	
 	public void setPollMs(int ms) throws IOException{
 		Sysclass.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_POLL_MS, Integer.toString(ms));
-	}
-	
-	private static int getSensorNumber(String address){
-		int sensors = Sysclass.getNumbersOfSubClass(PropertyDefaults.SENSOR_CLASS_NAME);
-		System.out.println("All sensors: " + sensors);
-		if (sensors == -1){
-			return -1;
-		}
-		for (int i = 0; i < sensors; i++){
-			try {
-				if (Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, "sensor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
-					return i;
-				} 
-			} catch (IOException ignore){}
-		}
-		return -1;
 	}
 }

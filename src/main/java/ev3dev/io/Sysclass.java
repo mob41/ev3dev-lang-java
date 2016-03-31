@@ -107,10 +107,10 @@ public class Sysclass {
 		out.close();
 	}
 	
-	public static int getNumbersOfSubClass(String class_name){
+	public static File[] getAllSubClass(String class_name){
 		File file = new File(SYSTEM_CLASS_PATH + class_name);
 		File[] files = file.listFiles();
-		return files == null ? -1 : files.length;
+		return files;
 	}
 	
 	/***
@@ -144,18 +144,43 @@ public class Sysclass {
 		return strarr;
 	}
 	
-	public static int getHardwareIndex(String classname, String subclassname, String address){
-		int sub = Sysclass.getNumbersOfSubClass(classname);
-		if (sub == -1){
-			return -1;
+	private static String readFile(File file) throws IOException{
+		FileInputStream in = new FileInputStream(file);
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = null;
+		String line;
+		try {
+			br = new BufferedReader(new InputStreamReader(in));
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+
+		} catch (IOException e) {
+			throw e;
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					throw e;
+				}
+			}
 		}
-		for (int i = 0; i < sub; i++){
+		return sb.toString();
+	}
+	
+	public static String getHardwareName(String classname, String subclassname, String address){
+		System.out.println("Class: " + classname + " SubClass: " + subclassname + " Address: " + address);
+		File[] sub = Sysclass.getAllSubClass(classname);
+		File file;
+		for (File asub : sub){
+			file = new File(asub.getAbsolutePath() + "/address");
 			try {
-				if (Sysclass.getProperty(classname, subclassname + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
-					return i;
-				} 
-			} catch (IOException ignore){}
+				if(readFile(file).equals(address)){
+					return asub.getName();
+				}
+			} catch (Exception ignore){}
 		}
-		return -1;
+		return null;
 	}
 }

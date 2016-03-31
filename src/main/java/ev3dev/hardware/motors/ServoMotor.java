@@ -13,9 +13,7 @@ public class ServoMotor {
 
 	private String address;
 	
-	private int motornum;
-	
-	private String MOTOR_STR = "motor";
+	private String MOTOR_STR = null;
 	
 	/***
 	 * Creates a new motor object.
@@ -33,12 +31,11 @@ public class ServoMotor {
 		} else if (!port.getStatus().equals(PropertyDefaults.SERVO_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
-		motornum = Sysclass.getHardwareIndex(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
-		if (motornum == -1){
+		MOTOR_STR = Sysclass.getHardwareName(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
+		if (MOTOR_STR == null){
 			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
 			//TODO This should wait until a suitable device detected.
 		}
-		MOTOR_STR = "motor" + motornum;
 	}
 	
 	/***
