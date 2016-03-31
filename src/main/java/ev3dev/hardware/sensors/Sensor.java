@@ -7,7 +7,7 @@ import ev3dev.hardware.Device;
 import ev3dev.io.PropertyDefaults;
 import ev3dev.io.Sysclass;
 
-public class Sensor {
+public class Sensor{
 
 	private Device device;
 	

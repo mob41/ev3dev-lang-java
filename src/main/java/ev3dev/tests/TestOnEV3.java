@@ -18,11 +18,17 @@ public class TestOnEV3 {
 		TouchSensor ts = new TouchSensor(tsd);
 		motor.setDutyCycleSP(100);
 		while (true){
-			if (ts.isPressed()){
-				System.out.println("Pressed");
-				motor.runForever();
-			} else {
-				motor.stop();
+			try {
+				if (ts.isPressed()){
+					System.out.println("Pressed");
+					motor.runForever();
+				} else {
+					motor.stop();
+				}
+			} catch (Exception e){
+				System.out.println("!! Motor or sensor is disconnected.");
+				motor = new Motor(motord);
+				ts = new TouchSensor(tsd);
 			}
 		}
 	}

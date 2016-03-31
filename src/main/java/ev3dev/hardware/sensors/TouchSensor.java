@@ -17,6 +17,10 @@ public class TouchSensor extends Sensor {
 	
 	public TouchSensor(Device device) throws IOException, InvalidPortException {
 		super(device);
+		if (!this.getDriverName().equals(PropertyDefaults.TOUCH_SENSOR_DRIVER_NAME_EV3) &&
+				!this.getDriverName().equals(PropertyDefaults.TOUCH_SENSOR_DRIVER_NAME_NXT)){
+			throw new InvalidPortException("The specified device is not a touch sensor. (Future plan: Check device until a suitable device detected)");
+		}
 		address = device.getPort().getAddress();
 		SENSOR_STR = Sysclass.getHardwareName(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, address);
 		if (SENSOR_STR == null){

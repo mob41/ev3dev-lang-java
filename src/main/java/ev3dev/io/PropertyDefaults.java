@@ -22,7 +22,13 @@ public class PropertyDefaults {
 	
 	//Driver names
 	
-	public static final Object I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
+	public static final String I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
+	
+	public static final String TOUCH_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-touch";
+	
+	public static final String TOUCH_SENSOR_DRIVER_NAME_NXT = "lego-nxt-touch";
+	
+	public static final String COLOR_SENSOR_DRIVER_NAME = "lego-ev3-color";
 	
 	//Properties defaults
 	
@@ -123,6 +129,44 @@ public class PropertyDefaults {
 	public static final String PROPERTY_TOUCH_REQUIRED_MODE = "TOUCH";
 	
 	public static final int PROPERTY_TOUCH_VALUE_INDEX = 0;
+	
+	//Color Sensor properties
+	
+	public static final String PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY = "reflected_light_intensity";
+	
+	public static final String PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE = "COL-REFLECT";
+	
+	public static final int PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY = "ambient_light_intensity";
+	
+	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_REQUIRED_MODE = "AMBIENT";
+	
+	public static final int PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_COLOR_SENSOR_COLOR = "color";
+	
+	public static final String PROPERTY_COLOR_SENSOR_COLOR_REQUIRED_MODE = "COL-COLOR";
+	
+	public static final int PROPERTY_COLOR_SENSOR_COLOR_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_R = "red";
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_R_REQUIRED_MODE = "RGB-RAW";
+	
+	public static final int PROPERTY_COLOR_SENSOR_RGB_R_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_G = "green";
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_G_REQUIRED_MODE = "RGB-RAW";
+	
+	public static final int PROPERTY_COLOR_SENSOR_RGB_G_VALUE_INDEX = 1;
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_B = "blue";
+	
+	public static final String PROPERTY_COLOR_SENSOR_RGB_B_REQUIRED_MODE = "RGB-RAW";
+	
+	public static final int PROPERTY_COLOR_SENSOR_RGB_B_VALUE_INDEX = 2;
 	
 	//Power supply properties
 	
