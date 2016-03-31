@@ -12,6 +12,8 @@ public class PropertyDefaults {
 	
 	public static final String LED_CLASS_NAME = "leds";
 	
+	public static final String SENSOR_CLASS_NAME = "lego-sensor";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -87,6 +89,18 @@ public class PropertyDefaults {
 	public static final String PROPERTY_DELAY_ON = "delay_on";
 	
 	public static final String PROPERTY_DELAY_OFF = "delay_off";
+	
+	//Sensor Properties defaults
+	
+	public static final String PROPERTY_DECIMALS = "decimals";
+	
+	public static final String PROPERTY_MODE = "mode";
+	
+	public static final String PROPERTY_MODES = "modes";
+	
+	public static final String PROPERTY_NUM_VALUES = "num_values";
+	
+	public static final String PROPERTY_UNITS = "units";
 	
 	//Commands defaults
 	
