@@ -14,6 +14,8 @@ public class PropertyDefaults {
 	
 	public static final String SENSOR_CLASS_NAME = "lego-sensor";
 	
+	public static final String POWER_SUPPLY_CLASS_NAME = "power_supply";
+	
 	//Driver names
 	
 	public static final Object I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
@@ -111,6 +113,20 @@ public class PropertyDefaults {
 	public static final String PROPERTY_FIRMWARE_VERSION = "fw_version";
 	
 	public static final String PROPERTY_POLL_MS = "poll_ms";
+	
+	//Power supply properties
+	
+	public static final String PROPERTY_MEASURED_CURRENT = "measured_current";
+	
+	public static final String PROPERTY_MEASURED_VOLTAGE = "measured_voltage";
+	
+	public static final String PROPERTY_MAX_VOLTAGE = "max_voltage";
+	
+	public static final String PROPERTY_MIN_VOLTAGE = "min_voltage";
+	
+	public static final String PROPERTY_TECHNOLOGY = "technology";
+	
+	public static final String PROPERTY_TYPE = "type";
 	
 	//Commands defaults
 	
