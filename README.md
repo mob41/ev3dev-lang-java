@@ -16,6 +16,13 @@ Please post issues so that I can fix it immediately, thank you!
 - [ ] Generic button class
 - [x] Sensor class ([http://www.ev3dev.org/docs/drivers/lego-sensor-class/](http://www.ev3dev.org/docs/drivers/lego-sensor-class/))
 - [x] Generic I2C sensor
+- [x] Touch Sensor
+- [ ] Color Sensor
+- [ ] Ultrasonic Sensor
+- [ ] Gyro Sensor
+- [ ] Infrared Sensor
+- [ ] Sound Sensor
+- [ ] Light Sensor
 - [x] Power supply
 - [x] Lego Port
 - [x] Sensor Port (Unnecessary) (inherits from LegoPort)
