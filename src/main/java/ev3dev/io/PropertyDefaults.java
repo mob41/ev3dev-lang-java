@@ -14,6 +14,10 @@ public class PropertyDefaults {
 	
 	public static final String SENSOR_CLASS_NAME = "lego-sensor";
 	
+	//Driver names
+	
+	public static final Object I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -101,6 +105,12 @@ public class PropertyDefaults {
 	public static final String PROPERTY_NUM_VALUES = "num_values";
 	
 	public static final String PROPERTY_UNITS = "units";
+	
+	//I2C Sensor properties
+	
+	public static final String PROPERTY_FIRMWARE_VERSION = "fw_version";
+	
+	public static final String PROPERTY_POLL_MS = "poll_ms";
 	
 	//Commands defaults
 	
