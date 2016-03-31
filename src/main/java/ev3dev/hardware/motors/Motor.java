@@ -233,12 +233,11 @@ public class Motor {
 	
 	public boolean isSpeedRegulationEnabled() throws IOException{
 		String str = getSpeedRegulationEnabled();
-		switch (str){
-		case "on":
+		if (str.equals("on")){
 			return true;
-		case "off":
+		} else if (str.equals("off")){
 			return false;
-		default:
+		} else {
 			return false;
 		}
 	}
@@ -250,13 +249,12 @@ public class Motor {
 	
 	public void setSpeedRegulationEnabled(String onoff) throws IOException{
 		boolean enabled = false;
-		switch (onoff){
-		case "on":
+		if (onoff.equals("on")){
 			enabled = true;
-			break;
-		case "off":
+		} else if (onoff.equals("off")){
 			enabled = false;
-			break;
+		} else {
+			enabled = false;
 		}
 		setSpeedRegulationEnabled(enabled);
 	}

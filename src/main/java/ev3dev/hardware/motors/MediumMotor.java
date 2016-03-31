@@ -12,10 +12,12 @@ public class MediumMotor extends Motor {
 
 	public MediumMotor(Device device) throws InvalidPortException, IOException, InvalidMotorException {
 		super(device);
+		/*//TODO Probably this is incorrect. The LegoPort returns its driver name, not motor's.
 		String drivername = device.getPort().getDriverName();
 		if (!drivername.equals(driver)){
 			throw new InvalidMotorException("It is not a MediumMotor (" + driver + "): " + drivername);
 		}
+		*/
 	}
 
 }
