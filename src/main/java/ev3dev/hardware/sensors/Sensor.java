@@ -17,7 +17,7 @@ public class Sensor {
 	
 	public Sensor(Device device) throws IOException, InvalidPortException{
 		this.device = device;
-		sensornum = Sysclass.getHardwareIndex(PropertyDefaults.SENSOR_CLASS_NAME, device.getPort().getAddress());
+		sensornum = Sysclass.getHardwareIndex(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, device.getPort().getAddress());
 		if (sensornum == -1){
 			throw new InvalidPortException("The sensor does not exist. (Future plan: Wait until a suitable device)");
 		}

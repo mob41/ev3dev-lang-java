@@ -33,7 +33,7 @@ public class ServoMotor {
 		} else if (!port.getStatus().equals(PropertyDefaults.SERVO_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
-		motornum = Sysclass.getHardwareIndex(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, address);
+		motornum = Sysclass.getHardwareIndex(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
 		if (motornum == -1){
 			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
 			//TODO This should wait until a suitable device detected.

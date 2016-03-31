@@ -14,6 +14,10 @@ public class PropertyDefaults {
 	
 	public static final String SENSOR_CLASS_NAME = "lego-sensor";
 	
+	public static final String SUB_SENSOR_CLASS_NAME = "sensor";
+	
+	public static final String SUB_MOTOR_CLASS_NAME = "motor";
+	
 	public static final String POWER_SUPPLY_CLASS_NAME = "power_supply";
 	
 	//Driver names

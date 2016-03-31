@@ -144,14 +144,14 @@ public class Sysclass {
 		return strarr;
 	}
 	
-	public static int getHardwareIndex(String subclassname, String address){
-		int sensors = Sysclass.getNumbersOfSubClass(subclassname);
-		if (sensors == -1){
+	public static int getHardwareIndex(String classname, String subclassname, String address){
+		int sub = Sysclass.getNumbersOfSubClass(classname);
+		if (sub == -1){
 			return -1;
 		}
-		for (int i = 0; i < sensors; i++){
+		for (int i = 0; i < sub; i++){
 			try {
-				if (Sysclass.getProperty(subclassname, "sensor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
+				if (Sysclass.getProperty(classname, subclassname + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
 					return i;
 				} 
 			} catch (IOException ignore){}
