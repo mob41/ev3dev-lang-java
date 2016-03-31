@@ -33,7 +33,7 @@ public class DCMotor {
 		} else if (!port.getStatus().equals(PropertyDefaults.DC_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
-		motornum = getMotorNumber(address);
+		motornum = Sysclass.getHardwareIndex(PropertyDefaults.DC_MOTOR_CLASS_NAME, address);
 		if (motornum == -1){
 			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
 			//TODO This should wait until a suitable device detected.
@@ -162,21 +162,5 @@ public class DCMotor {
 	
 	public void setTime_SP(int time_sp) throws IOException{
 		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
-	}
-	
-	private static int getMotorNumber(String address){
-		int motors = Sysclass.getNumbersOfSubClass(PropertyDefaults.DC_MOTOR_CLASS_NAME);
-		System.out.println("All motors: " + motors);
-		if (motors == -1){
-			return -1;
-		}
-		for (int i = 0; i < motors; i++){
-			try {
-				if (Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, "motor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
-					return i;
-				} 
-			} catch (IOException ignore){}
-		}
-		return -1;
 	}
 }

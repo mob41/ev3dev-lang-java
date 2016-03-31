@@ -1,4 +1,4 @@
-# ev3dev-lang-java
+# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
 A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 Really, really, I don't know why I programmed too fast. I must missed something. This version of API is currently unstable, but it is able to use.<br>

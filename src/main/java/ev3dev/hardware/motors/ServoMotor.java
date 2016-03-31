@@ -33,7 +33,7 @@ public class ServoMotor {
 		} else if (!port.getStatus().equals(PropertyDefaults.SERVO_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
-		motornum = getMotorNumber(address);
+		motornum = Sysclass.getHardwareIndex(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, address);
 		if (motornum == -1){
 			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
 			//TODO This should wait until a suitable device detected.
@@ -130,21 +130,5 @@ public class ServoMotor {
 	public String[] getState() throws IOException{
 		String str = getStateViaString();
 		return Sysclass.separateSpace(str);
-	}
-	
-	private static int getMotorNumber(String address){
-		int motors = Sysclass.getNumbersOfSubClass(PropertyDefaults.SERVO_MOTOR_CLASS_NAME);
-		System.out.println("All motors: " + motors);
-		if (motors == -1){
-			return -1;
-		}
-		for (int i = 0; i < motors; i++){
-			try {
-				if (Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, "motor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
-					return i;
-				} 
-			} catch (IOException ignore){}
-		}
-		return -1;
 	}
 }

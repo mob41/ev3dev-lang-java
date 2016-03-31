@@ -143,4 +143,19 @@ public class Sysclass {
 		}
 		return strarr;
 	}
+	
+	public static int getHardwareIndex(String subclassname, String address){
+		int sensors = Sysclass.getNumbersOfSubClass(subclassname);
+		if (sensors == -1){
+			return -1;
+		}
+		for (int i = 0; i < sensors; i++){
+			try {
+				if (Sysclass.getProperty(subclassname, "sensor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
+					return i;
+				} 
+			} catch (IOException ignore){}
+		}
+		return -1;
+	}
 }

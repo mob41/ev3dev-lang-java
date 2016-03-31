@@ -114,6 +114,12 @@ public class PropertyDefaults {
 	
 	public static final String PROPERTY_POLL_MS = "poll_ms";
 	
+	//Touch Sensor properties
+	
+	public static final String PROPERTY_TOUCH_REQUIRED_MODE = "TOUCH";
+	
+	public static final int PROPERTY_TOUCH_VALUE_INDEX = 0;
+	
 	//Power supply properties
 	
 	public static final String PROPERTY_MEASURED_CURRENT = "measured_current";
