@@ -30,7 +30,7 @@ public class DCMotor {
 		//Verify is the LegoPort connecting a motor / is a output
 		if (!address.contains("out")){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a output.");
-		} else if (!port.getStatus().equals(PropertyDefaults.MOTOR_CLASS_NAME)){
+		} else if (!port.getStatus().equals(PropertyDefaults.DC_MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
 		motornum = getMotorNumber(address);
@@ -47,7 +47,7 @@ public class DCMotor {
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -55,7 +55,7 @@ public class DCMotor {
 	 * @param command Command that suits for the motor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -81,56 +81,56 @@ public class DCMotor {
 	}
 	
 	public String[] getCommands() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMANDS);
+		String str = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMANDS);
 		return Sysclass.separateSpace(str);
 	}
 	
 	public String getDriverName() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getDutyCycle() throws IOException{
-		String dutycycle = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE);
+		String dutycycle = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
 	public int getDutyCycleSP() throws IOException{
-		String dutycyclesp = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
 	public void setDutyCycleSP(int sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	public String getPolarity() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY, polarity);
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getRamp_Up_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	public int getRamp_Down_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	public String getStateViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STATE);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STATE);
 	}
 	
 	public String[] getState() throws IOException{
@@ -139,15 +139,15 @@ public class DCMotor {
 	}
 	
 	public String getStopCommand() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND);
 	}
 	
 	public void setStopCommand(String stop_command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
 	}
 	
 	public String getStopCommandsViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMANDS);
+		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMANDS);
 	}
 	
 	public String[] getStopCommands() throws IOException{
@@ -156,23 +156,23 @@ public class DCMotor {
 	}
 	
 	public int getTime_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setTime_SP(int time_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		Sysclass.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 	
 	private static int getMotorNumber(String address){
-		int motors = Sysclass.getNumbersOfSubClass(PropertyDefaults.MOTOR_CLASS_NAME);
+		int motors = Sysclass.getNumbersOfSubClass(PropertyDefaults.DC_MOTOR_CLASS_NAME);
 		System.out.println("All motors: " + motors);
 		if (motors == -1){
 			return -1;
 		}
 		for (int i = 0; i < motors; i++){
 			try {
-				if (Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, "motor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
+				if (Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, "motor" + i, PropertyDefaults.PROPERTY_ADDRESS).equals(address)){
 					return i;
 				} 
 			} catch (IOException ignore){}

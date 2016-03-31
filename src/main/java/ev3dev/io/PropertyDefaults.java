@@ -4,6 +4,8 @@ public class PropertyDefaults {
 	
 	public static final String MOTOR_CLASS_NAME = "tacho-motor";
 	
+	public static final String DC_MOTOR_CLASS_NAME = "dc-motor";
+	
 	public static final String PROPERTY_ADDRESS = "address";
 	
 	public static final String PROPERTY_COMMAND = "command";
