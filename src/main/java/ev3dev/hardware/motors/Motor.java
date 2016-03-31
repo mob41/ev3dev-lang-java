@@ -1,19 +1,33 @@
 package ev3dev.hardware.motors;
 
+//-----------------------------------------------------------------------------
+
 import java.io.IOException;
+
 import ev3dev.exception.InvalidPortException;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.PropertyDefaults;
 import ev3dev.io.Sysclass;
 
+//-----------------------------------------------------------------------------
+
+//~autogen generic-classes classes.motor>currentClass
+
+
+//~autogen
+
 public class Motor {
+	
+//-----------------------------------------------------------------------------
 
 	private LegoPort port;
 
 	private String address;
 	
 	private String MOTOR_STR = null;
+	
+//-----------------------------------------------------------------------------
 	
 	/***
 	 * Creates a new motor object.
@@ -37,7 +51,10 @@ public class Motor {
 			//TODO This should wait until a suitable device detected.
 		}
 	}
+
+//-----------------------------------------------------------------------------
 	
+//~autogen generic-get-set classes.motor>currentClass
 	/***
 	 * Get the address of this motor.
 	 * @return LegoPort address described in String
@@ -326,5 +343,6 @@ public class Motor {
 	public void setTime_SP(int time_sp) throws IOException{
 		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
-	
+//~autogen
 }
+//-----------------------------------------------------------------------------
