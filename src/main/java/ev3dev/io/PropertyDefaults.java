@@ -2,11 +2,17 @@ package ev3dev.io;
 
 public class PropertyDefaults {
 	
+	//Class names
+	
 	public static final String MOTOR_CLASS_NAME = "tacho-motor";
 	
 	public static final String DC_MOTOR_CLASS_NAME = "dc-motor";
 	
 	public static final String SERVO_MOTOR_CLASS_NAME = "servo-motor";
+	
+	public static final String LED_CLASS_NAME = "leds";
+	
+	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
 	
@@ -67,6 +73,20 @@ public class PropertyDefaults {
 	public static final String PROPERTY_MIN_PULSE_SP = "min_pulse_sp";
 	
 	public static final String PROPERTY_RATE_SP = "rate_sp";
+	
+	//LED Properties defaults
+	
+	public static final String PROPERTY_MAX_BRIGHTNESS = "max_brightness";
+	
+	public static final String PROPERTY_BRIGHTNESS = "brightness";
+	
+	public static final String PROPERTY_TRIGGERS = "triggers";
+	
+	public static final String PROPERTY_TRIGGER = "trigger";
+	
+	public static final String PROPERTY_DELAY_ON = "delay_on";
+	
+	public static final String PROPERTY_DELAY_OFF = "delay_off";
 	
 	//Commands defaults
 	
