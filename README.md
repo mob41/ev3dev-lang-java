@@ -1,10 +1,12 @@
 # ev3dev-lang-java
-A ev3dev unified language binding for Java.
+A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
-A unified language binding that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
+Really, really, I don't know why I programmed too fast. I must missed something. This version of API is currently unstable, but it is able to use.<br>
+I can't test some classes as I don't have those modules, such as DCMotor, ServoMotor, LED, I2CSensor.<br>
+Please post issues so that I can fix it immediately, thank you!
 
 ### Stage
-- [x] Device class
+- [ ] Device class
 - [x] Motor class ([http://www.ev3dev.org/docs/drivers/tacho-motor-class/](http://www.ev3dev.org/docs/drivers/tacho-motor-class/))
 - [x] Large-motor class (inherits from Motor)
 - [x] Medium-motor class (inherits from Motor)
@@ -25,19 +27,3 @@ You might saw another language binding for Java from [here](https://github.com/e
 This is not a duplication. See Issue [#154](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758)<br>
 <br>
 Probably, he is using a wrong name for his project. As [suggested](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203538860) by @dlech, he should use another name like ev3dev-lejos-compat.
-
-## Example
-In this moment of development stage, this language binding can do:
-<div class="highlight highlight-java">
-<pre>
-public static void main(String[] args) throws Exception {
-		LegoPort port = new LegoPort(LegoPort.PORT_A);
-		Device device = new Device(port);
-		Motor motor = new Motor(device);
-		motor.setDutyCycleSP(50);
-		motor.runForever();
-		Thread.sleep(5000);
-		motor.stop();
-	}
-</pre>
-</div>
