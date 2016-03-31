@@ -3,6 +3,8 @@ package ev3dev.hardware.ports;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.AccessControlException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ev3dev.exception.InvalidPortException;
 import ev3dev.io.Sysclass;
@@ -17,6 +19,8 @@ import ev3dev.io.Sysclass;
 public class LegoPort {
 	
 	private int port = 0;
+	
+	public static final String SYSTEM_CLASS_NAME = "lego-port";
 	
 	public static final int PORT_1 = 0;
 	
@@ -43,65 +47,62 @@ public class LegoPort {
 		this.port = port;
 	}
 	
-	public String getAddress(){
-		String address = null;
-		try { //TODO I shouldn't do like this. Do Error handling.
-			address = Sysclass.getProperty("lego-port", "port" + port, "address");
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public String getAddress() throws IOException{
+		String address = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "address");
 		return address;
 	}
 	
-	public String getDriverName(){
-		String drivername = null;
-		try {
-			drivername = Sysclass.getProperty("lego-port", "port" + port, "driver_name");
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public String getDriverName() throws IOException{
+		String drivername = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "driver_name");
 		return drivername;
 	}
 	
-	public String[] getModes(){
-		String[] modes = null;
-		//TODO This
-		return modes;
+	public String[] getModes() throws IOException{
+		String modesstr = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "modes");
+		return separateSpace(modesstr);
 	}
 	
-	public String getMode(){
-		String mode = null;
-		try {
-			mode = Sysclass.getProperty("lego-port", "port" + port, "mode");
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public String getMode() throws IOException{
+		String mode = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "mode");
 		return mode;
 	}
 	
-	public void setMode(String mode){
-		try {
-			Sysclass.setProperty("lego-port", "port" + port, "mode", mode);
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public void setMode(String mode) throws IOException{
+		Sysclass.setProperty(SYSTEM_CLASS_NAME, "port" + port, "mode", mode);
 	}
 	
-	public void setDevice(String driver){
-		try {
-			Sysclass.setProperty("lego-port", "port" + port, "set_device", driver);
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public void setDevice(String driver) throws IOException{
+		Sysclass.setProperty(SYSTEM_CLASS_NAME, "port" + port, "set_device", driver);
 	}
 	
-	public String getStatus(){
-		String status = null;
-		try {
-			status = Sysclass.getProperty("lego-port", "port" + port, "status");
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+	public String getStatus() throws IOException{
+		String status = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "status");
 		return status;
+	}
+	
+	private static String[] separateSpace(String space_array){
+		int i;
+		int j;
+		String sep;
+		List<String> list = new ArrayList<String>(50);
+		for (i = 0; i < space_array.length(); i++){
+			for (j = 0; j < space_array.length(); j++){
+				if (space_array.charAt(j) == ' '){
+					break;
+				}
+			}
+			if (j == space_array.length()){
+				break;
+			}
+			sep = space_array.substring(i, j);
+			list.add(sep);
+			i = j + 1;
+		}
+		Object[] objarr = list.toArray();
+		String[] strarr = new String[objarr.length];
+		for (i = 0; i < strarr.length; i++){
+			strarr[i] = (String) objarr[i];
+		}
+		return strarr;
 	}
 }

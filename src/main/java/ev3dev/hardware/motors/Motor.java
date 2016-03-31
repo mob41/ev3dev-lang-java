@@ -2,6 +2,7 @@ package ev3dev.hardware.motors;
 
 import java.io.IOException;
 import ev3dev.exception.InvalidPortException;
+import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Sysclass;
 
@@ -17,11 +18,12 @@ public class Motor {
 	
 	/***
 	 * Creates a new motor object.
-	 * @param port Specify a LegoPort
+	 * @param device A device object connecting a motor
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
+	 * @throws IOException If the LegoPort specified goes wrong
 	 */
-	public Motor(LegoPort port) throws InvalidPortException{
-		this.port = port;
+	public Motor(Device device) throws InvalidPortException, IOException{
+		this.port = device.getPort();
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
