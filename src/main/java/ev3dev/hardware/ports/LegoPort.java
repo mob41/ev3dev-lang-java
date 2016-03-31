@@ -1,11 +1,6 @@
 package ev3dev.hardware.ports;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.security.AccessControlException;
-import java.util.ArrayList;
-import java.util.List;
-
 import ev3dev.exception.InvalidPortException;
 import ev3dev.io.Sysclass;
 
@@ -59,7 +54,7 @@ public class LegoPort {
 	
 	public String[] getModes() throws IOException{
 		String modesstr = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "modes");
-		return separateSpace(modesstr);
+		return Sysclass.separateSpace(modesstr);
 	}
 	
 	public String getMode() throws IOException{
@@ -78,31 +73,5 @@ public class LegoPort {
 	public String getStatus() throws IOException{
 		String status = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "status");
 		return status;
-	}
-	
-	private static String[] separateSpace(String space_array){
-		int i;
-		int j;
-		String sep;
-		List<String> list = new ArrayList<String>(50);
-		for (i = 0; i < space_array.length(); i++){
-			for (j = 0; j < space_array.length(); j++){
-				if (space_array.charAt(j) == ' '){
-					break;
-				}
-			}
-			if (j == space_array.length()){
-				break;
-			}
-			sep = space_array.substring(i, j);
-			list.add(sep);
-			i = j + 1;
-		}
-		Object[] objarr = list.toArray();
-		String[] strarr = new String[objarr.length];
-		for (i = 0; i < strarr.length; i++){
-			strarr[i] = (String) objarr[i];
-		}
-		return strarr;
 	}
 }
