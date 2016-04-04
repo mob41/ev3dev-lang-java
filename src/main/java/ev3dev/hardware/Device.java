@@ -7,26 +7,34 @@ import ev3dev.io.Sysclass;
 
 public class Device {
 	
-	private Thread thread;
-	private CheckDevice runnable;
+	private String className;
+	
+	private String subClassName;
+	
+	private String driverName;
+	
 	private String address;
+	
+	private String hardwareName = null;
+	
 	private LegoPort port;
+	
+	private Thread thread;
+	
+	private Check runnable;
+	
+	private int interval = 500;
+	
 	private boolean connected = false;
-	
-	public Device(String address){
-		//TODO the available devices should be enumerated until a suitable device is found
-	}
-	
-	public Device(String classname, String address){
-		//TODO find device according some requirements
-	}
 
-	public Device(LegoPort port) throws IOException{
+	public Device(LegoPort port, String className, String subClassName) throws IOException{
 		this.port = port;
+		this.className = className;
+		this.subClassName = subClassName;
 		address = port.getAddress();
-		runnable = new CheckDevice();
+		runnable = new Check();
 		thread = new Thread(runnable);
-		thread.setName("EV3PingDevice-" + address + "-" + thread.getId());
+		thread.setName("ev3dev-pingDevice-" + className + "-" + thread.getId());
 		thread.start();
 	}
 	
@@ -37,13 +45,60 @@ public class Device {
 	public LegoPort getPort(){
 		return port;
 	}
-}
-
-class CheckDevice implements Runnable{
-
-	public void run() {
-		
-		
+	
+	public int getCheckInterval(){
+		return interval;
 	}
 	
+	public void setCheckInterval(int interval){
+		this.interval = interval;
+	}
+	
+	public String getHardwareName(){
+		return hardwareName;
+	}
+	
+	public void startInterval(){
+		if (thread != null && runnable != null){
+			thread.start();
+		}
+	}
+	
+	public void skipInterval(){
+		thread.notify();
+	}
+	
+	public void stopInterval(){
+		if (runnable != null){
+			runnable.stop();
+		}
+	}
+	
+	class Check implements Runnable{
+
+		public boolean running = false;
+		
+		@Override
+		public void run() {
+			if (!running){
+				running = true;
+				while(running){
+					hardwareName = Sysclass.getHardwareName(className, subClassName, address);
+					connected = hardwareName != null;
+					try {
+						thread.wait(interval);
+					} catch (InterruptedException ignore) {}
+				}
+			}
+			
+		}
+		
+		public void stop(){
+			if (running){
+				thread.notify();
+				running = false;
+			}
+		}
+		
+	}
 }

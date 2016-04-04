@@ -9,6 +9,7 @@ import ev3dev.hardware.sensors.TouchSensor;
 public class TestOnEV3 {
 
 	public static void main(String[] args) throws Exception {
+		/* This test became invalid now.
 		MotorPort motorport = new MotorPort(MotorPort.MOTOR_A);
 		SensorPort sensorport = new SensorPort(SensorPort.PORT_1);
 		Device motord = new Device(motorport);
@@ -31,6 +32,7 @@ public class TestOnEV3 {
 				ts = new TouchSensor(tsd);
 			}
 		}
+	*/
 	}
 
 }
