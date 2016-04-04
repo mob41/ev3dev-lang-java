@@ -14,10 +14,12 @@ public class LargeMotor extends Motor {
 
 	public LargeMotor(LegoPort port) throws InvalidPortException, IOException, InvalidMotorException {
 		super(port);
+		/*
 		String drivername = this.getDriverName();
 		if (!drivername.equals(PropertyDefaults.LARGE_MOTOR_DRIVER_NAME)){
 			throw new InvalidMotorException("It is not a LargeMotor (" + PropertyDefaults.LARGE_MOTOR_DRIVER_NAME + "): " + drivername);
 		}
+		*/
 	}
 
 }
