@@ -22,6 +22,10 @@ public class PropertyDefaults {
 	
 	//Driver names
 	
+	public static final String MEDIUM_MOTOR_DRIVER_NAME = "lego-ev3-m-motor";
+	
+	public static final String LARGE_MOTOR_DRIVER_NAME = "lego-ev3-l-motor";
+	
 	public static final String I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
 	
 	public static final String TOUCH_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-touch";
