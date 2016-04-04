@@ -23,7 +23,7 @@ public class Device {
 	
 	private Check runnable;
 	
-	private int interval = 500;
+	private int interval = 100;
 	
 	private boolean connected = false;
 
@@ -36,6 +36,9 @@ public class Device {
 		thread = new Thread(runnable);
 		thread.setName("ev3dev-pingDevice-" + className + "-" + thread.getId());
 		thread.start();
+		while (!connected){
+			check();
+		}
 	}
 	
 	public boolean isConnected(){
@@ -65,13 +68,26 @@ public class Device {
 	}
 	
 	public void skipInterval(){
-		thread.notify();
+		synchronized(thread){
+			thread.notify();
+		}
 	}
 	
 	public void stopInterval(){
 		if (runnable != null){
 			runnable.stop();
 		}
+	}
+	
+	private void check(){
+		try {
+			hardwareName = Sysclass.getHardwareName(className, subClassName, address);
+		} catch (Exception ignore){
+			connected = false;
+			hardwareName = null;
+			return;
+		}
+		connected = hardwareName != null;
 	}
 	
 	class Check implements Runnable{
@@ -83,10 +99,11 @@ public class Device {
 			if (!running){
 				running = true;
 				while(running){
-					hardwareName = Sysclass.getHardwareName(className, subClassName, address);
-					connected = hardwareName != null;
+					check();
 					try {
-						thread.wait(interval);
+						synchronized(thread){
+							thread.wait(interval);
+						}
 					} catch (InterruptedException ignore) {}
 				}
 			}
@@ -95,7 +112,9 @@ public class Device {
 		
 		public void stop(){
 			if (running){
-				thread.notify();
+				synchronized(thread){
+					thread.notify();
+				}
 				running = false;
 			}
 		}

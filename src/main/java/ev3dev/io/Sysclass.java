@@ -170,7 +170,6 @@ public class Sysclass {
 	}
 	
 	public static String getHardwareName(String classname, String subclassname, String address){
-		System.out.println("Class: " + classname + " SubClass: " + subclassname + " Address: " + address);
 		File[] sub = Sysclass.getAllSubClass(classname);
 		File file;
 		for (File asub : sub){
