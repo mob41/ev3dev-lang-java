@@ -54,7 +54,7 @@ public class Device {
 		this.interval = interval;
 	}
 	
-	public String getHardwareName(){
+	public String getSubClassName(){
 		return hardwareName;
 	}
 	

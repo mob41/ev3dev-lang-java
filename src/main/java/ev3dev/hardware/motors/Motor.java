@@ -23,15 +23,13 @@ import ev3dev.io.Sysclass;
 
 //~autogen
 
-public class Motor {
+public class Motor extends Device{
 	
 //-----------------------------------------------------------------------------
 
 	private LegoPort port;
 
 	private String address;
-	
-	private String MOTOR_STR = null;
 	
 //-----------------------------------------------------------------------------
 	
@@ -41,8 +39,9 @@ public class Motor {
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
-	public Motor(Device device) throws InvalidPortException, IOException{
-		this.port = device.getPort();
+	public Motor(LegoPort port) throws InvalidPortException, IOException{
+		super(port, PropertyDefaults.MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME);
+		this.port = port;
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
@@ -50,11 +49,6 @@ public class Motor {
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a output.");
 		} else if (!port.getStatus().equals(PropertyDefaults.MOTOR_CLASS_NAME)){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
-		}
-		MOTOR_STR = Sysclass.getHardwareName(PropertyDefaults.MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME, address);
-		if (MOTOR_STR == null){
-			throw new InvalidPortException("The motor does not exist. (Future plan: Wait until a suitable device)");
-			//TODO This should wait until a suitable device detected.
 		}
 	}
 
@@ -67,7 +61,7 @@ public class Motor {
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -75,7 +69,7 @@ public class Motor {
 	 * @param command Command that suits for the motor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -135,128 +129,128 @@ public class Motor {
 	}
 	
 	public String[] getCommands() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMANDS);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
 		return Sysclass.separateSpace(str);
 	}
 	
 	public int getCountPerRot() throws IOException{
-		String countperrot = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COUNT_PER_ROT);
+		String countperrot = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COUNT_PER_ROT);
 		return Integer.parseInt(countperrot);
 	}
 	
 	public String getDriverName() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getDutyCycle() throws IOException{
-		String dutycycle = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE);
+		String dutycycle = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
 	public int getDutyCycleSP() throws IOException{
-		String dutycyclesp = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
 	public void setDutyCycleSP(int sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	public String getEncoderPolarity() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ENCODER_POLARITY);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY);
 	}
 	
 	public void setEncoderPolarity(String encoder_polarity) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ENCODER_POLARITY, encoder_polarity);
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY, encoder_polarity);
 	}
 	
 	public String getPolarity() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY, polarity);
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getPosition() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, "position_p");
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), "position_p");
 		return Integer.parseInt(str);
 	}
 	
 	public void setPosition(int position) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION, Integer.toString(position));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION, Integer.toString(position));
 	}
 	
 	public int getPosition_P() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_P);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P);
 		return Integer.parseInt(str);
 	}
 	
 	public int getPosition_I() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_I);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I);
 		return Integer.parseInt(str);
 	}
 	
 	public int getPosition_D() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_D);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D);
 		return Integer.parseInt(str);
 	}
 	
 	public void setPosition_P(int position_p) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_P, Integer.toString(position_p));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P, Integer.toString(position_p));
 	}
 	
 	public void setPosition_I(int position_i) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_I, Integer.toString(position_i));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I, Integer.toString(position_i));
 	}
 	
 	public void setPosition_D(int position_d) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_D, Integer.toString(position_d));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D, Integer.toString(position_d));
 	}
 	
 	public int getPosition_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
 	public void setPosition_SP(int position_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	public int getSpeed() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
 	public int getSpeed_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
 	public void setSpeed_SP(int speed_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
 	}
 	
 	public int getRamp_Up_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	public int getRamp_Down_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	public String getSpeedRegulationEnabled() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED);
 		return str;
 	}
 	
@@ -273,7 +267,7 @@ public class Motor {
 	
 	public void setSpeedRegulationEnabled(boolean enabled) throws IOException{
 		String str = enabled ? "on" : "off";
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED, str);
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED, str);
 	}
 	
 	public void setSpeedRegulationEnabled(String onoff) throws IOException{
@@ -289,34 +283,34 @@ public class Motor {
 	}
 	
 	public int getSpeedRegulation_P() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_P);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P);
 		return Integer.parseInt(str);
 	}
 	
 	public void setSpeedRegulation_P(int p) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
 	}
 	
 	public int getSpeedRegulation_I() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_I);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I);
 		return Integer.parseInt(str);
 	}
 	
 	public void setSpeedRegulation_I(int i) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
 	}
 	
 	public int getSpeedRegulation_D() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_D);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D);
 		return Integer.parseInt(str);
 	}
 	
 	public void setSpeedRegulation_D(int d) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
 	}
 	
 	public String getStateViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STATE);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
 	}
 	
 	public String[] getState() throws IOException{
@@ -325,15 +319,15 @@ public class Motor {
 	}
 	
 	public String getStopCommand() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND);
 	}
 	
 	public void setStopCommand(String stop_command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
 	}
 	
 	public String getStopCommandsViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STOP_COMMANDS);
+		return Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMANDS);
 	}
 	
 	public String[] getStopCommands() throws IOException{
@@ -342,12 +336,12 @@ public class Motor {
 	}
 	
 	public int getTime_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP);
+		String str = Sysclass.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setTime_SP(int time_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		Sysclass.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 //~autogen
 }
