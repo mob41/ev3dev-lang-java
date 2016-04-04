@@ -2,6 +2,10 @@ package ev3dev.io;
 
 public class PropertyDefaults {
 	
+	//System class path
+	
+	public static final String SYSTEM_CLASS_PATH = "/sys/class/";
+	
 	//Class names
 	
 	public static final String MOTOR_CLASS_NAME = "tacho-motor";

@@ -10,7 +10,7 @@ import ev3dev.io.Sysclass;
  * @author Anthony
  *
  */
-public class PowerSupply {
+public class PowerSupply{
 	
 	/***
 	 * The measured current that the battery is supplying (in microamps)

@@ -7,7 +7,7 @@ import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.PropertyDefaults;
 import ev3dev.io.Sysclass;
 
-public class ServoMotor {
+public class ServoMotor extends Device{
 
 	private LegoPort port;
 
@@ -21,8 +21,9 @@ public class ServoMotor {
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
-	public ServoMotor(Device device) throws InvalidPortException, IOException{
-		this.port = device.getPort();
+	public ServoMotor(LegoPort port) throws InvalidPortException, IOException{
+		super(port, PropertyDefaults.SERVO_MOTOR_CLASS_NAME, PropertyDefaults.SUB_MOTOR_CLASS_NAME);
+		this.port = port;
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
@@ -44,7 +45,7 @@ public class ServoMotor {
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -52,7 +53,7 @@ public class ServoMotor {
 	 * @param command Command that suits for the motor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -73,55 +74,55 @@ public class ServoMotor {
 	}
 	
 	public String getDriverName() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getMaxPulse_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MAX_PULSE_SP);
+		String str = this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MAX_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMaxPulse_SP(int max_pulse_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
 	}
 	
 	public int getMidPulse_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MID_PULSE_SP);
+		String str = this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MID_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMidPulse_SP(int mid_pulse_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
 	}
 	
 	public int getMinPulse_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MIN_PULSE_SP);
+		String str = this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MIN_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMinPulse_SP(int min_pulse_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
 	}
 	
 	public String getPolarity() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY);
+		return this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY, polarity);
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getPosition_SP() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP);
+		String str = this.getProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
 	public void setPosition_SP(int position_sp) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		this.setProperty(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	public String getStateViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STATE);
+		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, MOTOR_STR, PropertyDefaults.PROPERTY_STATE);
 	}
 
 	public String[] getState() throws IOException{

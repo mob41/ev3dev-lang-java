@@ -4,25 +4,21 @@ import java.io.IOException;
 
 import ev3dev.exception.InvalidPortException;
 import ev3dev.hardware.Device;
+import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.PropertyDefaults;
 import ev3dev.io.Sysclass;
 
-public class Sensor{
+public class Sensor extends Device{
 
-	private Device device;
+	private LegoPort port;
 	
-	private String SENSOR_STR = null;
-	
-	public Sensor(Device device) throws IOException, InvalidPortException{
-		this.device = device;
-		SENSOR_STR = Sysclass.getHardwareName(PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME, device.getPort().getAddress());
-		if (SENSOR_STR == null){
-			throw new InvalidPortException("The sensor does not exist. (Future plan: Wait until a suitable device)");
-		}
+	public Sensor(LegoPort port) throws IOException, InvalidPortException{
+		super(port, PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME);
+		this.port = port;
 	}
 	
 	public String getAddress() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -30,11 +26,11 @@ public class Sensor{
 	 * @param command Command that suits for the sensor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	public String getCommandsViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_COMMANDS);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
 	}
 	
 	public String[] getCommands() throws IOException{
@@ -43,24 +39,24 @@ public class Sensor{
 	}
 	
 	public int getDecimals() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_DECIMALS);
+		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DECIMALS);
 		return Integer.parseInt(str);
 	}
 	
 	public String getDriverName() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public String getMode() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_MODE);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE);
 	}
 	
 	public void setMode(String mode) throws IOException{
-		Sysclass.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_MODE, mode);
+		this.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE, mode);
 	}
 	
 	public String getModesViaString() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_MODES);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODES);
 	}
 	
 	public String[] getModes() throws IOException{
@@ -69,12 +65,12 @@ public class Sensor{
 	}
 	
 	public int getNumValues() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_NUM_VALUES);
+		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_NUM_VALUES);
 		return Integer.parseInt(str);
 	}
 	
 	public String getUnits() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, PropertyDefaults.PROPERTY_UNITS);
+		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_UNITS);
 	}
 	
 }

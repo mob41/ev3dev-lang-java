@@ -2,6 +2,7 @@ package ev3dev.hardware.ports;
 
 import java.io.IOException;
 import ev3dev.exception.InvalidPortException;
+import ev3dev.hardware.Device;
 import ev3dev.io.Sysclass;
 
 /***
@@ -11,7 +12,7 @@ import ev3dev.io.Sysclass;
  * @author Anthony
  *
  */
-public class LegoPort {
+public class LegoPort{
 	
 	private int port = 0;
 	
