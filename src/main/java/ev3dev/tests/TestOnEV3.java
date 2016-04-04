@@ -15,6 +15,7 @@ public class TestOnEV3 {
 		while (true){
 			System.out.println(motor.isConnected());
 			if (motor.isConnected()){
+				Thread.sleep(2000);
 				motor.setDutyCycleSP(25);
 				motor.runForever();
 			}

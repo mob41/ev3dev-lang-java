@@ -54,6 +54,7 @@ public class Device {
 	}
 	
 	public boolean isConnected(){
+		connected = check();
 		return connected;
 	}
 	
@@ -152,15 +153,15 @@ public class Device {
 		}
 	}
 	
-	private void check(){
+	private boolean check(){
 		try {
 			hardwareName = Sysclass.getHardwareName(className, subClassName, address);
 		} catch (Exception ignore){
 			connected = false;
 			hardwareName = null;
-			return;
+			return false;
 		}
-		connected = hardwareName != null;
+		return hardwareName != null;
 	}
 	
 	class Check implements Runnable{
@@ -172,7 +173,7 @@ public class Device {
 			if (!running){
 				running = true;
 				while(running){
-					check();
+					connected = check();
 					try {
 						synchronized(thread){
 							thread.wait(interval);
