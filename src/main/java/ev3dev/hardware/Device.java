@@ -29,8 +29,6 @@ public class Device {
 	
 	private Thread thread;
 	
-	private Check runnable;
-	
 	private int interval = 0;
 	
 	private boolean connected = false;
@@ -44,13 +42,7 @@ public class Device {
 		this.className = className;
 		this.subClassName = subClassName;
 		address = port.getAddress();
-		runnable = new Check();
-		thread = new Thread(runnable);
-		thread.setName("ev3dev-pingDevice-" + className + "-" + thread.getId());
-		thread.start();
-		while (!connected){
-			check();
-		}
+		connected = check();
 	}
 	
 	public boolean isConnected(){
@@ -79,15 +71,16 @@ public class Device {
 	 * @param class_name The class name
 	 * @param property The property name of the class.
 	 * @return The value of the property
-	 * @throws FileNotFoundException If the specified class isn't exist.
-	 * @throws IOException If the API couldn't read the class's property
-	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public String getProperty(String class_name, String property) throws FileNotFoundException, IOException, AccessControlException{
-		if (!connected){
+	public String getProperty(String class_name, String property){
+		try {
+			String str = Sysclass.getProperty(class_name, property);
+			connected = true;
+			return str;
+		} catch (IOException e){
+			connected = false;
 			return null;
 		}
-		return Sysclass.getProperty(class_name, property);
 	}
 	
 	/***
@@ -96,11 +89,8 @@ public class Device {
 	 * @param subclass The Sub-class name.
 	 * @param property The property name of the class
 	 * @return The value of the property
-	 * @throws FileNotFoundException If the specified class isn't exist.
-	 * @throws IOException If the API couldn't read the class's property
-	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public String getProperty(String class_name, String subclass, String property) throws FileNotFoundException, IOException, AccessControlException{
+	public String getProperty(String class_name, String subclass, String property){
 		return getProperty(class_name, subclass + "/" + property);
 	}
 	
@@ -110,12 +100,9 @@ public class Device {
 	 * @param subclass The Sub-class name.
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
-	 * @throws FileNotFoundException If the specified class isn't exist.
-	 * @throws IOException If the API couldn't read the class's property
-	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public void setProperty(String class_name, String subclass, String property, String new_value) throws FileNotFoundException, AccessControlException{
-		setProperty(class_name, subclass + "/" + property, new_value);
+	public boolean setProperty(String class_name, String subclass, String property, String new_value){
+		return setProperty(class_name, subclass + "/" + property, new_value);
 	}
 	
 	/***
@@ -123,34 +110,15 @@ public class Device {
 	 * @param class_name The class name.
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
-	 * @throws FileNotFoundException If the specified class isn't exist.
-	 * @throws IOException If the API couldn't read the class's property
-	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public void setProperty(String class_name, String property, String new_value) throws FileNotFoundException, AccessControlException{
-		if (!connected){
-			return;
+	public boolean setProperty(String class_name, String property, String new_value){
+		try {
+			Sysclass.setProperty(class_name, property, new_value);
+			connected = true;
+		} catch (IOException e){
+			connected = false;
 		}
-		Sysclass.setProperty(class_name, property, new_value);
-	}
-	
-	
-	public void startInterval(){
-		if (thread != null && runnable != null){
-			thread.start();
-		}
-	}
-	
-	public void skipInterval(){
-		synchronized(thread){
-			thread.notify();
-		}
-	}
-	
-	public void stopInterval(){
-		if (runnable != null){
-			runnable.stop();
-		}
+		return connected;
 	}
 	
 	private boolean check(){
@@ -162,36 +130,5 @@ public class Device {
 			return false;
 		}
 		return hardwareName != null;
-	}
-	
-	class Check implements Runnable{
-
-		public boolean running = false;
-		
-		@Override
-		public void run() {
-			if (!running){
-				running = true;
-				while(running){
-					connected = check();
-					try {
-						synchronized(thread){
-							thread.wait(interval);
-						}
-					} catch (InterruptedException ignore) {}
-				}
-			}
-			
-		}
-		
-		public void stop(){
-			if (running){
-				synchronized(thread){
-					thread.notify();
-				}
-				running = false;
-			}
-		}
-		
 	}
 }
