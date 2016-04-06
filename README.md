@@ -1,4 +1,4 @@
-# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)] [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)(https://travis-ci.org/mob41/ev3dev-lang-java)
+# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java) [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)
 A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 #### Duplication
@@ -14,7 +14,7 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 Please post issues so that I can fix it immediately, thank you!
 
 ## Tutorial
-<b>No JavaDoc Available.</b> Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
+<b>No JavaDoc Available</b> Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
 
 1. Download the source and put it into your IDE or project.
 
