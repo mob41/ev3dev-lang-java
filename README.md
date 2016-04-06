@@ -1,72 +1,78 @@
 # ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
 A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
-Really, really, I don't know why I programmed too fast. I must missed something. This version of API is currently unstable, but it is able to use.<br>
-I can't test some classes as I don't have those modules, such as DCMotor, ServoMotor, LED, I2CSensor.
-
 Please post issues so that I can fix it immediately, thank you!
 
-## TODO
-- The auto-reconnect is not implemented (Base Device Class). Though, the code is still working. But it limited you to connect that port without plugging out until the application stops. Sorry for inconvenient.
+#### Duplication
+You might saw another language binding for Java from https://github.com/ev3dev-lang-java/ev3dev-lang-java by @jabrena<br>
+This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758<br>
+@jabrena 's library is a port from ```LeJOS``` codes to ```ev3dev```.
 
 ## Tutorial
-1. To have to create a port for your own Motor/Sensor.
-```java
-//Support all ports 1-4, A-D (Motors and sensors)
-LegoPort legoport = new LegoPort(LegoPort.PORT_1);
+As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) releases. But if you want to still use it, you can follow these steps:
 
-//Support only motor ports: A-D or InvalidPortException will be thrown
-MotorPort motorport = new MotorPort(MotorPort.PORT_A);
+1. Download the source and put it into your IDE or project.
+	```
+	git clone https://github.com/mob41/ev3dev-lang-java.git ev3dev-lang-java
+	```
+	Or via GitHub [[Download ZIP]](https://github.com/mob41/ev3dev-lang-java/archive/master.zip)
+2. Add this source to your IDE or change your classpath
+3. Import the libraries
+	```java
+	import ev3dev.* //Though, it is not recommended to import all libraries.
+	```
+4. You have to create a port for your own Motor/Sensor.
+	```java
+	//Support all ports 1-4, A-D (Motors and sensors)
+	LegoPort legoport = new LegoPort(LegoPort.PORT_1);
 
-//Support only sensor ports: 1-4 or InvalidPortException will be thrown
-SensorPort sensorport = new SensorPort(SensorPort.PORT_2);
-```
-
-2. Before creating a motor, you have to create a device first.
-```java
-Device device = new Device(legoport); //Specifying your LegoPort
-```
-
-3. In this case, we plugged in a LargeMotor into ``PORT_A``. There're different types of motor.
-```java
-//Support all types of motor excepting DCMotor and ServoMotor.
-Motor motor = new Motor(device); //You have to include your port here.
-```
-
-4. You can run your robot now! (Probably not this :()
-```java
-motor.setDutyCycle_SP(60);
-motor.runForever();
-```
-
-5. To make use of the touch sensor:
-```java
-Device tsd = new Device(sensorport);
-TouchSensor ts = new TouchSensor(tsd);
-while (true) {
-	if (ts.isPressed()){
-		motor.runForever();
-	} else {
-		motor.stop();
+	//Support only motor ports: A-D or InvalidPortException will be thrown
+	MotorPort motorport = new MotorPort(MotorPort.PORT_A);
+	
+	//Support only sensor ports: 1-4 or InvalidPortException will be thrown
+	SensorPort sensorport = new SensorPort(SensorPort.PORT_2);
+	```
+5. Before creating a motor, you have to create a device first.
+	```java
+	Device device = new Device(legoport); //Specifying your LegoPort
+	```
+6. In this case, we plugged in a LargeMotor into <pre>PORT_A</pre>. There're different types of motor.
+	```java
+	//Support all types of motor excepting DCMotor and ServoMotor.
+	Motor motor = new Motor(device); //You have to include your port here.
+	```
+7. You can run your robot now! (Probably not this)
+	```java
+	motor.setDutyCycle_SP(60);
+	motor.runForever();
+	```
+8. You can also control the motor via a touch sensor:
+	```java
+	Device tsd = new Device(sensorport);
+	TouchSensor ts = new TouchSensor(tsd);
+	hile (true) {
+		if (ts.isPressed()){
+			motor.runForever();
+		} else {
+			motor.stop();
+		}
 	}
-}
-```
-
-6. To make use of the color sensor:
-```java
-Device csd = new Device(sensorport);
-ColorSensor cs = mew ColorSensor(csd);
-cs.setMode(PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE);
-while (true) {
-	if (cs.getReflectedLightIntensity() < 25){
-		motor.runForever()
-	} else {
-		motor.stop();
+	```
+9. Control it via a color sensor:
+	```java
+	Device csd = new Device(sensorport);
+	ColorSensor cs = new ColorSensor(csd);
+	cs.setMode(PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE);
+	while (true) {
+		if (cs.getReflectedLightIntensity() < 25){
+			motor.runForever()
+		} else {
+			motor.stop();
+		}
 	}
-}
-```
+	```
 
-### Stage
+## Stage
 - [ ] Device class
 - [x] Motor class ([http://www.ev3dev.org/docs/drivers/tacho-motor-class/](http://www.ev3dev.org/docs/drivers/tacho-motor-class/))
 - [x] Large-motor class (inherits from Motor)
@@ -90,8 +96,3 @@ while (true) {
 - [x] Motor Port (Unnecessary) (inherits from LegoPort)
 - [ ] Autogen Templates
 
-### Duplication
-You might saw another language binding for Java from [here](https://github.com/ev3dev-lang-java/ev3dev-lang-java).<br>
-This is not a duplication. See Issue [#154](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758)<br>
-<br>
-Probably, he is using a wrong name for his project. As [suggested](https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203538860) by @dlech, he should use another name like ev3dev-lejos-compat.
