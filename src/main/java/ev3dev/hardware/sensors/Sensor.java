@@ -5,7 +5,7 @@ import java.io.IOException;
 import ev3dev.exception.InvalidPortException;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
-import ev3dev.io.PropertyDefaults;
+import ev3dev.io.Def;
 import ev3dev.io.Sysclass;
 
 public class Sensor extends Device{
@@ -13,12 +13,12 @@ public class Sensor extends Device{
 	private LegoPort port;
 	
 	public Sensor(LegoPort port) throws IOException, InvalidPortException{
-		super(port, PropertyDefaults.SENSOR_CLASS_NAME, PropertyDefaults.SUB_SENSOR_CLASS_NAME);
+		super(port, Def.SENSOR_CLASS_NAME, Def.SUB_SENSOR_CLASS_NAME);
 		this.port = port;
 	}
 	
 	public String getAddress() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getAttribute(Def.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -26,11 +26,11 @@ public class Sensor extends Device{
 	 * @param command Command that suits for the sensor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setAttribute(PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setAttribute(Def.PROPERTY_COMMAND, command);
 	}
 	
 	public String getCommandsViaString() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_COMMANDS);
+		return this.getAttribute(Def.PROPERTY_COMMANDS);
 	}
 	
 	public String[] getCommands() throws IOException{
@@ -39,24 +39,24 @@ public class Sensor extends Device{
 	}
 	
 	public int getDecimals() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.PROPERTY_DECIMALS);
+		String str = this.getAttribute(Def.PROPERTY_DECIMALS);
 		return Integer.parseInt(str);
 	}
 	
 	public String getDriverName() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
 	}
 	
 	public String getMode() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_MODE);
+		return this.getAttribute(Def.PROPERTY_MODE);
 	}
 	
 	public void setMode(String mode) throws IOException{
-		this.setAttribute(PropertyDefaults.PROPERTY_MODE, mode);
+		this.setAttribute(Def.PROPERTY_MODE, mode);
 	}
 	
 	public String getModesViaString() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_MODES);
+		return this.getAttribute(Def.PROPERTY_MODES);
 	}
 	
 	public String[] getModes() throws IOException{
@@ -65,12 +65,12 @@ public class Sensor extends Device{
 	}
 	
 	public int getNumValues() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.PROPERTY_NUM_VALUES);
+		String str = this.getAttribute(Def.PROPERTY_NUM_VALUES);
 		return Integer.parseInt(str);
 	}
 	
 	public String getUnits() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_UNITS);
+		return this.getAttribute(Def.PROPERTY_UNITS);
 	}
 	
 }

@@ -19,7 +19,7 @@ import java.util.List;
 public class Sysclass {
 	
 	public static File[] getAllSubClass(String class_name){
-		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + class_name);
+		File file = new File(Def.SYSTEM_CLASS_PATH + class_name);
 		File[] files = file.listFiles();
 		return files;
 	}
@@ -34,7 +34,7 @@ public class Sysclass {
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
 	public static String getAttribute(String class_name, String property) throws FileNotFoundException, IOException, AccessControlException{
-		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + class_name + "/" + property);
+		File file = new File(Def.SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();
 		FileInputStream in = new FileInputStream(file);
@@ -99,7 +99,7 @@ public class Sysclass {
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
 	public static void setAttribute(String class_name, String property, String new_value) throws FileNotFoundException, AccessControlException{
-		PrintWriter out = new PrintWriter(PropertyDefaults.SYSTEM_CLASS_PATH + class_name + "/" + property);
+		PrintWriter out = new PrintWriter(Def.SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();
 		new_value = new_value.toLowerCase();

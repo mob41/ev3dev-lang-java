@@ -6,7 +6,7 @@ package ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidLEDException extends Exception {
+public class InvalidLEDException extends InvalidException {
 
 	/**
 	 * 

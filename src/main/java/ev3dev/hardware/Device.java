@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.security.AccessControlException;
 
 import ev3dev.hardware.ports.LegoPort;
-import ev3dev.io.PropertyDefaults;
+import ev3dev.io.Def;
 import ev3dev.io.Sysclass;
 
 public class Device {

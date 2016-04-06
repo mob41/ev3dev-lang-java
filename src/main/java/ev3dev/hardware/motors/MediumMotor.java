@@ -6,7 +6,7 @@ import ev3dev.exception.InvalidMotorException;
 import ev3dev.exception.InvalidPortException;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
-import ev3dev.io.PropertyDefaults;
+import ev3dev.io.Def;
 
 public class MediumMotor extends Motor {
 

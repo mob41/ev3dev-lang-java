@@ -7,7 +7,7 @@ package ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidMotorException extends Exception {
+public class InvalidMotorException extends InvalidException {
 
 	/**
 	 * 
