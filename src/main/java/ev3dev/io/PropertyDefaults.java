@@ -106,8 +106,6 @@ public class PropertyDefaults {
 	
 	public static final String PROPERTY_BRIGHTNESS = "brightness";
 	
-	public static final String PROPERTY_TRIGGERS = "triggers";
-	
 	public static final String PROPERTY_TRIGGER = "trigger";
 	
 	public static final String PROPERTY_DELAY_ON = "delay_on";

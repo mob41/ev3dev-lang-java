@@ -17,13 +17,13 @@ import ev3dev.io.Sysclass;
  */
 public class LED extends Device{
 	
-	public static final int EV3_LEFT_LED = 0;
+	public static final int LEFT = 0;
 	
-	public static final int EV3_RIGHT_LED = 1;
+	public static final int RIGHT = 1;
 	
-	public static final int EV3_LED_GREEN = 0;
+	public static final int GREEN = 0;
 	
-	public static final int EV3_LED_RED = 1;
+	public static final int RED = 1;
 	
 	public LED(int leftRightField, int colorField) throws InvalidLEDException{
 		super(PropertyDefaults.LED_CLASS_NAME);
@@ -62,7 +62,7 @@ public class LED extends Device{
 	}
 	
 	public String getTriggersViaString() throws IOException{
-		return this.getAttribute(PropertyDefaults.PROPERTY_TRIGGERS);
+		return this.getAttribute(PropertyDefaults.PROPERTY_TRIGGER);
 	}
 	
 	public String[] getTriggers() throws IOException{

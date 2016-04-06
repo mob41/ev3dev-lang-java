@@ -119,7 +119,7 @@ public class Sysclass {
 		String sep;
 		List<String> list = new ArrayList<String>(50);
 		for (i = 0; i < space_array.length(); i++){
-			for (j = 0; j < space_array.length(); j++){
+			for (j = i; j < space_array.length(); j++){
 				if (space_array.charAt(j) == ' '){
 					break;
 				}
@@ -127,9 +127,9 @@ public class Sysclass {
 			if (j == space_array.length()){
 				break;
 			}
-			sep = space_array.substring(i, j);
+			sep = space_array.substring(i, j + 1);
 			list.add(sep);
-			i = j + 1;
+			i = j;
 		}
 		Object[] objarr = list.toArray();
 		String[] strarr = new String[objarr.length];

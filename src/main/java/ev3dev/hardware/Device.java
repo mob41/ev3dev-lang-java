@@ -76,7 +76,7 @@ public class Device {
 	 */
 	public String getAttribute(String property){
 		try {
-			String str = Sysclass.getAttribute(className + "/" + subClassName, property);
+			String str = Sysclass.getAttribute(className, subClassName, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
@@ -92,7 +92,7 @@ public class Device {
 	 */
 	public boolean setAttribute(String property, String new_value){
 		try {
-			Sysclass.setAttribute(className + "/" + subClassName, property, new_value);
+			Sysclass.setAttribute(className, subClassName, property, new_value);
 			connected = true;
 		} catch (IOException e){
 			connected = false;
