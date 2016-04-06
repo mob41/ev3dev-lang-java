@@ -1,16 +1,16 @@
 # ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
 A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
-#### Downloads [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
-
-<b>[Unstable]</b> [Latest Release](https://github.com/mob41/ev3dev-lang-java/releases/latest)[![Github Releases](https://img.shields.io/github/downloads/atom/atom/latest/total.svg)](https://github.com/mob41/ev3dev-lang-java/releases/latest)
-
-Please post issues so that I can fix it immediately, thank you!
-
 #### Duplication
 You might saw another language binding for Java from https://github.com/ev3dev-lang-java/ev3dev-lang-java by @jabrena<br>
 This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758<br>
 @jabrena 's library is a port from ```lsJOS``` codes to ```ev3dev```.
+
+## Downloads
+
+[[Unstable Latest Release]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)
+
+Please post issues so that I can fix it immediately, thank you!
 
 ## Tutorial
 ```ev3dev-lang-java``` is now in ```unstable``` stage. Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
