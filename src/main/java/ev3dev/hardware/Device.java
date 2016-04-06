@@ -56,13 +56,12 @@ public class Device {
 	
 	/***
 	 * Reads the property of the class specified.
-	 * @param class_name The class name
 	 * @param property The property name of the class.
 	 * @return The value of the property
 	 */
-	public String getAttribute(String class_name, String property){
+	public String getAttribute(String property){
 		try {
-			String str = Sysclass.getAttribute(class_name, property);
+			String str = Sysclass.getAttribute(className + "/" + subClassName, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
@@ -72,36 +71,13 @@ public class Device {
 	}
 	
 	/***
-	 * Reads the property of the class & subclass specified.
-	 * @param class_name The class name.
-	 * @param subclass The Sub-class name.
-	 * @param property The property name of the class
-	 * @return The value of the property
-	 */
-	public String getAttribute(String class_name, String subclass, String property){
-		return getAttribute(class_name, subclass + "/" + property);
-	}
-	
-	/***
-	 * Writes the property of the class & subclass specified.
-	 * @param class_name The class name.
-	 * @param subclass The Sub-class name.
-	 * @param property The property name of the class
-	 * @param new_value The new value of the property
-	 */
-	public boolean setAttribute(String class_name, String subclass, String property, String new_value){
-		return setAttribute(class_name, subclass + "/" + property, new_value);
-	}
-	
-	/***
 	 * Writes the property of the class specified.
-	 * @param class_name The class name.
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
 	 */
-	public boolean setAttribute(String class_name, String property, String new_value){
+	public boolean setAttribute(String property, String new_value){
 		try {
-			Sysclass.setAttribute(class_name, property, new_value);
+			Sysclass.setAttribute(className + "/" + subClassName, property, new_value);
 			connected = true;
 		} catch (IOException e){
 			connected = false;

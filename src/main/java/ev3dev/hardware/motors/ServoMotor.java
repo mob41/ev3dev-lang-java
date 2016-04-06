@@ -38,7 +38,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getAttribute(PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -46,7 +46,7 @@ public class ServoMotor extends Device{
 	 * @param command Command that suits for the motor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setAttribute(PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -67,55 +67,55 @@ public class ServoMotor extends Device{
 	}
 	
 	public String getDriverName() throws IOException{
-		return this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getMaxPulse_SP() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MAX_PULSE_SP);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_MAX_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMaxPulse_SP(int max_pulse_sp) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
+		this.setAttribute(PropertyDefaults.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
 	}
 	
 	public int getMidPulse_SP() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MID_PULSE_SP);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_MID_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMidPulse_SP(int mid_pulse_sp) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
+		this.setAttribute(PropertyDefaults.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
 	}
 	
 	public int getMinPulse_SP() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MIN_PULSE_SP);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_MIN_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setMinPulse_SP(int min_pulse_sp) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
+		this.setAttribute(PropertyDefaults.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
 	}
 	
 	public String getPolarity() throws IOException{
-		return this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
+		return this.getAttribute(PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
+		this.setAttribute(PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getPosition_SP() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
 	public void setPosition_SP(int position_sp) throws IOException{
-		this.setAttribute(PropertyDefaults.SERVO_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		this.setAttribute(PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	public String getStateViaString() throws IOException{
-		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
+		return this.getAttribute(PropertyDefaults.PROPERTY_STATE);
 	}
 
 	public String[] getState() throws IOException{

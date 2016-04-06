@@ -20,15 +20,15 @@ public class I2CSensor extends Sensor {
 	}
 	
 	public String getFirmwareVersion() throws IOException{
-		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_FIRMWARE_VERSION);
+		return this.getAttribute(PropertyDefaults.PROPERTY_FIRMWARE_VERSION);
 	}
 	
 	public int getPollMs() throws IOException{
-		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLL_MS);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_POLL_MS);
 		return Integer.parseInt(str);
 	}
 	
 	public void setPollMs(int ms) throws IOException{
-		this.setAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLL_MS, Integer.toString(ms));
+		this.setAttribute(PropertyDefaults.PROPERTY_POLL_MS, Integer.toString(ms));
 	}
 }
