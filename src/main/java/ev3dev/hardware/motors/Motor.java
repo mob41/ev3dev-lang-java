@@ -64,7 +64,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -75,7 +75,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -159,7 +159,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
 		return Sysclass.separateSpace(str);
 	}
 	
@@ -167,7 +167,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String countperrot = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COUNT_PER_ROT);
+		String countperrot = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COUNT_PER_ROT);
 		return Integer.parseInt(countperrot);
 	}
 	
@@ -175,14 +175,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getDutyCycle() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String dutycycle = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE);
+		String dutycycle = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
@@ -190,7 +190,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String dutycyclesp = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
@@ -198,42 +198,42 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	public String getEncoderPolarity() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY);
 	}
 	
 	public void setEncoderPolarity(String encoder_polarity) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY, encoder_polarity);
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ENCODER_POLARITY, encoder_polarity);
 	}
 	
 	public String getPolarity() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getPosition() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), "position_p");
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), "position_p");
 		return Integer.parseInt(str);
 	}
 	
@@ -241,14 +241,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION, Integer.toString(position));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION, Integer.toString(position));
 	}
 	
 	public int getPosition_P() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P);
 		return Integer.parseInt(str);
 	}
 	
@@ -256,7 +256,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I);
 		return Integer.parseInt(str);
 	}
 	
@@ -264,7 +264,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D);
 		return Integer.parseInt(str);
 	}
 	
@@ -272,28 +272,28 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P, Integer.toString(position_p));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_P, Integer.toString(position_p));
 	}
 	
 	public void setPosition_I(int position_i) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I, Integer.toString(position_i));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_I, Integer.toString(position_i));
 	}
 	
 	public void setPosition_D(int position_d) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D, Integer.toString(position_d));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_D, Integer.toString(position_d));
 	}
 	
 	public int getPosition_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
@@ -301,14 +301,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	public int getSpeed() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
@@ -316,7 +316,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
@@ -324,14 +324,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
 	}
 	
 	public int getRamp_Up_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -339,14 +339,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	public int getRamp_Down_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -354,14 +354,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	public String getSpeedRegulationEnabled() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED);
 		return str;
 	}
 	
@@ -384,7 +384,7 @@ public class Motor extends Device{
 			return;
 		}
 		String str = enabled ? "on" : "off";
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED, str);
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_ENABLED, str);
 	}
 	
 	public void setSpeedRegulationEnabled(String onoff) throws IOException{
@@ -406,7 +406,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P);
 		return Integer.parseInt(str);
 	}
 	
@@ -414,14 +414,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
 	}
 	
 	public int getSpeedRegulation_I() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I);
 		return Integer.parseInt(str);
 	}
 	
@@ -429,14 +429,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
 	}
 	
 	public int getSpeedRegulation_D() throws IOException{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D);
 		return Integer.parseInt(str);
 	}
 	
@@ -444,14 +444,14 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
 	}
 	
 	public String getStateViaString() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
 	}
 	
 	public String[] getState() throws IOException{
@@ -466,21 +466,21 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND);
 	}
 	
 	public void setStopCommand(String stop_command) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
 	}
 	
 	public String getStopCommandsViaString() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMANDS);
+		return this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMANDS);
 	}
 	
 	public String[] getStopCommands() throws IOException{
@@ -495,7 +495,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP);
+		String str = this.getAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -503,7 +503,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setProperty(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		this.setAttribute(PropertyDefaults.MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 //~autogen
 }

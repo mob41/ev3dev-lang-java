@@ -44,35 +44,35 @@ public class LegoPort{
 	}
 	
 	public String getAddress() throws IOException{
-		String address = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "address");
+		String address = Sysclass.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "address");
 		return address;
 	}
 	
 	public String getDriverName() throws IOException{
-		String drivername = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "driver_name");
+		String drivername = Sysclass.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "driver_name");
 		return drivername;
 	}
 	
 	public String[] getModes() throws IOException{
-		String modesstr = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "modes");
+		String modesstr = Sysclass.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "modes");
 		return Sysclass.separateSpace(modesstr);
 	}
 	
 	public String getMode() throws IOException{
-		String mode = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "mode");
+		String mode = Sysclass.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "mode");
 		return mode;
 	}
 	
 	public void setMode(String mode) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, "port" + port, "mode", mode);
+		Sysclass.setAttribute(SYSTEM_CLASS_NAME, "port" + port, "mode", mode);
 	}
 	
 	public void setDevice(String driver) throws IOException{
-		Sysclass.setProperty(SYSTEM_CLASS_NAME, "port" + port, "set_device", driver);
+		Sysclass.setAttribute(SYSTEM_CLASS_NAME, "port" + port, "set_device", driver);
 	}
 	
 	public String getStatus() throws IOException{
-		String status = Sysclass.getProperty(SYSTEM_CLASS_NAME, "port" + port, "status");
+		String status = Sysclass.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "status");
 		return status;
 	}
 }

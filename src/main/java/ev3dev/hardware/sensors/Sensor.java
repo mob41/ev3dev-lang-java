@@ -18,7 +18,7 @@ public class Sensor extends Device{
 	}
 	
 	public String getAddress() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -26,11 +26,11 @@ public class Sensor extends Device{
 	 * @param command Command that suits for the sensor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	public String getCommandsViaString() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
 	}
 	
 	public String[] getCommands() throws IOException{
@@ -39,24 +39,24 @@ public class Sensor extends Device{
 	}
 	
 	public int getDecimals() throws IOException{
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DECIMALS);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DECIMALS);
 		return Integer.parseInt(str);
 	}
 	
 	public String getDriverName() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public String getMode() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE);
 	}
 	
 	public void setMode(String mode) throws IOException{
-		this.setProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE, mode);
+		this.setAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODE, mode);
 	}
 	
 	public String getModesViaString() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODES);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_MODES);
 	}
 	
 	public String[] getModes() throws IOException{
@@ -65,12 +65,12 @@ public class Sensor extends Device{
 	}
 	
 	public int getNumValues() throws IOException{
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_NUM_VALUES);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_NUM_VALUES);
 		return Integer.parseInt(str);
 	}
 	
 	public String getUnits() throws IOException{
-		return this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_UNITS);
+		return this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_UNITS);
 	}
 	
 }

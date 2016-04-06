@@ -15,12 +15,11 @@ import ev3dev.io.Sysclass;
  * @author Anthony
  *
  */
-public class LED extends Device{
+public class LED{
 	
 	private String devicename;
 	
 	public LED(String devicename) throws InvalidLEDException{
-		super(devicename);
 		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + PropertyDefaults.LED_CLASS_NAME + "/" + devicename);
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
@@ -29,21 +28,21 @@ public class LED extends Device{
 	}
 	
 	public int getMaxBrightness() throws IOException{
-		String str = this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_MAX_BRIGHTNESS);
+		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_MAX_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
 	public int getBrightness() throws IOException{
-		String str = this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS);
+		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
 	public void setBrightness(int brightness) throws IOException{
-		this.setProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS, Integer.toString(brightness));
+		Sysclass.setAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS, Integer.toString(brightness));
 	}
 	
 	public String getTriggersViaString() throws IOException{
-		return this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGERS);
+		return Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGERS);
 	}
 	
 	public String[] getTriggers() throws IOException{
@@ -52,20 +51,20 @@ public class LED extends Device{
 	}
 	
 	public String getTrigger() throws IOException{
-		return this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER);
+		return Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER);
 	}
 	
 	public void setTrigger(String selector) throws IOException{
-		this.setProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER, selector);
+		Sysclass.setAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER, selector);
 	}
 	
 	public int getDelay_On() throws IOException{
-		String str = this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_ON);
+		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_ON);
 		return Integer.parseInt(str);
 	}
 	
 	public int getDelay_Out() throws IOException{
-		String str = this.getProperty(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_OFF);
+		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_OFF);
 		return Integer.parseInt(str);
 	}
 }

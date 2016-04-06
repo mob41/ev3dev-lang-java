@@ -38,7 +38,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -46,7 +46,7 @@ public class DCMotor extends Device{
 	 * @param command Command that suits for the motor driver
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -72,56 +72,56 @@ public class DCMotor extends Device{
 	}
 	
 	public String[] getCommands() throws IOException{
-		String str = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
+		String str = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_COMMANDS);
 		return Sysclass.separateSpace(str);
 	}
 	
 	public String getDriverName() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DRIVER_NAME);
 	}
 	
 	public int getDutyCycle() throws IOException{
-		String dutycycle = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE);
+		String dutycycle = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
 	public int getDutyCycleSP() throws IOException{
-		String dutycyclesp = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
 	public void setDutyCycleSP(int sp) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	public String getPolarity() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY);
 	}
 	
 	public void setPolarity(String polarity) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_POLARITY, polarity);
 	}
 	
 	public int getRamp_Up_SP() throws IOException{
-		String str = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP);
+		String str = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	public int getRamp_Down_SP() throws IOException{
-		String str = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
+		String str = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	public String getStateViaString() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STATE);
 	}
 	
 	public String[] getState() throws IOException{
@@ -130,15 +130,15 @@ public class DCMotor extends Device{
 	}
 	
 	public String getStopCommand() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND);
 	}
 	
 	public void setStopCommand(String stop_command) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMAND, stop_command);
 	}
 	
 	public String getStopCommandsViaString() throws IOException{
-		return this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMANDS);
+		return this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_STOP_COMMANDS);
 	}
 	
 	public String[] getStopCommands() throws IOException{
@@ -147,11 +147,11 @@ public class DCMotor extends Device{
 	}
 	
 	public int getTime_SP() throws IOException{
-		String str = this.getProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP);
+		String str = this.getAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
 	public void setTime_SP(int time_sp) throws IOException{
-		this.setProperty(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		this.setAttribute(PropertyDefaults.DC_MOTOR_CLASS_NAME, this.getSubClassName(), PropertyDefaults.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 }

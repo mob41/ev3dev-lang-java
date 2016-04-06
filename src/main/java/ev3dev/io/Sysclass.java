@@ -33,7 +33,7 @@ public class Sysclass {
 	 * @throws IOException If the API couldn't read the class's property
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public static String getProperty(String class_name, String property) throws FileNotFoundException, IOException, AccessControlException{
+	public static String getAttribute(String class_name, String property) throws FileNotFoundException, IOException, AccessControlException{
 		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();
@@ -71,8 +71,8 @@ public class Sysclass {
 	 * @throws IOException If the API couldn't read the class's property
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public static String getProperty(String class_name, String subclass, String property) throws FileNotFoundException, IOException, AccessControlException{
-		return getProperty(class_name, subclass + "/" + property);
+	public static String getAttribute(String class_name, String subclass, String property) throws FileNotFoundException, IOException, AccessControlException{
+		return getAttribute(class_name, subclass + "/" + property);
 	}
 	
 	/***
@@ -85,8 +85,8 @@ public class Sysclass {
 	 * @throws IOException If the API couldn't read the class's property
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public static void setProperty(String class_name, String subclass, String property, String new_value) throws FileNotFoundException, AccessControlException{
-		setProperty(class_name, subclass + "/" + property, new_value);
+	public static void setAttribute(String class_name, String subclass, String property, String new_value) throws FileNotFoundException, AccessControlException{
+		setAttribute(class_name, subclass + "/" + property, new_value);
 	}
 	
 	/***
@@ -98,7 +98,7 @@ public class Sysclass {
 	 * @throws IOException If the API couldn't read the class's property
 	 * @throws AccessControlException If you are trying to write to a read-only property, read from a write-only property
 	 */
-	public static void setProperty(String class_name, String property, String new_value) throws FileNotFoundException, AccessControlException{
+	public static void setAttribute(String class_name, String property, String new_value) throws FileNotFoundException, AccessControlException{
 		PrintWriter out = new PrintWriter(PropertyDefaults.SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();

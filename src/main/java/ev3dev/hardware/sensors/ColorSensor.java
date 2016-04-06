@@ -30,7 +30,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -39,7 +39,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -48,7 +48,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_COLOR_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_COLOR_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -57,7 +57,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_R_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_R_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -66,7 +66,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_G_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_G_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -75,7 +75,7 @@ public class ColorSensor extends Sensor {
 			System.err.println("Error: You are not using a correct mode.");
 			return -1;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_B_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, SENSOR_STR, "value" + PropertyDefaults.PROPERTY_COLOR_SENSOR_RGB_B_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 

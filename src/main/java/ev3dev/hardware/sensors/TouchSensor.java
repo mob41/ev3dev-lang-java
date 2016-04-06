@@ -29,7 +29,7 @@ public class TouchSensor extends Sensor {
 			System.err.println("ERROR: You are not using a required mode (" + PropertyDefaults.PROPERTY_TOUCH_REQUIRED_MODE + " for TOUCH SENSOR: " + this.getMode());
 			return false;
 		}
-		String str = this.getProperty(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), "value" + PropertyDefaults.PROPERTY_TOUCH_VALUE_INDEX);
+		String str = this.getAttribute(PropertyDefaults.SENSOR_CLASS_NAME, this.getSubClassName(), "value" + PropertyDefaults.PROPERTY_TOUCH_VALUE_INDEX);
 		return str.equals("1");
 	}
 

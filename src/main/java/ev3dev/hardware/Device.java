@@ -27,22 +27,18 @@ public class Device {
 	
 	private LegoPort port;
 	
-	private Thread thread;
-	
-	private int interval = 0;
-	
 	private boolean connected = false;
-	
-	public Device(String devicename){
-		//Generic
-	}
 
 	public Device(LegoPort port, String className, String subClassName) throws IOException{
 		this.port = port;
 		this.className = className;
 		this.subClassName = subClassName;
+		System.out.println(className + "-" + this.hashCode() + ": Searching until a port connected...");
+		while (!connected){
+			check();
+		}
 		address = port.getAddress();
-		connected = check();
+		System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
 	}
 	
 	public boolean isConnected(){
@@ -52,14 +48,6 @@ public class Device {
 	
 	public LegoPort getPort(){
 		return port;
-	}
-	
-	public int getCheckInterval(){
-		return interval;
-	}
-	
-	public void setCheckInterval(int interval){
-		this.interval = interval;
 	}
 	
 	public String getSubClassName(){
@@ -72,9 +60,9 @@ public class Device {
 	 * @param property The property name of the class.
 	 * @return The value of the property
 	 */
-	public String getProperty(String class_name, String property){
+	public String getAttribute(String class_name, String property){
 		try {
-			String str = Sysclass.getProperty(class_name, property);
+			String str = Sysclass.getAttribute(class_name, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
@@ -90,8 +78,8 @@ public class Device {
 	 * @param property The property name of the class
 	 * @return The value of the property
 	 */
-	public String getProperty(String class_name, String subclass, String property){
-		return getProperty(class_name, subclass + "/" + property);
+	public String getAttribute(String class_name, String subclass, String property){
+		return getAttribute(class_name, subclass + "/" + property);
 	}
 	
 	/***
@@ -101,8 +89,8 @@ public class Device {
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
 	 */
-	public boolean setProperty(String class_name, String subclass, String property, String new_value){
-		return setProperty(class_name, subclass + "/" + property, new_value);
+	public boolean setAttribute(String class_name, String subclass, String property, String new_value){
+		return setAttribute(class_name, subclass + "/" + property, new_value);
 	}
 	
 	/***
@@ -111,9 +99,9 @@ public class Device {
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
 	 */
-	public boolean setProperty(String class_name, String property, String new_value){
+	public boolean setAttribute(String class_name, String property, String new_value){
 		try {
-			Sysclass.setProperty(class_name, property, new_value);
+			Sysclass.setAttribute(class_name, property, new_value);
 			connected = true;
 		} catch (IOException e){
 			connected = false;

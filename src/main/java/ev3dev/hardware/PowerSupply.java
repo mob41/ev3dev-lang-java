@@ -18,7 +18,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMeasuredCurrent() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MEASURED_CURRENT);
+		String str = Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MEASURED_CURRENT);
 		return Integer.parseInt(str);
 	}
 	
@@ -28,7 +28,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMeasuredVoltage() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MEASURED_VOLTAGE);
+		String str = Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MEASURED_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -38,7 +38,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMaxVoltage() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MAX_VOLTAGE);
+		String str = Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MAX_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -48,7 +48,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMinVoltage() throws IOException{
-		String str = Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MIN_VOLTAGE);
+		String str = Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_MIN_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -58,7 +58,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static String getTechnology() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_TECHNOLOGY);
+		return Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_TECHNOLOGY);
 	}
 	
 	/***
@@ -67,6 +67,6 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static String getType() throws IOException{
-		return Sysclass.getProperty(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_TYPE);
+		return Sysclass.getAttribute(PropertyDefaults.POWER_SUPPLY_CLASS_NAME, PropertyDefaults.PROPERTY_TYPE);
 	}
 }
