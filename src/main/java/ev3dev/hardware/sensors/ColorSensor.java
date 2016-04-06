@@ -99,4 +99,8 @@ public class ColorSensor extends Sensor {
 		this.autoSwitchMode = autoswitch;
 	}
 
+	public boolean isAutoSwitchMode(){
+		return autoSwitchMode;
+	}
+
 }

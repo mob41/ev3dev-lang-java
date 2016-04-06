@@ -60,5 +60,8 @@ public class UltrasonicSensor extends Sensor {
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
-	
+
+	public boolean isAutoSwitchMode(){
+		return autoSwitchMode;
+	}
 }

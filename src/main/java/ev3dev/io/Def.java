@@ -42,6 +42,8 @@ public class Def {
 	
 	public static final String ULTRASONIC_SENSOR_DRIVER_NAME_NXT = "lego-nxt-us";
 	
+	public static final String GYRO_SENSOR_DRIVER_NAME = "lego-ev3-gyro";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -197,6 +199,16 @@ public class Def {
 	public static final String PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_REQUIRED_MODE = "US-LISTEN";
 	
 	public static final int PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_VALUE_INDEX = 0;
+	
+	//Gyro sensor properties
+	
+	public static final String PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE = "GYRO-ANG";
+	
+	public static final int PROPERTY_GYRO_SENSOR_ANGLE_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE = "GYRO-RATE";
+	
+	public static final int PROPERTY_GYRO_SENSOR_RATE_VALUE_INDEX = 0;
 	
 	//Power supply properties
 	

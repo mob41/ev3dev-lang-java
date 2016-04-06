@@ -40,4 +40,7 @@ public class TouchSensor extends Sensor {
 		this.autoSwitchMode = autoswitch;
 	}
 
+	public boolean isAutoSwitchMode(){
+		return autoSwitchMode;
+	}
 }
