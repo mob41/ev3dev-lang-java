@@ -116,7 +116,7 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	- [x] Generic I2C sensor
 	- [x] Touch Sensor
 	- [x] Color Sensor
-	- [ ] Ultrasonic Sensor
+	- [x] Ultrasonic Sensor
 	- [ ] Gyro Sensor
 	- [ ] Infrared Sensor
 	- [ ] Sound Sensor

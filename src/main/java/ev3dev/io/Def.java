@@ -38,6 +38,10 @@ public class Def {
 	
 	public static final String COLOR_SENSOR_DRIVER_NAME = "lego-ev3-color";
 	
+	public static final String ULTRASONIC_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-us";
+	
+	public static final String ULTRASONIC_SENSOR_DRIVER_NAME_NXT = "lego-nxt-us";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -173,6 +177,26 @@ public class Def {
 	public static final String PROPERTY_COLOR_SENSOR_RGB_B_REQUIRED_MODE = "RGB-RAW";
 	
 	public static final int PROPERTY_COLOR_SENSOR_RGB_B_VALUE_INDEX = 2;
+	
+	//Ultrasonic sensor properties
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_CM = "distance_centimeters";
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_CM_REQUIRED_MODE = "US-DIST-CM";
+	
+	public static final int PROPERTY_ULTRASONIC_SENSOR_CM_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_IN = "distance_inches";
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_IN_REQUIRED_MODE = "US-DIST-IN";
+	
+	public static final int PROPERTY_ULTRASONIC_SENSOR_IN_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT = "other_sensor_present";
+	
+	public static final String PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_REQUIRED_MODE = "US-LISTEN";
+	
+	public static final int PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_VALUE_INDEX = 0;
 	
 	//Power supply properties
 	
