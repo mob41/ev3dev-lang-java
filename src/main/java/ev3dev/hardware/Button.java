@@ -2,6 +2,7 @@ package ev3dev.hardware;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ev3dev.exception.InvalidButtonException;
@@ -45,10 +46,16 @@ public class Button {
 			in.readFully(val);
 			in.close();
 			return test_bit(button, val);
+		} catch (FileNotFoundException e){
+			System.err.println("Error: Are you running this on your EV3? You must run it on your EV3.\n If you still have problems, report a issue to \"mob41/ev3dev-lang-java\".");
+			e.printStackTrace();
+			System.exit(-1);
+			return false;
 		} catch (IOException e){
 			System.err.println("### ERROR MESSAGE ###\nError: Unexpected error! Report an issue to \"mob41/ev3dev-lang-java\" now, with logs!\n === STACK TRACE ===");
 			e.printStackTrace();
 			System.err.println("=== END STACK TRACE ===\nError: Unexpected error! Report an issue to \"mob41/ev3dev-lang-java\" now, with logs!\n ### END MESSAGE ###");
+			System.exit(-1);
 			return false;
 		}
 	}

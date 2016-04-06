@@ -44,6 +44,8 @@ public class Def {
 	
 	public static final String GYRO_SENSOR_DRIVER_NAME = "lego-ev3-gyro";
 	
+	public static final String INFRARED_SENSOR_DRIVER_NAME = "lego-ev3-ir";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -209,6 +211,12 @@ public class Def {
 	public static final String PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE = "GYRO-RATE";
 	
 	public static final int PROPERTY_GYRO_SENSOR_RATE_VALUE_INDEX = 0;
+	
+	//Infrared Sensor properties
+	
+	public static final String PROPERTY_INFRARED_SENSOR_PROXIMITY_REQUIRED_MODE = "IR-PROX";
+	
+	public static final int PROPERTY_INFRARED_SENSOR_PROXIMITY_VALUE_INDEX = 0;
 	
 	//Power supply properties
 	
