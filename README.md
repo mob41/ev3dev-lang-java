@@ -24,7 +24,8 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 3. Import the libraries
 
 	```java
-	import ev3dev.* //Though, it is not recommended to import all libraries.
+	//It is not recommended to import all libraries.
+	import ev3dev.* 
 	```
 	
 4. You have to create a port for your own Motor/Sensor.
@@ -40,31 +41,43 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	SensorPort sensorport = new SensorPort(SensorPort.PORT_2);
 	```
 	
-5. Before creating a motor, you have to create a device first.
-
-	```java
-	Device device = new Device(legoport); //Specifying your LegoPort
-	```
-	
-6. In this case, we plugged in a LargeMotor into <pre>PORT_A</pre>. There're different types of motor.
+5. In this case, we plugged in a LargeMotor into ```PORT_A```.
 
 	```java
 	//Support all types of motor excepting DCMotor and ServoMotor.
-	Motor motor = new Motor(device); //You have to include your port here.
+	Motor motor = new Motor(port); //You have to include your port here.
+	
+	//Alternative types of motors
+	LargeMotor lm = new LargeMotor(altport1);
+	MediumMotor mm = new MediumMotor(altport2);
+	DCMotor dcm = new DCMotor(altport3);
+	ServoMotor serm = new ServoMotor(altport4);
+	
+	//Make sure that all the ports are connecting to a correct type of motor.
+	//If isn't, a InvalidPortException will be thrown.
 	```
 	
-7. You can run your robot now! (Probably not this)
+6. You can simply run your motor through these code:
 
 	```java
-	motor.setDutyCycle_SP(60);
-	motor.runForever();
+	try {
+		//Set the Motor DutyCycle speed to 60
+		motor.setDutyCycle_SP(60);
+		//Run the Motor forever
+		motor.runForever();
+		
+		//The code is similar to other types of motors.
+	catch (Exception e){
+		//A Error will be thrown if the Motor is disconnected / Invalid.
+		e.printStackTrace();
+	}
 	```
 	
-8. You can also control the motor via a touch sensor:
+7. You can also control the motor via a touch sensor:
 
 	```java
-	Device tsd = new Device(sensorport);
-	TouchSensor ts = new TouchSensor(tsd);
+	//Create a new TouchSensor instance with a altport5 LegoPort
+	TouchSensor ts = new TouchSensor(altport5);
 	hile (true) {
 		if (ts.isPressed()){
 			motor.runForever();
@@ -74,11 +87,11 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	}
 	```
 	
-9. Control it via a color sensor:
+8. Control it via a color sensor:
 
 	```java
-	Device csd = new Device(sensorport);
-	ColorSensor cs = new ColorSensor(csd);
+	//Create a new ColorSensor instance with a altport6 LegoPort
+	ColorSensor cs = new ColorSensor(altport6);
 	cs.setMode(PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE);
 	while (true) {
 		if (cs.getReflectedLightIntensity() < 25){
