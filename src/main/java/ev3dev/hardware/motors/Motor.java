@@ -138,6 +138,10 @@ public class Motor extends Device{
 		sendCommand(Def.COMMAND_RUN_DIRECT);
 	}
 	
+	/**
+	 * Stop any of the run commands before they are complete using the command specified by <b>stop_command</b>.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void stop() throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -145,6 +149,10 @@ public class Motor extends Device{
 		sendCommand(Def.COMMAND_STOP);
 	}
 	
+	/**
+	 * Reset all of the motor parameter attributes to their default value. This will also have the effect of stopping the motor.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void reset() throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -152,6 +160,13 @@ public class Motor extends Device{
 		sendCommand(Def.COMMAND_RESET);
 	}
 	
+	/**
+	 * Returns a list of commands that are supported by the motor controller.
+	 *  Possible values are run-forever, run-to-abs-pos, run-to-rel-pos,
+	 *   run-timed, run-direct, stop and reset. Not all commands may be supported.
+	 * @return A String Arrays with all the supported commands
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String[] getCommands() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -160,6 +175,15 @@ public class Motor extends Device{
 		return Sysclass.separateSpace(str);
 	}
 	
+	/**
+	 * Returns the number of tacho counts in one rotation of the motor.
+	 *  Tacho counts are used by the position and speed attributes, so
+	 *   you can use this value to convert rotations or degrees to tacho
+	 *    counts. In the case of linear actuators, the units here will
+	 *     be counts per centimeter.
+	 * @return Counts per cm
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getCountPerRot() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -168,6 +192,11 @@ public class Motor extends Device{
 		return Integer.parseInt(countperrot);
 	}
 	
+	/**
+	 * Returns the name of the driver that provides this tacho motor device.
+	 * @return The name of the driver
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getDriverName() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -175,6 +204,12 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
 	}
 	
+	
+	/**
+	 * Returns the current duty cycle of the motor. Units are percent. Values are -100 to 100.
+	 * @return Percentage
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getDutyCycle() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -183,6 +218,13 @@ public class Motor extends Device{
 		return Integer.parseInt(dutycycle);
 	}
 	
+	/**
+	 * Writing sets the duty cycle setpoint. Reading returns the current value. Units are in percent.
+	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
+	 *   This value is only used when speed_regulation is off.
+	 * @return Percentage
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getDutyCycleSP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -191,6 +233,13 @@ public class Motor extends Device{
 		return Integer.parseInt(dutycyclesp);
 	}
 	
+	/**
+	 * Writing sets the duty cycle setpoint. Reading returns the current value. Units are in percent.
+	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
+	 *   This value is only used when speed_regulation is off.
+	 * @param sp Percentage
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setDutyCycleSP(int sp) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -198,6 +247,14 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
+	/**
+	 * Sets the polarity of the rotary encoder. This is an advanced feature to all use of motors
+	 *  that send inversed encoder signals to the EV3. This should be set correctly by the driver
+	 *   of a device. It You only need to change this value if you are using a unsupported device.
+	 *    Valid values are normal and inversed.
+	 * @return The polarity of the rotary encoder
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getEncoderPolarity() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -205,6 +262,14 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_ENCODER_POLARITY);
 	}
 	
+	/**
+	 * Sets the polarity of the rotary encoder. This is an advanced feature to all use of motors
+	 *  that send inversed encoder signals to the EV3. This should be set correctly by the driver
+	 *   of a device. It You only need to change this value if you are using a unsupported device.
+	 *    Valid values are normal and inversed.
+	 * @param encoder_polarity The polarity of the rotary encoder
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setEncoderPolarity(String encoder_polarity) throws IOException{
 		if (!this.isConnected()){
 			return;

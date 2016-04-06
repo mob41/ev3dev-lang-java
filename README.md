@@ -9,7 +9,7 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 @jabrena 's library is a port from ```lsJOS``` codes to ```ev3dev```.
 
 ## Tutorial
-As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) releases. But if you want to still use it, you can follow these steps:
+```ev3dev-lang-java``` is now in ```unstable``` stage. Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
 
 1. Download the source and put it into your IDE or project.
 
@@ -125,7 +125,7 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	- [x] Lego Port
 	- [x] Sensor Port (Unnecessary) (inherits from LegoPort)
 	- [x] Motor Port (Unnecessary) (inherits from LegoPort)
-- [x] JavaDoc
+- [ ] JavaDoc
 - [ ] Autogen Templates
 - [ ] Debugging
 - [ ] Release!
