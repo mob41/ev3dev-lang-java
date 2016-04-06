@@ -17,9 +17,7 @@ public class Device {
 	
 	private String className;
 	
-	private String subClassName;
-	
-	private String driverName;
+	private String subClassName = null;
 	
 	private String address;
 	
@@ -28,6 +26,15 @@ public class Device {
 	private LegoPort port;
 	
 	private boolean connected = false;
+	
+	/***
+	 * Generic way to create a device
+	 * @param devicename
+	 */
+	public Device(String className){
+		this.port = null;
+		this.className = className;
+	}
 
 	public Device(LegoPort port, String className, String subClassName) throws IOException{
 		this.port = port;
@@ -39,6 +46,14 @@ public class Device {
 		}
 		address = port.getAddress();
 		System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
+	}
+	
+	public void setClassName(String className){
+		this.className = className;
+	}
+	
+	public void setSubClassName(String subClassName){
+		this.subClassName = subClassName;
 	}
 	
 	public boolean isConnected(){

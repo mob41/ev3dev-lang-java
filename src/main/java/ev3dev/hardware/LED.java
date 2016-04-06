@@ -15,34 +15,54 @@ import ev3dev.io.Sysclass;
  * @author Anthony
  *
  */
-public class LED{
+public class LED extends Device{
 	
-	private String devicename;
+	public static final int EV3_LEFT_LED = 0;
 	
-	public LED(String devicename) throws InvalidLEDException{
-		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + PropertyDefaults.LED_CLASS_NAME + "/" + devicename);
+	public static final int EV3_RIGHT_LED = 1;
+	
+	public static final int EV3_LED_GREEN = 0;
+	
+	public static final int EV3_LED_RED = 1;
+	
+	public LED(int leftRightField, int colorField) throws InvalidLEDException{
+		super(PropertyDefaults.LED_CLASS_NAME);
+		if (leftRightField != 0 && leftRightField != 1){
+			throw new InvalidLEDException("You are not specifying a EV3_LEFT_LED or EV3_RIGHT_LED field!");
+		} else if (colorField != 0 && colorField != 1){
+			throw new InvalidLEDException("You are not specifying a EV3_LED_GREEN or EV3_LED_RED field!");
+		}
+		String direction = leftRightField == 0 ? "left" : "right";
+		String color = colorField == 0 ? "green" : "red";
+		
+		this.setSubClassName("ev3:" + direction + ":" + color + ":ev3dev");
+	}
+	
+	public LED(String ledName) throws InvalidLEDException{
+		super(PropertyDefaults.LED_CLASS_NAME);
+		File file = new File(PropertyDefaults.SYSTEM_CLASS_PATH + PropertyDefaults.LED_CLASS_NAME + "/" + ledName);
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
 		}
-		this.devicename = devicename;
+		this.setSubClassName(ledName);
 	}
 	
 	public int getMaxBrightness() throws IOException{
-		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_MAX_BRIGHTNESS);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_MAX_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
 	public int getBrightness() throws IOException{
-		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
 	public void setBrightness(int brightness) throws IOException{
-		Sysclass.setAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_BRIGHTNESS, Integer.toString(brightness));
+		this.setAttribute(PropertyDefaults.PROPERTY_BRIGHTNESS, Integer.toString(brightness));
 	}
 	
 	public String getTriggersViaString() throws IOException{
-		return Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGERS);
+		return this.getAttribute(PropertyDefaults.PROPERTY_TRIGGERS);
 	}
 	
 	public String[] getTriggers() throws IOException{
@@ -51,20 +71,28 @@ public class LED{
 	}
 	
 	public String getTrigger() throws IOException{
-		return Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER);
+		return this.getAttribute(PropertyDefaults.PROPERTY_TRIGGER);
 	}
 	
 	public void setTrigger(String selector) throws IOException{
-		Sysclass.setAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_TRIGGER, selector);
+		this.setAttribute(PropertyDefaults.PROPERTY_TRIGGER, selector);
 	}
 	
 	public int getDelay_On() throws IOException{
-		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_ON);
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_DELAY_ON);
 		return Integer.parseInt(str);
 	}
 	
-	public int getDelay_Out() throws IOException{
-		String str = Sysclass.getAttribute(PropertyDefaults.LED_CLASS_NAME, devicename, PropertyDefaults.PROPERTY_DELAY_OFF);
+	public int getDelay_Off() throws IOException{
+		String str = this.getAttribute(PropertyDefaults.PROPERTY_DELAY_OFF);
 		return Integer.parseInt(str);
+	}
+	
+	public void setDelay_On(int delay_on) throws IOException{
+		this.setAttribute(PropertyDefaults.PROPERTY_DELAY_ON, Integer.toString(delay_on));
+	}
+	
+	public void setDelay_Off(int delay_off) throws IOException{
+		this.setAttribute(PropertyDefaults.PROPERTY_DELAY_OFF, Integer.toString(delay_off));
 	}
 }
