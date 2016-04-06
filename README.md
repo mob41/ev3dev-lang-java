@@ -103,7 +103,7 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	```
 
 ## Stage
-- [ ] Development
+- [x] Development
 	- [x] Device class
 	- [x] Motor class ([http://www.ev3dev.org/docs/drivers/tacho-motor-class/](http://www.ev3dev.org/docs/drivers/tacho-motor-class/))
 	- [x] Large-motor class (inherits from Motor)
@@ -119,12 +119,13 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	- [x] Ultrasonic Sensor
 	- [x] Gyro Sensor
 	- [x] Infrared Sensor
-	- [ ] Sound Sensor
-	- [ ] Light Sensor
+	- [x] Sound Sensor
+	- [x] Light Sensor
 	- [x] Power supply
 	- [x] Lego Port
 	- [x] Sensor Port (Unnecessary) (inherits from LegoPort)
 	- [x] Motor Port (Unnecessary) (inherits from LegoPort)
+- [x] JavaDoc
 - [ ] Autogen Templates
 - [ ] Debugging
 - [ ] Release!

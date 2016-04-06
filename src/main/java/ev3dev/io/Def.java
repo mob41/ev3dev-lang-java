@@ -234,13 +234,13 @@ public class Def {
 	
 	//Light Sensor properties
 
-	public static final String PROPERTY_SOUND_SENSOR_REFLECTED_REQUIRED_MODE = "REFLECT";
+	public static final String PROPERTY_LIGHT_SENSOR_REFLECTED_REQUIRED_MODE = "REFLECT";
 
-	public static final int PROPERTY_SOUND_SENSOR_REFLECTED_VALUE_INDEX = 0;
+	public static final int PROPERTY_LIGHT_SENSOR_REFLECTED_VALUE_INDEX = 0;
 	
-	public static final String PROPERTY_SOUND_SENSOR_AMBIENT_REQUIRED_MODE = "AMBIENT";
+	public static final String PROPERTY_LIGHT_SENSOR_AMBIENT_REQUIRED_MODE = "AMBIENT";
 
-	public static final int PROPERTY_SOUND_SENSOR_AMBIENT_VALUE_INDEX = 0;
+	public static final int PROPERTY_LIGHT_SENSOR_AMBIENT_VALUE_INDEX = 0;
 	
 	//Power supply properties
 	
