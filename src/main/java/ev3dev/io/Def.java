@@ -46,6 +46,10 @@ public class Def {
 	
 	public static final String INFRARED_SENSOR_DRIVER_NAME = "lego-ev3-ir";
 	
+	public static final String SOUND_SENSOR_DRIVER_NAME = "lego-nxt-sound";
+	
+	public static final String LIGHT_SENSOR_DRIVER_NAME = "lego-nxt-light";
+	
 	//Properties defaults
 	
 	public static final String PROPERTY_ADDRESS = "address";
@@ -154,7 +158,7 @@ public class Def {
 	
 	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY = "ambient_light_intensity";
 	
-	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_REQUIRED_MODE = "AMBIENT";
+	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_REQUIRED_MODE = "COL-AMBIENT";
 	
 	public static final int PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX = 0;
 	
@@ -217,6 +221,26 @@ public class Def {
 	public static final String PROPERTY_INFRARED_SENSOR_PROXIMITY_REQUIRED_MODE = "IR-PROX";
 	
 	public static final int PROPERTY_INFRARED_SENSOR_PROXIMITY_VALUE_INDEX = 0;
+	
+	//Sound Sensor properties
+	
+	public static final String PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE = "DB";
+
+	public static final int PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_VALUE_INDEX = 0;
+
+	public static final String PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_REQUIRED_MODE = "DBA";
+	
+	public static final int PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_VALUE_INDEX = 0;
+	
+	//Light Sensor properties
+
+	public static final String PROPERTY_SOUND_SENSOR_REFLECTED_REQUIRED_MODE = "REFLECT";
+
+	public static final int PROPERTY_SOUND_SENSOR_REFLECTED_VALUE_INDEX = 0;
+	
+	public static final String PROPERTY_SOUND_SENSOR_AMBIENT_REQUIRED_MODE = "AMBIENT";
+
+	public static final int PROPERTY_SOUND_SENSOR_AMBIENT_VALUE_INDEX = 0;
 	
 	//Power supply properties
 	
