@@ -1,6 +1,8 @@
 package ev3dev.hardware.motors;
 
 import java.io.IOException;
+
+import ev3dev.exception.InvalidMotorException;
 import ev3dev.exception.InvalidPortException;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
@@ -9,8 +11,6 @@ import ev3dev.io.Sysclass;
 
 public class DCMotor extends Device{
 
-	private LegoPort port;
-
 	private String address;
 	
 	/***
@@ -18,17 +18,17 @@ public class DCMotor extends Device{
 	 * @param device A device object connecting a motor
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
+	 * @throws InvalidMotorException 
 	 */
-	public DCMotor(LegoPort port) throws InvalidPortException, IOException{
+	public DCMotor(LegoPort port) throws InvalidPortException, IOException, InvalidMotorException{
 		super(port, Def.DC_MOTOR_CLASS_NAME, Def.SUB_MOTOR_CLASS_NAME);
-		this.port = port;
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
 		if (!address.contains("out")){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a output.");
 		} else if (!port.getStatus().equals(Def.DC_MOTOR_CLASS_NAME)){
-			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
+			throw new InvalidMotorException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
 	}
 	

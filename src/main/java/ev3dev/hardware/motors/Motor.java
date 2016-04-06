@@ -27,8 +27,6 @@ public class Motor extends Device{
 	
 //-----------------------------------------------------------------------------
 
-	private LegoPort port;
-
 	private String address;
 	
 //-----------------------------------------------------------------------------
@@ -41,7 +39,6 @@ public class Motor extends Device{
 	 */
 	public Motor(LegoPort port) throws InvalidPortException, IOException{
 		super(port, Def.MOTOR_CLASS_NAME, Def.SUB_MOTOR_CLASS_NAME);
-		this.port = port;
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output

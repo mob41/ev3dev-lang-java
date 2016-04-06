@@ -3,23 +3,21 @@ package ev3dev.hardware.sensors;
 import java.io.IOException;
 
 import ev3dev.exception.InvalidPortException;
+import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
-import ev3dev.io.Sysclass;
 
 public class ColorSensor extends Sensor {
 	
 	private Device device;
 	
-	private String address;
-
-	public ColorSensor(LegoPort port) throws IOException, InvalidPortException {
+	public ColorSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.COLOR_SENSOR_DRIVER_NAME)){
-			throw new InvalidPortException("The specified device is not a color sensor. (Future plan: Check device until a suitable device detected)");
+			throw new InvalidSensorException("The specified device is not a color sensor.");
 		}
-		address = device.getPort().getAddress();
+		device.getPort().getAddress();
 	}
 	
 	public int getReflectedLightIntensity() throws IOException{

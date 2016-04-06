@@ -43,6 +43,7 @@ public class Button {
 			DataInputStream in = new DataInputStream(new FileInputStream(Def.PROPERTY_EV3_BUTTON_SYSTEM_EVENT_PATH));
 			byte[] val = new byte[16];
 			in.readFully(val);
+			in.close();
 			return test_bit(button, val);
 		} catch (IOException e){
 			System.err.println("### ERROR MESSAGE ###\nError: Unexpected error! Report an issue to \"mob41/ev3dev-lang-java\" now, with logs!\n === STACK TRACE ===");

@@ -1,8 +1,8 @@
 package ev3dev.hardware.ports;
 
 import java.io.IOException;
+
 import ev3dev.exception.InvalidPortException;
-import ev3dev.hardware.Device;
 import ev3dev.io.Sysclass;
 
 /***

@@ -1,16 +1,8 @@
 package ev3dev.hardware;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.security.AccessControlException;
 
 import ev3dev.hardware.ports.LegoPort;
-import ev3dev.io.Def;
 import ev3dev.io.Sysclass;
 
 public class Device {

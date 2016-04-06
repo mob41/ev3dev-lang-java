@@ -10,11 +10,8 @@ import ev3dev.io.Sysclass;
 
 public class Sensor extends Device{
 
-	private LegoPort port;
-	
 	public Sensor(LegoPort port) throws IOException, InvalidPortException{
 		super(port, Def.SENSOR_CLASS_NAME, Def.SUB_SENSOR_CLASS_NAME);
-		this.port = port;
 	}
 	
 	public String getAddress() throws IOException{

@@ -1,21 +1,18 @@
 package ev3dev.hardware.sensors;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.security.AccessControlException;
 
 import ev3dev.exception.InvalidPortException;
-import ev3dev.hardware.Device;
+import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
-import ev3dev.io.Sysclass;
 
 public class I2CSensor extends Sensor {
 
-	public I2CSensor(LegoPort port) throws IOException, InvalidPortException {
+	public I2CSensor(LegoPort port) throws InvalidPortException, InvalidSensorException, IOException {
 		super(port);
 		if (!this.getDriverName().equals(Def.I2CSENSOR_DRIVER_NAME)){
-			throw new InvalidPortException("The specified device is not a I2C sensor. (Future plan: Check device until a suitable device detected)");
+			throw new InvalidSensorException("The specified port is not a I2C sensor.");
 		}
 	}
 	

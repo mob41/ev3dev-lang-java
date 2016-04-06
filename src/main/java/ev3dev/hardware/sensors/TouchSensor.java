@@ -3,24 +3,21 @@ package ev3dev.hardware.sensors;
 import java.io.IOException;
 
 import ev3dev.exception.InvalidPortException;
-import ev3dev.hardware.Device;
+import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
-import ev3dev.io.Sysclass;
 
 public class TouchSensor extends Sensor {
 	
-	private String address;
-	
-	public TouchSensor(LegoPort port) throws IOException, InvalidPortException {
+	public TouchSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.TOUCH_SENSOR_DRIVER_NAME_EV3) &&
 				!this.getDriverName().equals(Def.TOUCH_SENSOR_DRIVER_NAME_NXT)){
-			throw new InvalidPortException("Can't create a TouchSensor instance that isn't a touch sensor!");
+			throw new InvalidSensorException("Can't create a TouchSensor instance that isn't a touch sensor!");
 		}
-		address = port.getAddress();
+		port.getAddress();
 		if (!this.getMode().equals(Def.PROPERTY_TOUCH_REQUIRED_MODE)){
-			throw new InvalidPortException("Can't create a TouchSensor instance that does not support: " + Def.PROPERTY_TOUCH_REQUIRED_MODE);
+			throw new InvalidSensorException("Can't create a TouchSensor instance that does not support: " + Def.PROPERTY_TOUCH_REQUIRED_MODE);
 		}
 	}
 	
