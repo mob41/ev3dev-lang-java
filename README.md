@@ -118,7 +118,7 @@ As ```ev3dev-lang-java``` is still in development stage. There are no Jar(s) rel
 	- [x] Color Sensor
 	- [x] Ultrasonic Sensor
 	- [x] Gyro Sensor
-	- [ ] Infrared Sensor
+	- [x] Infrared Sensor
 	- [ ] Sound Sensor
 	- [ ] Light Sensor
 	- [x] Power supply
