@@ -66,58 +66,159 @@ public class ServoMotor extends Device{
 		sendCommand(Def.COMMAND_FLOAT);
 	}
 	
+	/**
+	 * Returns the name of the driver that provides this tacho motor device.
+	 * @return The name of the driver
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getDriverName() throws IOException{
 		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the maximum (clockwise) position_sp. Default value is 2400.
+	 *  Valid values are 2300 to 2700. You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @return The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getMaxPulse_SP() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_MAX_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the maximum (clockwise) position_sp. Default value is 2400.
+	 *  Valid values are 2300 to 2700. You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @param max_pulse_sp The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setMaxPulse_SP(int max_pulse_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the mid position_sp.
+	 *  Default value is 1500. Valid values are 1300 to 1700. For example, on a 180 degree servo, this would be 90 degrees.
+	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
+	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @return The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getMidPulse_SP() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_MID_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the mid position_sp.
+	 *  Default value is 1500. Valid values are 1300 to 1700. For example, on a 180 degree servo, this would be 90 degrees.
+	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
+	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @param mid_pulse_sp The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setMidPulse_SP(int mid_pulse_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the
+	 *  minimum (counter-clockwise) position_sp. Default value is 600. Valid values are 300 to 700.
+	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @return The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getMinPulse_SP() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_MIN_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the
+	 *  minimum (counter-clockwise) position_sp. Default value is 600. Valid values are 300 to 700.
+	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
+	 * @param min_pulse_sp The pulse size in milliseconds
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setMinPulse_SP(int min_pulse_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
 	}
 	
+	/**
+	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
+	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
+	 * @return The polarity of the servo
+	 * @throws IOException
+	 */
 	public String getPolarity() throws IOException{
 		return this.getAttribute(Def.PROPERTY_POLARITY);
 	}
 	
+	/**
+	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
+	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
+	 * @param polarity The polarity of the servo
+	 * @throws IOException
+	 */
 	public void setPolarity(String polarity) throws IOException{
 		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
 	}
 	
+	/**
+	 * Reading returns the current position_sp of the servo. Writing instructs the servo to move to the specified position_sp.
+	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
+	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
+	 * @return The current position_sp of the servo
+	 * @throws IOException
+	 */
 	public int getPosition_SP() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
+	/**
+	 * Reading returns the current position_sp of the servo. Writing instructs the servo to move to the specified position_sp.
+	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
+	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
+	 * @param position_sp The current position_sp of the servo
+	 * @throws IOException
+	 */
 	public void setPosition_SP(int position_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
+	/**
+	 * Sets the rate_sp at which the servo travels from 0 to 100.0% (half of the full range of the servo).
+	 *  Units are in milliseconds. Example: Setting the rate_sp to 1000 means that it will take a 180 degree
+	 *   servo 2 second to move from 0 to 180 degrees. Note: Some servo controllers may not support this
+	 *    in which case reading and writing will fail with -EOPNOTSUPP.
+	 *  In continuous rotation servos, this value will affect the rate_sp at which the speed ramps up or down.
+	 * @param rate_sp
+	 * @throws IOException
+	 */
+	public void setRate_SP(int rate_sp) throws IOException{
+		this.setAttribute(Def.PROPERTY_RATE_SP, Integer.toString(rate_sp));
+	}
+	
+	/**
+	 * <b>This function returns a string that is likely a "spaced-array".</b><br>
+	 * <b>Use this function to directly to return a String array:</b>
+	 * <pre>
+	 * getState()
+	 * </pre>
+	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
+	 * @return A list of state flags. String spaced-array
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getStateViaString() throws IOException{
 		return this.getAttribute(Def.PROPERTY_STATE);
 	}
 
+	/**
+	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
+	 * @return A list(String array) of state flags.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String[] getState() throws IOException{
 		String str = getStateViaString();
 		return Sysclass.separateSpace(str);
