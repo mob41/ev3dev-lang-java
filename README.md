@@ -9,103 +9,14 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 ## Downloads 
 ```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all. All components are successfully developed, but some of them aren't tested.
 
-[Unstable Release (0.0.1-SNAPSHOT Build 65)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)
-
+[Unstable Release (0.0.1-SNAPSHOT Build 65)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)<br>
+[JavaDoc Web](https://mob41.github.io/ev3dev-lang-java/)<br>
+[Wiki / Help](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
+<br>
 Please post issues so that I can fix it immediately, thank you!
 
 ## Tutorial
-<b>No JavaDoc Available</b> Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
-
-1. Download the source and put it into your IDE or project.
-
-	i. Clone via command-line:
-
-	```
-	git clone https://github.com/mob41/ev3dev-lang-java.git ev3dev-lang-java
-	```
-	
-	ii. Or via GitHub [[Download ZIP]](https://github.com/mob41/ev3dev-lang-java/archive/master.zip)
-2. Add this source to your IDE or change your classpath
-3. Import the libraries
-
-	```java
-	//It is not recommended to import all libraries.
-	import ev3dev.* 
-	```
-	
-4. You have to create a port for your own Motor/Sensor.
-
-	```java
-	//Support all ports 1-4, A-D (Motors and sensors)
-	LegoPort legoport = new LegoPort(LegoPort.PORT_1);
-
-	//Support only motor ports: A-D or InvalidPortException will be thrown
-	MotorPort motorport = new MotorPort(MotorPort.PORT_A);
-	
-	//Support only sensor ports: 1-4 or InvalidPortException will be thrown
-	SensorPort sensorport = new SensorPort(SensorPort.PORT_2);
-	```
-	
-5. In this case, we plugged in a LargeMotor into ```PORT_A```.
-
-	```java
-	//Support all types of motor excepting DCMotor and ServoMotor.
-	Motor motor = new Motor(port); //You have to include your port here.
-	
-	//Alternative types of motors
-	LargeMotor lm = new LargeMotor(altport1);
-	MediumMotor mm = new MediumMotor(altport2);
-	DCMotor dcm = new DCMotor(altport3);
-	ServoMotor serm = new ServoMotor(altport4);
-	
-	//Make sure that all the ports are connecting to a correct type of motor.
-	//If isn't, a InvalidPortException will be thrown.
-	```
-	
-6. You can simply run your motor through these code:
-
-	```java
-	try {
-		//Set the Motor DutyCycle speed to 60
-		motor.setDutyCycle_SP(60);
-		//Run the Motor forever
-		motor.runForever();
-		
-		//The code is similar to other types of motors.
-	catch (Exception e){
-		//A Error will be thrown if the Motor is disconnected / Invalid.
-		e.printStackTrace();
-	}
-	```
-	
-7. You can also control the motor via a touch sensor:
-
-	```java
-	//Create a new TouchSensor instance with a altport5 LegoPort
-	TouchSensor ts = new TouchSensor(altport5);
-	hile (true) {
-		if (ts.isPressed()){
-			motor.runForever();
-		} else {
-			motor.stop();
-		}
-	}
-	```
-	
-8. Control it via a color sensor:
-
-	```java
-	//Create a new ColorSensor instance with a altport6 LegoPort
-	ColorSensor cs = new ColorSensor(altport6);
-	cs.setMode(PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE);
-	while (true) {
-		if (cs.getReflectedLightIntensity() < 25){
-			motor.runForever()
-		} else {
-			motor.stop();
-		}
-	}
-	```
+Check out the [wiki](https://github.com/mob41/ev3dev-lang-java/wiki) now!
 
 ## Stage
 - [x] Development
