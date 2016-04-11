@@ -9,8 +9,8 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 ## Downloads 
 ```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all. All components are successfully developed, but some of them aren't tested.
 
-[Unstable Release (0.0.1-SNAPSHOT Build 65)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)<br>
-[JavaDoc Web](https://mob41.github.io/ev3dev-lang-java/)<br>
+[Unstable Release (0.0.1-SNAPSHOT Build 98)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
+[JavaDoc Web](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
 [Wiki / Help](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
 <br>
 Please post issues so that I can fix it immediately, thank you!
@@ -18,29 +18,12 @@ Please post issues so that I can fix it immediately, thank you!
 ## Tutorial
 Check out the [wiki](https://github.com/mob41/ev3dev-lang-java/wiki) now!
 
+## Next 2.0 features
+- [ ] Remote run features
+- [ ] Remote compile and save
+
 ## Stage
 - [x] Development
-	- [x] Device class
-	- [x] Motor class ([http://www.ev3dev.org/docs/drivers/tacho-motor-class/](http://www.ev3dev.org/docs/drivers/tacho-motor-class/))
-	- [x] Large-motor class (inherits from Motor)
-	- [x] Medium-motor class (inherits from Motor)
-	- [x] Generic DC Motor class ([http://www.ev3dev.org/docs/drivers/dc-motor-class/](http://www.ev3dev.org/docs/drivers/dc-motor-class/))
-	- [x] Servo Motor class ([http://www.ev3dev.org/docs/drivers/servo-motor-class/](http://www.ev3dev.org/docs/drivers/servo-motor-class/))
-	- [x] Generic LED class ([https://www.kernel.org/doc/Documentation/leds/leds-class.txt](https://www.kernel.org/doc/Documentation/leds/leds-class.txt))
-	- [x] Generic button class
-	- [x] Sensor class ([http://www.ev3dev.org/docs/drivers/lego-sensor-class/](http://www.ev3dev.org/docs/drivers/lego-sensor-class/))
-	- [x] Generic I2C sensor
-	- [x] Touch Sensor
-	- [x] Color Sensor
-	- [x] Ultrasonic Sensor
-	- [x] Gyro Sensor
-	- [x] Infrared Sensor
-	- [x] Sound Sensor
-	- [x] Light Sensor
-	- [x] Power supply
-	- [x] Lego Port
-	- [x] Sensor Port (Unnecessary) (inherits from LegoPort)
-	- [x] Motor Port (Unnecessary) (inherits from LegoPort)
 - [x] JavaDoc
 - [x] Unstable Release
 - [ ] Autogen Templates
