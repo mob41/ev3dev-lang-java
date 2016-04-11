@@ -41,7 +41,8 @@ Check out the [wiki](https://github.com/mob41/ev3dev-lang-java/wiki) now!
 	- [x] Lego Port
 	- [x] Sensor Port (Unnecessary) (inherits from LegoPort)
 	- [x] Motor Port (Unnecessary) (inherits from LegoPort)
-- [ ] JavaDoc
+- [x] JavaDoc
+- [x] Unstable Release
 - [ ] Autogen Templates
 - [ ] Debugging
-- [ ] Release!
+- [ ] Stable Release!
