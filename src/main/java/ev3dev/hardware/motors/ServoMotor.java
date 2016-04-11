@@ -20,10 +20,10 @@ public class ServoMotor extends Device{
 	
 	/***
 	 * Creates a new motor object.
-	 * @param device A device object connecting a motor
+	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
-	 * @throws InvalidMotorException
+	 * @throws InvalidMotorException The specified motor wasn't a motor
 	 */
 	public ServoMotor(LegoPort port) throws InvalidPortException, InvalidMotorException, IOException{
 		super(port, Def.SERVO_MOTOR_CLASS_NAME, Def.SUB_MOTOR_CLASS_NAME);
@@ -49,6 +49,7 @@ public class ServoMotor extends Device{
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
 		this.setAttribute(Def.PROPERTY_COMMAND, command);
@@ -56,7 +57,7 @@ public class ServoMotor extends Device{
 	
 	/***
 	 * Setting to run will cause the servo to be driven to the <b>position_sp</b> set in the <b>position_sp</b> attribute. 
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void run() throws IOException{
 		sendCommand(Def.COMMAND_RUN);
@@ -153,7 +154,7 @@ public class ServoMotor extends Device{
 	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
 	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
 	 * @return The polarity of the servo
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public String getPolarity() throws IOException{
 		return this.getAttribute(Def.PROPERTY_POLARITY);
@@ -163,7 +164,7 @@ public class ServoMotor extends Device{
 	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
 	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
 	 * @param polarity The polarity of the servo
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPolarity(String polarity) throws IOException{
 		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
@@ -174,7 +175,7 @@ public class ServoMotor extends Device{
 	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
 	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
 	 * @return The current position_sp of the servo
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public int getPosition_SP() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_POSITION_SP);
@@ -186,7 +187,7 @@ public class ServoMotor extends Device{
 	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
 	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
 	 * @param position_sp The current position_sp of the servo
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPosition_SP(int position_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_POSITION_SP, Integer.toString(position_sp));
@@ -198,8 +199,8 @@ public class ServoMotor extends Device{
 	 *   servo 2 second to move from 0 to 180 degrees. Note: Some servo controllers may not support this
 	 *    in which case reading and writing will fail with -EOPNOTSUPP.
 	 *  In continuous rotation servos, this value will affect the rate_sp at which the speed ramps up or down.
-	 * @param rate_sp
-	 * @throws IOException
+	 * @param rate_sp The rate_sp value
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void setRate_SP(int rate_sp) throws IOException{
 		this.setAttribute(Def.PROPERTY_RATE_SP, Integer.toString(rate_sp));
