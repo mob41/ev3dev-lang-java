@@ -12,6 +12,13 @@ public class TouchSensor extends Sensor {
 	
 	public boolean autoSwitchMode = true;
 	
+	/**
+	 * Creates a new TouchSensor instance.
+	 * @param port LegoPort
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a TouchSensor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public TouchSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.TOUCH_SENSOR_DRIVER_NAME_EV3) &&
@@ -24,6 +31,12 @@ public class TouchSensor extends Sensor {
 		}
 	}
 	
+	/**
+	 * A boolean indicating whether the current touch sensor is being pressed.
+	 * @return The touch sensor is pressed or not.
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public boolean isPressed() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_TOUCH_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -36,10 +49,19 @@ public class TouchSensor extends Sensor {
 		return str.equals("1");
 	}
 	
+	/**
+	 * Set Auto Switch Mode to be enabled or disabled.<br>
+	 * (Default: enabled)
+	 * @param autoswitch A Boolean
+	 */
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
 
+	/**
+	 * Get whether Auto Switch Mode is enabled or disabled.
+	 * @return A Boolean
+	 */
 	public boolean isAutoSwitchMode(){
 		return autoSwitchMode;
 	}

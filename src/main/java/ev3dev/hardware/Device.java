@@ -120,6 +120,7 @@ public class Device {
 	 * Writes the property of the class specified.
 	 * @param property The property name of the class
 	 * @param new_value The new value of the property
+	 * @return Boolean whether the attribute was successfully written
 	 */
 	public boolean setAttribute(String property, String new_value){
 		try {

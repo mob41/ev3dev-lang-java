@@ -8,10 +8,22 @@ import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 
+/**
+ * LEGO NXT Light Sensor
+ * @author Anthony
+ *
+ */
 public class LightSensor extends Sensor {
 	
 	public boolean autoSwitchMode = true;
 
+	/**
+	 * Creates a new LightSensor instance.
+	 * @param port LegoPort
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a LightSensor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public LightSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if(!this.getDriverName().equals(Def.LIGHT_SENSOR_DRIVER_NAME)){
@@ -19,6 +31,12 @@ public class LightSensor extends Sensor {
 		}
 	}
 	
+	/**
+	 * A measurement of the reflected light intensity, as a percentage.
+	 * @return A measurement of the reflected light intensity
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public float getReflectedLightIntensity() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_LIGHT_SENSOR_REFLECTED_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -31,6 +49,12 @@ public class LightSensor extends Sensor {
 		return Float.parseFloat(str);
 	}
 	
+	/**
+	 * A measurement of the ambient light intensity, as a percentage.
+	 * @return A measurement of the ambient light intensity
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public float getAmbientLightIntensity() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_LIGHT_SENSOR_AMBIENT_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -43,10 +67,19 @@ public class LightSensor extends Sensor {
 		return Float.parseFloat(str);
 	}
 	
+	/**
+	 * Set Auto Switch Mode to be enabled or disabled.<br>
+	 * (Default: enabled)
+	 * @param autoswitch A Boolean
+	 */
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
 
+	/**
+	 * Get whether Auto Switch Mode is enabled or disabled.
+	 * @return A Boolean
+	 */
 	public boolean isAutoSwitchMode(){
 		return autoSwitchMode;
 	}

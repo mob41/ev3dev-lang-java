@@ -23,6 +23,13 @@ import ev3dev.io.Sysclass;
 
 //~autogen
 
+
+/**
+ * The motor class provides a uniform interface for using motors with positional and directional feedback such as the EV3 and NXT motors.
+ *  This feedback allows for precise control of the motors. This is the most common type of motor, so we just call it motor.
+ * @author Anthony
+ *
+ */
 public class Motor extends Device{
 	
 //-----------------------------------------------------------------------------
@@ -33,7 +40,7 @@ public class Motor extends Device{
 	
 	/***
 	 * Creates a new motor object.
-	 * @param device A device object connecting a motor
+	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
@@ -67,6 +74,7 @@ public class Motor extends Device{
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
 		if (!this.isConnected()){
@@ -77,7 +85,7 @@ public class Motor extends Device{
 	
 	/***
 	 * Cause the motor to run until another command is sent
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void runForever() throws IOException{
 		if (!this.isConnected()){
@@ -277,6 +285,12 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_ENCODER_POLARITY, encoder_polarity);
 	}
 	
+	/**
+	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise.
+	 *  With inversed polarity, a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
+	 * @return The polarity of the motor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getPolarity() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -284,6 +298,12 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_POLARITY);
 	}
 	
+	/**
+	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise. With inversed polarity,
+	 *  a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
+	 * @param polarity The polarity of the motor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPolarity(String polarity) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -291,6 +311,12 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
 	}
 	
+	/**
+	 * Returns the current position of the motor in pulses of the rotary encoder. When the motor rotates clockwise, the position will increase. Likewise,
+	 *  rotating counter-clockwise causes the position to decrease. Writing will set the position to that value.
+	 * @return The current position
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getPosition() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -299,6 +325,12 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Returns the current position of the motor in pulses of the rotary encoder. When the motor rotates clockwise, the position will increase.
+	 *  Likewise, rotating counter-clockwise causes the position to decrease. Writing will set the position to that value.
+	 * @param position The current position
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPosition(int position) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -306,6 +338,11 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POSITION, Integer.toString(position));
 	}
 	
+	/**
+	 * The proportional constant for the position PID.
+	 * @return The proportional constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getPosition_P() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -314,6 +351,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * The integral constant for the position PID.
+	 * @return The integral constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getPosition_I() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -322,6 +364,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * The derivative constant for the position PID.
+	 * @return The derivative constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getPosition_D() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -330,6 +377,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * The proportional constant for the position PID.
+	 * @param position_p The proportional constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPosition_P(int position_p) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -337,6 +389,11 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POSITION_P, Integer.toString(position_p));
 	}
 	
+	/**
+	 * The integral constant for the position PID.
+	 * @param position_i The integral constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPosition_I(int position_i) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -344,6 +401,11 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POSITION_I, Integer.toString(position_i));
 	}
 	
+	/**
+	 * The derivative constant for the position PID.
+	 * @param position_d The derivative constant for the position PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPosition_D(int position_d) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -351,6 +413,12 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POSITION_D, Integer.toString(position_d));
 	}
 	
+	/**
+	 * Writing specifies the target position for the run-to-abs-pos and run-to-rel-pos commands. Reading returns the current value.
+	 *  Units are in tacho counts. You can use the value returned by counts_per_rot to convert tacho counts to/from rotations or degrees.
+	 * @return The target position
+	 * @throws IOException if I/O goes wrong
+	 */
 	public int getPosition_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -359,6 +427,12 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 
+	/**
+	 * Writing specifies the target position for the run-to-abs-pos and run-to-rel-pos commands. Reading returns the current value.
+	 *  Units are in tacho counts. You can use the value returned by counts_per_rot to convert tacho counts to/from rotations or degrees.
+	 * @param position_sp The target position
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setPosition_SP(int position_sp) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -366,6 +440,12 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
+	/**
+	 * Returns the current motor speed in tacho counts per second. Note, this is not necessarily degrees
+	 *  (although it is for LEGO motors). Use the count_per_rot attribute to convert this value to RPM or deg/sec.
+	 * @return The current speed
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getSpeed() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -374,6 +454,12 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Writing sets the target speed in tacho counts per second used when speed_regulation is on.
+	 *  Reading returns the current value. Use the count_per_rot attribute to convert RPM or deg/sec to tacho counts per second.
+	 * @return The target speed
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getSpeed_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -382,6 +468,12 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Writing sets the target speed in tacho counts per second used when speed_regulation is on. Reading returns the current value.
+	 *  Use the count_per_rot attribute to convert RPM or deg/sec to tacho counts per second.
+	 * @param speed_sp The target speed
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeed_SP(int speed_sp) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -389,6 +481,15 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
 	}
 	
+	/**
+	 * Writing sets the ramp up setpoint. Reading returns the current value. Units are in milliseconds.
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 0 to 100% duty
+	 *   cycle over the span of this setpoint when starting the motor. If the maximum duty cycle is
+	 *    limited by duty_cycle_sp or speed regulation,
+	 *  the actual ramp time duration will be less than the setpoint.
+	 * @return The ramp-up set-point
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getRamp_Up_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -397,6 +498,15 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Writing sets the ramp up setpoint. Reading returns the current value. Units are in milliseconds.
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 0 to 100% duty
+	 *   cycle over the span of this setpoint when starting the motor. If the maximum duty cycle is
+	 *    limited by duty_cycle_sp or speed regulation,
+	 *  the actual ramp time duration will be less than the setpoint.
+	 * @param ramp_up_sp The ramp-up set-point
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -404,6 +514,14 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
+	/**
+	 * Writing sets the ramp down setpoint. Reading returns the current value. Units are in milliseconds.
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 100% duty cycle down
+	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
+	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
+	 * @return The ramp-down set-point
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getRamp_Down_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -412,6 +530,14 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Writing sets the ramp down setpoint. Reading returns the current value. Units are in milliseconds.
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 100% duty cycle down
+	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
+	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
+	 * @param ramp_down_sp The ramp-down set-point
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -419,6 +545,18 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
+	/**
+	 * <b>This function returns a String instead of a boolean!</b><br>
+	 * <b>Use this to get a boolean value:</b>
+	 * <pre>
+	 * isSpeedRegulationEnabled()
+	 * </pre>
+	 * Turns speed regulation on or off. If speed regulation is on, the motor controller will
+	 *  vary the power supplied to the motor to try to maintain the speed specified in speed_sp.
+	 *  If speed regulation is off, the controller will use the power specified in duty_cycle_sp. Valid values are on and off.
+	 * @return A String. Valid Value: on / off
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getSpeedRegulationEnabled() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -427,6 +565,13 @@ public class Motor extends Device{
 		return str;
 	}
 	
+	/**
+	 * Turns speed regulation on or off. If speed regulation is on, the motor controller will
+	 *  vary the power supplied to the motor to try to maintain the speed specified in speed_sp.
+	 *  If speed regulation is off, the controller will use the power specified in duty_cycle_sp. Valid values are on and off.
+	 * @return A boolean value that whether is it enabled.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public boolean isSpeedRegulationEnabled() throws IOException{
 		if (!this.isConnected()){
 			return false;
@@ -441,6 +586,13 @@ public class Motor extends Device{
 		}
 	}
 	
+	/**
+	 * Turns speed regulation on or off. If speed regulation is on, the motor controller will
+	 *  vary the power supplied to the motor to try to maintain the speed specified in speed_sp.
+	 *  If speed regulation is off, the controller will use the power specified in duty_cycle_sp. Valid values are on and off.
+	 * @param enabled To set whether is speed regulation enabled.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeedRegulationEnabled(boolean enabled) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -449,6 +601,18 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_ENABLED, str);
 	}
 	
+	/**
+	 * <b>This function uses a String instead a boolean to set the value!</b><br>
+	 * <b>Use this to set using boolean value:</b>
+	 * <pre>
+	 * setSpeedRegulationEnabled(boolean enabled)
+	 * </pre>
+	 * Turns speed regulation on or off. If speed regulation is on, the motor controller will
+	 *  vary the power supplied to the motor to try to maintain the speed specified in speed_sp.
+	 *  If speed regulation is off, the controller will use the power specified in duty_cycle_sp. Valid values are on and off.
+	 * @param onoff A String. Valid Value: on / off. If the input string is invalid, it will be <code>false</code>
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeedRegulationEnabled(String onoff) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -464,6 +628,11 @@ public class Motor extends Device{
 		setSpeedRegulationEnabled(enabled);
 	}
 	
+	/**
+	 * Get the proportional constant for the speed regulation PID.
+	 * @return The proportional constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getSpeedRegulation_P() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -472,6 +641,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Set the proportional constant for the speed regulation PID.
+	 * @param p The proportional constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeedRegulation_P(int p) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -479,6 +653,11 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
 	}
 	
+	/**
+	 * Get the integral constant for the speed regulation PID.
+	 * @return The integral constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getSpeedRegulation_I() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -487,6 +666,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Set The integral constant for the speed regulation PID.
+	 * @param i The integral constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeedRegulation_I(int i) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -494,6 +678,11 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
 	}
 	
+	/**
+	 * Get the derivative constant for the speed regulation PID.
+	 * @return The derivative constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getSpeedRegulation_D() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -502,6 +691,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Set the derivative constant for the speed regulation PID.
+	 * @param d The derivative constant for the speed regulation PID.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setSpeedRegulation_D(int d) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -509,6 +703,16 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
 	}
 	
+	/**
+	 * <b>This function returns a string that is likely a "spaced-array".</b><br>
+	 * <b>Use this function to directly to return a String array:</b>
+	 * <pre>
+	 * getState()
+	 * </pre>
+	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
+	 * @return A list of state flags. String spaced-array
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getStateViaString() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -516,6 +720,11 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_STATE);
 	}
 	
+	/**
+	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
+	 * @return A list(String array) of state flags.
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String[] getState() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -524,6 +733,12 @@ public class Motor extends Device{
 		return Sysclass.separateSpace(str);
 	}
 	
+	/**
+	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
+	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
+	 * @return A stop command that listed using <code>getStopCommands()</code>
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getStopCommand() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -531,6 +746,12 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_STOP_COMMAND);
 	}
 	
+	/**
+	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
+	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
+	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setStopCommand(String stop_command) throws IOException{
 		if (!this.isConnected()){
 			return;
@@ -538,6 +759,23 @@ public class Motor extends Device{
 		this.setAttribute(Def.PROPERTY_STOP_COMMAND, stop_command);
 	}
 	
+	/**
+	 * <b>This function returns a string that is likely a "spaced-array".</b><br>
+	 * <b>Use this function to directly to return a String array:</b>
+	 * <pre>
+	 * getStopCommands()
+	 * </pre>
+	 * Returns a list of stop modes supported by the motor controller. Possible values are coast,
+	 *  brake and hold. coast means that power will be removed from the motor and it will freely
+	 *   coast to a stop. brake means that power will be removed from the motor and a passive
+	 *    electrical load will be placed on the motor. This is usually done by shorting the motor
+	 *     terminals together. This load will absorb the energy from the rotation of the motors
+	 *      and cause the motor to stop more quickly than coasting. hold does not remove power from
+	 *       the motor. Instead it actively try to hold the motor at the current position.
+	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
+	 * @return A list of stop modes supported by the motor controller
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String getStopCommandsViaString() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -545,6 +783,18 @@ public class Motor extends Device{
 		return this.getAttribute(Def.PROPERTY_STOP_COMMANDS);
 	}
 	
+	/**
+	 * Returns a list of stop modes supported by the motor controller. Possible values are coast,
+	 *  brake and hold. coast means that power will be removed from the motor and it will freely
+	 *   coast to a stop. brake means that power will be removed from the motor and a passive
+	 *    electrical load will be placed on the motor. This is usually done by shorting the motor
+	 *     terminals together. This load will absorb the energy from the rotation of the motors
+	 *      and cause the motor to stop more quickly than coasting. hold does not remove power from
+	 *       the motor. Instead it actively try to hold the motor at the current position.
+	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
+	 * @return A list of stop modes supported by the motor controller
+	 * @throws IOException If I/O goes wrong
+	 */
 	public String[] getStopCommands() throws IOException{
 		if (!this.isConnected()){
 			return null;
@@ -553,6 +803,11 @@ public class Motor extends Device{
 		return Sysclass.separateSpace(str);
 	}
 	
+	/**
+	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
+	 * @return Amount of time in ms
+	 * @throws IOException If I/O goes wrong
+	 */
 	public int getTime_SP() throws IOException{
 		if (!this.isConnected()){
 			return -1;
@@ -561,6 +816,11 @@ public class Motor extends Device{
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
+	 * @param time_sp Amount of time in ms
+	 * @throws IOException If I/O goes wrong
+	 */
 	public void setTime_SP(int time_sp) throws IOException{
 		if (!this.isConnected()){
 			return;

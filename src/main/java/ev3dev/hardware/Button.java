@@ -30,6 +30,11 @@ public class Button {
 	
 	private int button;
 	
+	/**
+	 * Creates a new Button instance with the Button specified.
+	 * @param button The Integer field of the <code>Button</code> class
+	 * @throws InvalidButtonException If the specified button isn't a valid button.
+	 */
 	public Button(int button) throws InvalidButtonException{
 		if (button != UP && button != DOWN && button != LEFT &&
 				button != RIGHT && button != ENTER && button != ENTER &&
@@ -39,6 +44,10 @@ public class Button {
 		this.button = button;
 	}
 	
+	/**
+	 * Returns whether the button is pressed.
+	 * @return Boolean that the button is pressed.
+	 */
 	public boolean isPressed(){
 		try {
 			DataInputStream in = new DataInputStream(new FileInputStream(Def.PROPERTY_EV3_BUTTON_SYSTEM_EVENT_PATH));
@@ -60,7 +69,7 @@ public class Button {
 		}
 	}
 	
-	public static boolean test_bit(int bit, byte[] bytes){
+	private static boolean test_bit(int bit, byte[] bytes){
 	    return ((bytes[bit / 8] & (1 << (bit % 8))) == 1 ? false : true);
 	}
 }
