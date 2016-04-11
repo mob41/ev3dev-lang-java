@@ -9,6 +9,11 @@ import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 import ev3dev.io.Sysclass;
 
+/**
+ * The servo motor class provides a uniform interface for using hobby type servo motors.
+ * @author Anthony
+ *
+ */
 public class ServoMotor extends Device{
 
 	private String address;

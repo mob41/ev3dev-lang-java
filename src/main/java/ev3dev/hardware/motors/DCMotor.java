@@ -9,6 +9,12 @@ import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 import ev3dev.io.Sysclass;
 
+/**
+ * The DC motor class provides a uniform interface for using regular DC motors
+ *  with no fancy controls or feedback. This includes LEGO MINDSTORMS RCX motors and LEGO Power Functions motors.
+ * @author Anthony
+ *
+ */
 public class DCMotor extends Device{
 
 	private String address;

@@ -3,7 +3,7 @@ package ev3dev.hardware.ports;
 import ev3dev.exception.InvalidPortException;
 
 /***
- * MotorPort class for fetching data from a specified motor port.<br>
+ * MotorPort class for getting data from a specified motor port.<br>
  * <br>
  * You can use a LegoPort to use all the ports.
  * @author Anthony

@@ -23,6 +23,13 @@ import ev3dev.io.Sysclass;
 
 //~autogen
 
+
+/**
+ * The motor class provides a uniform interface for using motors with positional and directional feedback such as the EV3 and NXT motors.
+ *  This feedback allows for precise control of the motors. This is the most common type of motor, so we just call it motor.
+ * @author Anthony
+ *
+ */
 public class Motor extends Device{
 	
 //-----------------------------------------------------------------------------
