@@ -9,12 +9,24 @@ import ev3dev.hardware.Device;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 
+/**
+ * LEGO EV3 color sensor.
+ * @author Anthony
+ *
+ */
 public class ColorSensor extends Sensor {
 	
 	private Device device;
 	
 	private boolean autoSwitchMode = true;
 	
+	/**
+	 * Creates a new ColorSensor instance.
+	 * @param port LegoPort
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a ColorSensor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public ColorSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.COLOR_SENSOR_DRIVER_NAME)){
@@ -23,6 +35,12 @@ public class ColorSensor extends Sensor {
 		device.getPort().getAddress();
 	}
 	
+	/**
+	 * Reflected light intensity as a percentage. Light on sensor is red.
+	 * @return Reflected Light Intensity in percentage
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getReflectedLightIntensity() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -35,6 +53,12 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Ambient light intensity. Light on sensor is dimly lit blue.
+	 * @return Ambient light intensity in percentage
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getAmbientLightIntensity() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -47,6 +71,20 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Color detected by the sensor, categorized by overall value. <br>
+	 * - 0: No color<br>
+	 * - 1: Black<br>
+	 * - 2: Blue<br>
+	 * - 3: Green<br>
+	 * - 4: Yellow<br>
+	 * - 5: Red<br>
+	 * - 6: White<br>
+	 * - 7: Brown
+	 * @return Color value
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getColor() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_COLOR_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -59,6 +97,12 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Red component of the detected color, in the range 0-1020
+	 * @return RGB Red component
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getRGB_Red() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_RGB_R_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -71,6 +115,12 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Green component of the detected color, in the range 0-1020
+	 * @return Green Red component
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getRGB_Green() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_RGB_G_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -83,6 +133,12 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Blue component of the detected color, in the range 0-1020
+	 * @return Blue Red component
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getRGB_Blue() throws IOException, InvalidModeException{
 		if (!this.getMode().equals(Def.PROPERTY_COLOR_SENSOR_RGB_B_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -95,10 +151,19 @@ public class ColorSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Set Auto Switch Mode to be enabled or disabled.<br>
+	 * (Default: enabled)
+	 * @param autoswitch A Boolean
+	 */
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
 
+	/**
+	 * Get whether Auto Switch Mode is enabled or disabled.
+	 * @return A Boolean
+	 */
 	public boolean isAutoSwitchMode(){
 		return autoSwitchMode;
 	}

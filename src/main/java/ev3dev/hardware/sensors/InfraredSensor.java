@@ -8,10 +8,22 @@ import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 
+/**
+ * LEGO EV3 infrared sensor.
+ * @author Anthony
+ *
+ */
 public class InfraredSensor extends Sensor {
 
 	private boolean autoSwitchMode = true;
 	
+	/**
+	 * Creates a new InfraredSensor instance.
+	 * @param port LegoPort
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a InfraredSensor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public InfraredSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.INFRARED_SENSOR_DRIVER_NAME)){
@@ -19,6 +31,12 @@ public class InfraredSensor extends Sensor {
 		}
 	}
 
+	/**
+	 * A measurement of the distance between the sensor and the remote, as a percentage. 100% is approximately 70cm/27in.
+	 * @return A measurement of the distance
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getProximity() throws InvalidModeException, IOException{
 		if (!this.getMode().equals(Def.PROPERTY_INFRARED_SENSOR_PROXIMITY_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -31,10 +49,19 @@ public class InfraredSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * Set Auto Switch Mode to be enabled or disabled.<br>
+	 * (Default: enabled)
+	 * @param autoswitch A Boolean
+	 */
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
 	
+	/**
+	 * Get whether Auto Switch Mode is enabled or disabled.
+	 * @return A Boolean
+	 */
 	public boolean getAutoSwitchMode(){
 		return autoSwitchMode;
 	}
