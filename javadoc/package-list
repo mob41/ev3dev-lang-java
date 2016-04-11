@@ -1,0 +1,7 @@
+org.ev3dev
+org.ev3dev.exception
+org.ev3dev.hardware
+org.ev3dev.hardware.motors
+org.ev3dev.hardware.ports
+org.ev3dev.hardware.sensors
+org.ev3dev.io
