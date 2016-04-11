@@ -2,6 +2,13 @@ package ev3dev.hardware.ports;
 
 import ev3dev.exception.InvalidPortException;
 
+/***
+ * SensorPort class for getting data from a specified sensor port.<br>
+ * <br>
+ * You can use a LegoPort to use all the ports.
+ * @author Anthony
+ *
+ */
 public class SensorPort extends LegoPort{
 	
 	public static final int SENSOR_1 = 0;

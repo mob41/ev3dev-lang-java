@@ -18,6 +18,11 @@ import java.util.List;
  */
 public class Sysclass {
 	
+	/**
+	 * Get all sub-class files
+	 * @param class_name Main Class Name
+	 * @return File Array
+	 */
 	public static File[] getAllSubClass(String class_name){
 		File file = new File(Def.SYSTEM_CLASS_PATH + class_name);
 		File[] files = file.listFiles();
@@ -164,6 +169,13 @@ public class Sysclass {
 		return sb.toString();
 	}
 	
+	/**
+	 * Get the hardware name, using a class name, sub-class name and a address
+	 * @param classname A Main Class Name (e.g. lego-port, tacho-motor)
+	 * @param subclassname A Sub-Class Name, without the value [N] (e.g. motor, sensor)
+	 * @param address Address (e.g. outA, in1)
+	 * @return A hardware name that with equal address, if none, returns null
+	 */
 	public static String getHardwareName(String classname, String subclassname, String address){
 		File[] sub = Sysclass.getAllSubClass(classname);
 		File file;

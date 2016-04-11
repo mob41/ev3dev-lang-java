@@ -1,5 +1,10 @@
 package ev3dev.io;
 
+/**
+ * Application-specified System Defaults
+ * @author Anthony
+ *
+ */
 public class Def {
 	
 	//System class path

@@ -8,10 +8,22 @@ import ev3dev.exception.InvalidSensorException;
 import ev3dev.hardware.ports.LegoPort;
 import ev3dev.io.Def;
 
+/**
+ * LEGO EV3 gyro sensor.
+ * @author Anthony
+ *
+ */
 public class GyroSensor extends Sensor {
 	
 	private boolean autoSwitchMode = true;
 
+	/**
+	 * Creates a new GyroSensor instance.
+	 * @param port LegoPort
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a GyroSensor
+	 * @throws IOException If I/O goes wrong
+	 */
 	public GyroSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(Def.GYRO_SENSOR_DRIVER_NAME)){
@@ -19,6 +31,12 @@ public class GyroSensor extends Sensor {
 		}
 	}
 	
+	/**
+	 * The number of degrees that the sensor has been rotated since it was put into this mode.
+	 * @return The number of degrees
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getAngle() throws InvalidModeException, IOException{
 		if (!this.getMode().equals(Def.PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -31,6 +49,12 @@ public class GyroSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 	
+	/**
+	 * The rate at which the sensor is rotating, in degrees/second.
+	 * @return The rate at which the sensor is rotating
+	 * @throws IOException If I/O goes wrong
+	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
+	 */
 	public int getRate() throws InvalidModeException, IOException{
 		if (!this.getMode().equals(Def.PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE)){
 			if (autoSwitchMode){
@@ -43,10 +67,19 @@ public class GyroSensor extends Sensor {
 		return Integer.parseInt(str);
 	}
 
+	/**
+	 * Set Auto Switch Mode to be enabled or disabled.<br>
+	 * (Default: enabled)
+	 * @param autoswitch A Boolean
+	 */
 	public void setAutoSwitchMode(boolean autoswitch){
 		this.autoSwitchMode = autoswitch;
 	}
 	
+	/**
+	 * Get whether Auto Switch Mode is enabled or disabled.
+	 * @return A Boolean
+	 */
 	public boolean isAutoSwitchMode(){
 		return autoSwitchMode;
 	}
