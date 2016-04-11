@@ -40,7 +40,7 @@ public class Motor extends Device{
 	
 	/***
 	 * Creates a new motor object.
-	 * @param device A device object connecting a motor
+	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
@@ -74,6 +74,7 @@ public class Motor extends Device{
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
 		if (!this.isConnected()){
@@ -84,7 +85,7 @@ public class Motor extends Device{
 	
 	/***
 	 * Cause the motor to run until another command is sent
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void runForever() throws IOException{
 		if (!this.isConnected()){
@@ -482,7 +483,7 @@ public class Motor extends Device{
 	
 	/**
 	 * Writing sets the ramp up setpoint. Reading returns the current value. Units are in milliseconds.
-	 *  When set to a value > 0, the motor will ramp the power sent to the motor from 0 to 100% duty
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 0 to 100% duty
 	 *   cycle over the span of this setpoint when starting the motor. If the maximum duty cycle is
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
@@ -499,7 +500,7 @@ public class Motor extends Device{
 	
 	/**
 	 * Writing sets the ramp up setpoint. Reading returns the current value. Units are in milliseconds.
-	 *  When set to a value > 0, the motor will ramp the power sent to the motor from 0 to 100% duty
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 0 to 100% duty
 	 *   cycle over the span of this setpoint when starting the motor. If the maximum duty cycle is
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
@@ -515,11 +516,11 @@ public class Motor extends Device{
 	
 	/**
 	 * Writing sets the ramp down setpoint. Reading returns the current value. Units are in milliseconds.
-	 *  When set to a value > 0, the motor will ramp the power sent to the motor from 100% duty cycle down
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 100% duty cycle down
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @return The ramp-down set-point
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public int getRamp_Down_SP() throws IOException{
 		if (!this.isConnected()){
@@ -531,11 +532,11 @@ public class Motor extends Device{
 	
 	/**
 	 * Writing sets the ramp down setpoint. Reading returns the current value. Units are in milliseconds.
-	 *  When set to a value > 0, the motor will ramp the power sent to the motor from 100% duty cycle down
+	 *  When set to a value bigger than 0, the motor will ramp the power sent to the motor from 100% duty cycle down
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @param ramp_down_sp The ramp-down set-point
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
 		if (!this.isConnected()){
@@ -609,7 +610,7 @@ public class Motor extends Device{
 	 * Turns speed regulation on or off. If speed regulation is on, the motor controller will
 	 *  vary the power supplied to the motor to try to maintain the speed specified in speed_sp.
 	 *  If speed regulation is off, the controller will use the power specified in duty_cycle_sp. Valid values are on and off.
-	 * @return A String. Valid Value: on / off. If the input string is invalid, it will be <code>false</code>
+	 * @param onoff A String. Valid Value: on / off. If the input string is invalid, it will be <code>false</code>
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setSpeedRegulationEnabled(String onoff) throws IOException{
@@ -773,7 +774,7 @@ public class Motor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStopCommandsViaString() throws IOException{
 		if (!this.isConnected()){
@@ -792,7 +793,7 @@ public class Motor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public String[] getStopCommands() throws IOException{
 		if (!this.isConnected()){
@@ -805,7 +806,7 @@ public class Motor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @return Amount of time in ms
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public int getTime_SP() throws IOException{
 		if (!this.isConnected()){
@@ -818,7 +819,7 @@ public class Motor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @param time_sp Amount of time in ms
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void setTime_SP(int time_sp) throws IOException{
 		if (!this.isConnected()){

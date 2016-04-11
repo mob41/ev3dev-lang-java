@@ -38,7 +38,7 @@ public class Sensor extends Device{
 	 * Returns the name of the port that the sensor is connected to, e.g. ev3:in1.
 	 *  I2C sensors also include the I2C address (decimal), e.g. ev3:in1:i2c8.
 	 * @return A sensor address
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public String getAddress() throws IOException{
 		return this.getAttribute(Def.PROPERTY_ADDRESS);
@@ -47,6 +47,7 @@ public class Sensor extends Device{
 	/***
 	 * Generic method to send commands to the sensor controller.
 	 * @param command Command that suits for the sensor driver
+	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
 		this.setAttribute(Def.PROPERTY_COMMAND, command);
@@ -77,9 +78,9 @@ public class Sensor extends Device{
 	}
 	
 	/**
-	 * Returns the number of decimal places for the values in the value<N> attributes of the current mode.
+	 * Returns the number of decimal places for the values in the value[N] attributes of the current mode.
 	 * @return The number of decimal places
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDecimals() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_DECIMALS);

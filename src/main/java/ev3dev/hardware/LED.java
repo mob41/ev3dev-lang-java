@@ -167,7 +167,7 @@ public class LED extends Device{
 	 * The timer trigger will periodically change the LED brightness between 0 and the current brightness setting.
 	 *  The on time can be specified via delay_on attribute in milliseconds.
 	 * @return The Delay_On Value in milliseconds
-	 * @throws IOException
+	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDelay_On() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_DELAY_ON);
