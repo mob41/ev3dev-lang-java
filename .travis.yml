@@ -7,7 +7,7 @@ before_deploy:
 - mvn package
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
-- export GIT_TAG=$projectversion-B$TRAVIS_BUILD_NUMBER
+- export GIT_TAG=$projectversion-Build.$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push -q https://$GITPERM@github.com/mob41/ev3dev-lang-java --tags
 - ls -R
@@ -24,4 +24,4 @@ deploy:
     branch: unstable
 
 env:
-- projectversion=unstable-0.0.1-SNAPSHOT
+- projectversion=0.0.2-SNAPSHOT

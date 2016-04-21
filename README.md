@@ -6,21 +6,38 @@ You might saw another language binding for Java from https://github.com/ev3dev-l
 This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758<br>
 @jabrena 's library is a port from ```lsJOS``` codes to ```ev3dev```.
 
-## Downloads 
-```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all. All components are successfully developed, but some of them aren't tested.
+## Library version
+Building on ```unstable``` releases. Version: ```0.0.2-SNAPSHOT```<br>
+Target Kernel Version: ```v3.16.7-ckt26-10-ev3dev-ev3``` (Current) (v10)
 
-[Unstable Release (0.0.1-SNAPSHOT Build 98)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
-[JavaDoc Web](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
-[Wiki / Help](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
-<br>
+```0.0.2-SNAPSHOT``` Changelog:
+- Update for Kernel Version 10
+- Removed speed_regulation
+- Removed encoder_polarity
+- Renamed stop_command to stop_action
+- Motor will not stop until write stop to command
+- Added max_speed
+- Added subclass linear
+
+## Downloads 
+```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all, except Motors, Touch/Color/Infrared Sensors, Buttons, LED. All components are successfully developed, but some of them aren't tested.
+
+[[Latest Release (Development)]](https://github.com/mob41/ev3dev-lang-java/releases/latest)<br>
+[[Unstable Release (Usable)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
+[Stable Release (Smooth)]<br>
+
+<b>Others:</b>
+[[Java API Document (JavaDoc)]](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
+[[API Tutorials / Wiki, Help]](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
+
+<b>Problem reporting:</b>
+[[API Issue Reporting]](https://github.com/mob41/ev3dev-lang-java/issues)<br>
+[[Official Issue Reporting]](https://github.com/ev3dev/ev3dev-lang/issues)<br>
+
 Please post issues so that I can fix it immediately, thank you!
 
-## Tutorial
+## Tutorials
 Check out the [wiki](https://github.com/mob41/ev3dev-lang-java/wiki) now!
-
-## Next 2.0 features
-- [ ] Remote run features
-- [ ] Remote compile and save
 
 ## Stage
 - [x] Development
