@@ -24,5 +24,4 @@ deploy:
         branch: develop
 
 env:
-- state=develop
-- projectversion=0.0.2-SNAPSHOT
+- state=develop projectversion=0.0.2-SNAPSHOT
