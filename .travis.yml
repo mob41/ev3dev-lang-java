@@ -7,20 +7,17 @@ before_deploy:
 - ./deploy.sh
 
 deploy:
-  skip_cleanup: true
   - provider: releases
+    skip_cleanup: true
     api_key: $GITPERM
-    file: 
-        - target/ev3dev-lang-java-$projectversion-unstable-Build-$TRAVIS_BUILD_NUMBER.jar
-        - target/ev3dev-lang-java-$projectversion-jar-with-dependencies-unstable-Build-$TRAVIS_BUILD_NUMBER.jar
+    file: target/*.jar
     on:
         tags: false
         branch: unstable
   - provider: releases
+    skip_cleanup: true
     api_key: $GITPERM
-    file: 
-        - target/ev3dev-lang-java-$projectversion-develop-Build-$TRAVIS_BUILD_NUMBER.jar
-        - target/ev3dev-lang-java-$projectversion-jar-with-dependencies-develop-Build-$TRAVIS_BUILD_NUMBER.jar
+    file: target/*.jar
     on:
         tags: false
         branch: develop
