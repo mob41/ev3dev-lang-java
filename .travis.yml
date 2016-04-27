@@ -3,25 +3,43 @@ language: java
 install: true
 
 before_deploy:
-- echo $projectversion
+- echo - - - - - - - - - - - - - - - - - - -
+- echo   M a v e n   P a c k a g i n g
+- echo - - - - - - - - - - - - - - - - - - -
 - mvn package
+- echo - - - - - - - - - - - - - - - - -
+- echo   E n d   M a v e n   P k g
+- echo - - - - - - - - - - - - - - - - -
+- ls -R
+- echo =====================================
+- echo  Automatic development preparation
+- echo =====================================
+- echo This state:.$state
+- echo Project Version:.$projectversion
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
-- export GIT_TAG=$projectversion-B$TRAVIS_BUILD_NUMBER
-- git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+- export GIT_TAG=$projectversion-$state-B$TRAVIS_BUILD_NUMBER
+- git tag $GIT_TAG -a -m "Generated tag from TravisCI for $state build $TRAVIS_BUILD_NUMBER"
 - git push -q https://$GITPERM@github.com/mob41/ev3dev-lang-java --tags
-- ls -R
+- echo =====================================
+- echo  Deploy Preparation done.
+- echo =====================================
 
 deploy:
-  skip_cleanup: true
-  provider: releases
-  api_key: $GITPERM
-  file: 
-    - target/ev3dev-lang-java-$projectversion.jar
-    - target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar
-  on:
-    tags: false
-    branch: unstable
+  - provider: releases
+    skip_cleanup: true
+    api_key: $GITPERM
+    file: target/*.jar
+    on:
+        tags: false
+        branch: unstable
+  - provider: releases
+    skip_cleanup: true
+    api_key: $GITPERM
+    file: target/*.jar
+    on:
+        tags: false
+        branch: develop
 
 env:
-- projectversion=unstable-0.0.1-SNAPSHOT
+- state=develop projectversion=0.0.2-SNAPSHOT

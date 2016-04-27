@@ -1,4 +1,4 @@
-# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java) [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)
+# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java) [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)
 A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 #### Duplication
@@ -6,131 +6,43 @@ You might saw another language binding for Java from https://github.com/ev3dev-l
 This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issues/154#issuecomment-203562758<br>
 @jabrena 's library is a port from ```lsJOS``` codes to ```ev3dev```.
 
-## Downloads 
-```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all. All components are successfully developed, but some of them aren't tested.
+## Library version
+Building on ```unstable``` releases. Version: ```0.0.2-SNAPSHOT```<br>
+Target Kernel Version: ```v3.16.7-ckt26-10-ev3dev-ev3``` (Current) (v10)
 
-[Unstable Release (0.0.1-SNAPSHOT Build 65)](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B65)
+```0.0.2-SNAPSHOT``` Changelog:
+- Update for Kernel Version 10
+- Removed speed_regulation
+- Removed encoder_polarity
+- Renamed stop_command to stop_action
+- Motor will not stop until write stop to command
+- Added max_speed
+- Added subclass linear
+
+## Downloads 
+```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all, except Motors, Touch/Color/Infrared Sensors, Buttons, LED. All components are successfully developed, but some of them aren't tested.
+
+[[Latest Release (Development)]](https://github.com/mob41/ev3dev-lang-java/releases/latest)<br>
+[[Unstable Release (Usable)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
+[Stable Release (Smooth)]<br>
+
+<b>Others:</b><br>
+[[Java API Document (JavaDoc)]](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
+[[API Tutorials / Wiki, Help]](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
+
+<b>Problem reporting:</b><br>
+[[API Issue Reporting]](https://github.com/mob41/ev3dev-lang-java/issues)<br>
+[[Official Issue Reporting]](https://github.com/ev3dev/ev3dev-lang/issues)<br>
 
 Please post issues so that I can fix it immediately, thank you!
 
-## Tutorial
-<b>No JavaDoc Available</b> Unfortunately, there are too much JavaDoc to be finished. So I don't have time to finish on time.
-
-1. Download the source and put it into your IDE or project.
-
-	i. Clone via command-line:
-
-	```
-	git clone https://github.com/mob41/ev3dev-lang-java.git ev3dev-lang-java
-	```
-	
-	ii. Or via GitHub [[Download ZIP]](https://github.com/mob41/ev3dev-lang-java/archive/master.zip)
-2. Add this source to your IDE or change your classpath
-3. Import the libraries
-
-	```java
-	//It is not recommended to import all libraries.
-	import ev3dev.* 
-	```
-	
-4. You have to create a port for your own Motor/Sensor.
-
-	```java
-	//Support all ports 1-4, A-D (Motors and sensors)
-	LegoPort legoport = new LegoPort(LegoPort.PORT_1);
-
-	//Support only motor ports: A-D or InvalidPortException will be thrown
-	MotorPort motorport = new MotorPort(MotorPort.PORT_A);
-	
-	//Support only sensor ports: 1-4 or InvalidPortException will be thrown
-	SensorPort sensorport = new SensorPort(SensorPort.PORT_2);
-	```
-	
-5. In this case, we plugged in a LargeMotor into ```PORT_A```.
-
-	```java
-	//Support all types of motor excepting DCMotor and ServoMotor.
-	Motor motor = new Motor(port); //You have to include your port here.
-	
-	//Alternative types of motors
-	LargeMotor lm = new LargeMotor(altport1);
-	MediumMotor mm = new MediumMotor(altport2);
-	DCMotor dcm = new DCMotor(altport3);
-	ServoMotor serm = new ServoMotor(altport4);
-	
-	//Make sure that all the ports are connecting to a correct type of motor.
-	//If isn't, a InvalidPortException will be thrown.
-	```
-	
-6. You can simply run your motor through these code:
-
-	```java
-	try {
-		//Set the Motor DutyCycle speed to 60
-		motor.setDutyCycle_SP(60);
-		//Run the Motor forever
-		motor.runForever();
-		
-		//The code is similar to other types of motors.
-	catch (Exception e){
-		//A Error will be thrown if the Motor is disconnected / Invalid.
-		e.printStackTrace();
-	}
-	```
-	
-7. You can also control the motor via a touch sensor:
-
-	```java
-	//Create a new TouchSensor instance with a altport5 LegoPort
-	TouchSensor ts = new TouchSensor(altport5);
-	hile (true) {
-		if (ts.isPressed()){
-			motor.runForever();
-		} else {
-			motor.stop();
-		}
-	}
-	```
-	
-8. Control it via a color sensor:
-
-	```java
-	//Create a new ColorSensor instance with a altport6 LegoPort
-	ColorSensor cs = new ColorSensor(altport6);
-	cs.setMode(PropertyDefaults.PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE);
-	while (true) {
-		if (cs.getReflectedLightIntensity() < 25){
-			motor.runForever()
-		} else {
-			motor.stop();
-		}
-	}
-	```
+## Tutorials
+Check out the [wiki](https://github.com/mob41/ev3dev-lang-java/wiki) now!
 
 ## Stage
 - [x] Development
-	- [x] Device class
-	- [x] Motor class ([http://www.ev3dev.org/docs/drivers/tacho-motor-class/](http://www.ev3dev.org/docs/drivers/tacho-motor-class/))
-	- [x] Large-motor class (inherits from Motor)
-	- [x] Medium-motor class (inherits from Motor)
-	- [x] Generic DC Motor class ([http://www.ev3dev.org/docs/drivers/dc-motor-class/](http://www.ev3dev.org/docs/drivers/dc-motor-class/))
-	- [x] Servo Motor class ([http://www.ev3dev.org/docs/drivers/servo-motor-class/](http://www.ev3dev.org/docs/drivers/servo-motor-class/))
-	- [x] Generic LED class ([https://www.kernel.org/doc/Documentation/leds/leds-class.txt](https://www.kernel.org/doc/Documentation/leds/leds-class.txt))
-	- [x] Generic button class
-	- [x] Sensor class ([http://www.ev3dev.org/docs/drivers/lego-sensor-class/](http://www.ev3dev.org/docs/drivers/lego-sensor-class/))
-	- [x] Generic I2C sensor
-	- [x] Touch Sensor
-	- [x] Color Sensor
-	- [x] Ultrasonic Sensor
-	- [x] Gyro Sensor
-	- [x] Infrared Sensor
-	- [x] Sound Sensor
-	- [x] Light Sensor
-	- [x] Power supply
-	- [x] Lego Port
-	- [x] Sensor Port (Unnecessary) (inherits from LegoPort)
-	- [x] Motor Port (Unnecessary) (inherits from LegoPort)
-- [ ] JavaDoc
+- [x] JavaDoc
+- [x] Unstable Release
 - [ ] Autogen Templates
 - [ ] Debugging
-- [ ] Release!
+- [ ] Stable Release!
