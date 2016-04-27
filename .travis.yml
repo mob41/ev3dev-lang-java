@@ -11,8 +11,19 @@ before_deploy:
 - echo   E n d   M a v e n   P k g
 - echo - - - - - - - - - - - - - - - - -
 - ls -R
-- chmod a+x ./deploy.sh
-- ./deploy.sh
+- echo =====================================
+- echo  Automatic development preparation
+- echo =====================================
+- echo This state:.$state
+- echo Project Version:.$projectversion
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=$projectversion-$state-B$TRAVIS_BUILD_NUMBER
+- git tag $GIT_TAG -a -m "Generated tag from TravisCI for $state build $TRAVIS_BUILD_NUMBER"
+- git push -q https://$GITPERM@github.com/mob41/ev3dev-lang-java --tags
+- echo =====================================
+- echo  Deploy Preparation done.
+- echo =====================================
 
 deploy:
   - provider: releases
