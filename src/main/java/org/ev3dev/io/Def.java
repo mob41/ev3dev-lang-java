@@ -27,6 +27,8 @@ public class Def {
 	
 	public static final String SUB_MOTOR_CLASS_NAME = "motor";
 	
+	public static final String SUB_LINEAR_CLASS_NAME = "linear";
+	
 	public static final String POWER_SUPPLY_CLASS_NAME = "power_supply";
 	
 	//Driver names
@@ -116,6 +118,10 @@ public class Def {
 	public static final String PROPERTY_RATE_SP = "rate_sp";
 	
 	public static final String PROPERTY_MAX_SPEED = "max_speed";
+	
+	public static final String PROPERTY_COUNT_PER_M = "count_per_m";
+	
+	public static final String PROPERTY_FULL_TRAVEL_COUNT = "full_travel_count";
 	
 	//LED Properties defaults
 	
