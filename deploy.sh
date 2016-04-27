@@ -7,12 +7,12 @@ echo ----- List All 1 Start -----
 ls -R
 echo ----- List All 1 End -----
 if [ $state = "develop"]; then
-	echo --> Development Version
+	echo --- Development Version
 	rename target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar target/ev3dev-lang-java-$projectversion-$state-B$TRAVIS_BUILD_NUMBER.jar
 	rename target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar target/ev3dev-lang-java-$projectversion-jar-with-dependencies-$state-B$TRAVIS_BUILD_NUMBER.jar
 fi
 if [ $state = "unstable"]; then
-	echo --> Unstable Version
+	echo --- Unstable Version
 	rename target/ev3dev-lang-java-$projectversion.jar target/ev3dev-lang-java-$projectversion-$state.jar
 fi
 echo ----- List All 2 Start -----
