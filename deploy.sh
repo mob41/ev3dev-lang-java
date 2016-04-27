@@ -28,4 +28,3 @@ git push -q https://$GITPERM@github.com/mob41/ev3dev-lang-java --tags
 echo =====================================
 echo  Deploy Preparation done.
 echo =====================================
-exit 0
