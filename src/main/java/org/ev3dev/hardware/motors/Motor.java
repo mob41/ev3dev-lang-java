@@ -256,36 +256,6 @@ public class Motor extends Device{
 	}
 	
 	/**
-	 * Sets the polarity of the rotary encoder. This is an advanced feature to all use of motors
-	 *  that send inversed encoder signals to the EV3. This should be set correctly by the driver
-	 *   of a device. It You only need to change this value if you are using a unsupported device.
-	 *    Valid values are normal and inversed.
-	 * @return The polarity of the rotary encoder
-	 * @throws IOException If I/O goes wrong
-	 */
-	public String getEncoderPolarity() throws IOException{
-		if (!this.isConnected()){
-			return null;
-		}
-		return this.getAttribute(Def.PROPERTY_ENCODER_POLARITY);
-	}
-	
-	/**
-	 * Sets the polarity of the rotary encoder. This is an advanced feature to all use of motors
-	 *  that send inversed encoder signals to the EV3. This should be set correctly by the driver
-	 *   of a device. It You only need to change this value if you are using a unsupported device.
-	 *    Valid values are normal and inversed.
-	 * @param encoder_polarity The polarity of the rotary encoder
-	 * @throws IOException If I/O goes wrong
-	 */
-	public void setEncoderPolarity(String encoder_polarity) throws IOException{
-		if (!this.isConnected()){
-			return;
-		}
-		this.setAttribute(Def.PROPERTY_ENCODER_POLARITY, encoder_polarity);
-	}
-	
-	/**
 	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise.
 	 *  With inversed polarity, a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
 	 * @return The polarity of the motor

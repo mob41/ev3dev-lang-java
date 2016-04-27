@@ -71,8 +71,6 @@ public class Def {
 	
 	public static final String PROPERTY_DUTY_CYCLE_SP = "duty_cycle_sp";
 	
-	public static final String PROPERTY_ENCODER_POLARITY = "encoder_polarity";
-	
 	public static final String PROPERTY_POLARITY = "polarity";
 	
 	public static final String PROPERTY_POSITION = "position";

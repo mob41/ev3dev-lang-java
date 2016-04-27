@@ -26,11 +26,11 @@ Target Kernel Version: ```v3.16.7-ckt26-10-ev3dev-ev3``` (Current) (v10)
 [[Unstable Release (Usable)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
 [Stable Release (Smooth)]<br>
 
-<b>Others:</b>
+<b>Others:</b><br>
 [[Java API Document (JavaDoc)]](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
 [[API Tutorials / Wiki, Help]](https://github.com/mob41/ev3dev-lang-java/wiki)<br>
 
-<b>Problem reporting:</b>
+<b>Problem reporting:</b><br>
 [[API Issue Reporting]](https://github.com/mob41/ev3dev-lang-java/issues)<br>
 [[Official Issue Reporting]](https://github.com/ev3dev/ev3dev-lang/issues)<br>
 
