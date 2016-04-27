@@ -15,9 +15,9 @@ if [ $state = "unstable"]; then
 	echo --> Unstable Version
 	rename target/ev3dev-lang-java-$projectversion.jar target/ev3dev-lang-java-$projectversion-$state.jar
 fi
-echo --> List All 2 Start
+echo ----- List All 2 Start -----
 ls -R
-echo --> List All 2 End
+echo ----- List All 2 End -----
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 export GIT_TAG=$projectversion-$state-B$TRAVIS_BUILD_NUMBER
