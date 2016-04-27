@@ -1,4 +1,3 @@
-#!/bin/bash
 echo =====================================
 echo  Automatic development preparation
 echo =====================================
