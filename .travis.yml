@@ -3,13 +3,13 @@ language: java
 install: true
 
 before_deploy:
-echo - - - - - - - - - - - - - - - - - - -
-echo   M a v e n   P a c k a g i n g
-echo - - - - - - - - - - - - - - - - - - -
-mvn package
-echo - - - - - - - - - - - - - - - - -
-echo   E n d   M a v e n   P k g
-echo - - - - - - - - - - - - - - - - -
+- echo - - - - - - - - - - - - - - - - - - -
+- echo   M a v e n   P a c k a g i n g
+- echo - - - - - - - - - - - - - - - - - - -
+- mvn package
+- echo - - - - - - - - - - - - - - - - -
+- echo   E n d   M a v e n   P k g
+- echo - - - - - - - - - - - - - - - - -
 - ls -R
 - chmod a+x ./deploy.sh
 - ./deploy.sh

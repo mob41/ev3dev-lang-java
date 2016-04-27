@@ -3,13 +3,6 @@ echo  Automatic development preparation
 echo =====================================
 echo This state:.$state
 echo Project Version:.$projectversion
-echo - - - - - - - - - - - - - - - - - - -
-echo   M a v e n   P a c k a g i n g
-echo - - - - - - - - - - - - - - - - - - -
-mvn package
-echo - - - - - - - - - - - - - - - - -
-echo   E n d   M a v e n   P k g
-echo - - - - - - - - - - - - - - - - -
 echo --> List All 1 Start
 ls -R
 echo --> List All 1 End
