@@ -115,6 +115,8 @@ public class Def {
 	
 	public static final String PROPERTY_RATE_SP = "rate_sp";
 	
+	public static final String PROPERTY_MAX_SPEED = "max_speed";
+	
 	//LED Properties defaults
 	
 	public static final String PROPERTY_MAX_BRIGHTNESS = "max_brightness";

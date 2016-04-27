@@ -714,6 +714,20 @@ public class Motor extends Device{
 		}
 		this.setAttribute(Def.PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
+	
+	/**
+	 * This returns the maximum speed of the motor with no load at 9V.
+	 * @return The maximum speed
+	 * @throws IOException If I/O goes wrong
+	 */
+	public int getMax_Speed() throws IOException{
+		if (!this.isConnected()){
+			return -1;
+		}
+		String str = this.getAttribute(Def.PROPERTY_MAX_SPEED);
+		return Integer.parseInt(str);
+	}
+	
 //~autogen
 }
 //-----------------------------------------------------------------------------
