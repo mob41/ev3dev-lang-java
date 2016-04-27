@@ -626,11 +626,11 @@ public class Motor extends Device{
 	 * @return A stop command that listed using <code>getStopCommands()</code>
 	 * @throws IOException If I/O goes wrong
 	 */
-	public String getStopCommand() throws IOException{
+	public String getStopAction() throws IOException{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_STOP_COMMAND);
+		return this.getAttribute(Def.PROPERTY_STOP_ACTION);
 	}
 	
 	/**
@@ -639,11 +639,11 @@ public class Motor extends Device{
 	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
 	 * @throws IOException If I/O goes wrong
 	 */
-	public void setStopCommand(String stop_command) throws IOException{
+	public void setStopAction(String stop_action) throws IOException{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_STOP_COMMAND, stop_command);
+		this.setAttribute(Def.PROPERTY_STOP_ACTION, stop_action);
 	}
 	
 	/**
@@ -667,7 +667,7 @@ public class Motor extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_STOP_COMMANDS);
+		return this.getAttribute(Def.PROPERTY_STOP_ACTIONS);
 	}
 	
 	/**

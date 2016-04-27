@@ -101,9 +101,9 @@ public class Def {
 	
 	public static final String PROPERTY_STATE = "state";
 	
-	public static final String PROPERTY_STOP_COMMAND = "stop_command";
+	public static final String PROPERTY_STOP_ACTION = "stop_action";
 	
-	public static final String PROPERTY_STOP_COMMANDS = "stop_commands";
+	public static final String PROPERTY_STOP_ACTIONS = "stop_actions";
 	
 	public static final String PROPERTY_TIME_SP = "time_sp";
 	

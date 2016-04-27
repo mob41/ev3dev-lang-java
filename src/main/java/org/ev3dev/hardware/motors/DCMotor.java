@@ -239,7 +239,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStopCommand() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STOP_COMMAND);
+		return this.getAttribute(Def.PROPERTY_STOP_ACTION);
 	}
 	
 	/**
@@ -249,7 +249,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setStopCommand(String stop_command) throws IOException{
-		this.setAttribute(Def.PROPERTY_STOP_COMMAND, stop_command);
+		this.setAttribute(Def.PROPERTY_STOP_ACTION, stop_command);
 	}
 	
 	/**
@@ -270,7 +270,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStopCommandsViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STOP_COMMANDS);
+		return this.getAttribute(Def.PROPERTY_STOP_ACTIONS);
 	}
 	
 	/**
