@@ -4,8 +4,7 @@ install: true
 
 before_deploy:
 - ls -l
-- cd ev3dev-lang-java
-- chmod +x ./deploy.sh
+- chmod a+x ./deploy.sh
 - ./deploy.sh
 
 deploy:
