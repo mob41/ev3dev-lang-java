@@ -17,7 +17,7 @@ import org.ev3dev.io.Sysclass;
  * @author Anthony
  *
  */
-public class Device {
+public abstract class Device {
 	
 	private String className;
 	
@@ -53,7 +53,7 @@ public class Device {
 		this.subClassName = subClassName;
 		System.out.println(className + "-" + this.hashCode() + ": Searching until a port connected...");
 		while (!connected){
-			check();
+			checkIsConnected();
 		}
 		address = port.getAddress();
 		System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
@@ -80,7 +80,6 @@ public class Device {
 	 * @return Whether the device is ready.
 	 */
 	public boolean isConnected(){
-		connected = check();
 		return connected;
 	}
 	
@@ -105,7 +104,7 @@ public class Device {
 	 * @param property The property name of the class.
 	 * @return The value of the property
 	 */
-	public String getAttribute(String property){
+	public final String getAttribute(String property){
 		try {
 			String str = Sysclass.getAttribute(className, subClassName, property);
 			connected = true;
@@ -122,7 +121,7 @@ public class Device {
 	 * @param new_value The new value of the property
 	 * @return Boolean whether the attribute was successfully written
 	 */
-	public boolean setAttribute(String property, String new_value){
+	public final boolean setAttribute(String property, String new_value){
 		try {
 			Sysclass.setAttribute(className, subClassName, property, new_value);
 			connected = true;
@@ -132,7 +131,7 @@ public class Device {
 		return connected;
 	}
 	
-	private boolean check(){
+	private boolean checkIsConnected(){
 		try {
 			hardwareName = Sysclass.getHardwareName(className, subClassName, address);
 		} catch (Exception ignore){
