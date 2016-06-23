@@ -25,8 +25,33 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 
 [[Latest Release (Development)]](https://github.com/mob41/ev3dev-lang-java/releases/latest)<br>
 [[Unstable Release (Usable) (Kernel 9)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
-[[Unstable Release (Usable) (Kernel 10)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.2-SNAPSHOT-B146)<br>
+[[Unstable Release (Usable) (Kernel 10)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/0.0.2-SNAPSHOT-unstable-B146)<br>
 [Stable Release (Smooth)]<br>
+
+<b>Maven dependency:</b>
+
+You can also hook this to maven.
+
+1. Add the repository
+
+```xml
+    <repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+
+2. Add the dependency
+
+```xml
+<dependency>
+	    <groupId>com.github.mob41</groupId>
+	    <artifactId>ev3dev-lang-java</artifactId>
+	    <version>0.0.2-SNAPSHOT-unstable-B146</version>
+	</dependency>
+```
 
 <b>Others:</b><br>
 [[Java API Document (JavaDoc)]](https://mob41.github.io/ev3dev-lang-java/javadoc)<br>
