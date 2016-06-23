@@ -7,8 +7,9 @@ This is not a duplication. See this: https://github.com/ev3dev/ev3dev-lang/issue
 @jabrena 's library is a port from ```lsJOS``` codes to ```ev3dev```.
 
 ## Library version
-Building on ```unstable``` releases. Version: ```0.0.2-SNAPSHOT```<br>
-Target Kernel Version: ```v3.16.7-ckt26-10-ev3dev-ev3``` (Current) (v10)
+```0.0.1-SNAPSHOT``` for Kernel Version 9 (```3.16.7-ckt21-9-ev3dev-ev3```) (The default image file).
+
+```0.0.2-SNAPSHOT``` for Kernel Version 10 (```v3.16.7-ckt26-10-ev3dev-ev3```) (Current) (v10)
 
 ```0.0.2-SNAPSHOT``` Changelog:
 - Update for Kernel Version 10
@@ -23,7 +24,8 @@ Target Kernel Version: ```v3.16.7-ckt26-10-ev3dev-ev3``` (Current) (v10)
 ```ev3dev-lang-java``` is now in ```unstable``` stage. Nothing is "confirmed" as stable at all, except Motors, Touch/Color/Infrared Sensors, Buttons, LED. All components are successfully developed, but some of them aren't tested.
 
 [[Latest Release (Development)]](https://github.com/mob41/ev3dev-lang-java/releases/latest)<br>
-[[Unstable Release (Usable)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
+[[Unstable Release (Usable) (Kernel 9)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.1-SNAPSHOT-B98)<br>
+[[Unstable Release (Usable) (Kernel 10)]](https://github.com/mob41/ev3dev-lang-java/releases/tag/unstable-0.0.2-SNAPSHOT-B146)<br>
 [Stable Release (Smooth)]<br>
 
 <b>Others:</b><br>
