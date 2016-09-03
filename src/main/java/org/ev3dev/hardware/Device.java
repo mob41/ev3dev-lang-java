@@ -51,11 +51,20 @@ public abstract class Device {
 		this.port = port;
 		this.className = className;
 		this.subClassName = subClassName;
-		System.out.println(className + "-" + this.hashCode() + ": Searching until a port connected...");
-		while (!connected){
-			checkIsConnected();
+		try {
+			address = port.getAddress();
+		} catch (IOException e){
+			System.err.println(className + "-" + this.hashCode() + ": The lego-port system class wasn't found.");
+			throw new IOException("Cannot access to the target address. Are you using a EV3?", e);
 		}
-		address = port.getAddress();
+		
+		connected = checkIsConnected();
+		if (!connected){
+			System.out.println(className + "-" + this.hashCode() + ": No port connected. Searching until port \"" + address + "\" connected...");
+		}
+		while (!connected){
+			connected = checkIsConnected();
+		}
 		System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
 	}
 	
@@ -106,10 +115,11 @@ public abstract class Device {
 	 */
 	public final String getAttribute(String property){
 		try {
-			String str = Sysclass.getAttribute(className, subClassName, property);
+			String str = Sysclass.getAttribute(className, hardwareName, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
+			e.printStackTrace();
 			connected = false;
 			return null;
 		}
@@ -123,9 +133,10 @@ public abstract class Device {
 	 */
 	public final boolean setAttribute(String property, String new_value){
 		try {
-			Sysclass.setAttribute(className, subClassName, property, new_value);
+			Sysclass.setAttribute(className, hardwareName, property, new_value);
 			connected = true;
 		} catch (IOException e){
+			e.printStackTrace();
 			connected = false;
 		}
 		return connected;
@@ -135,7 +146,6 @@ public abstract class Device {
 		try {
 			hardwareName = Sysclass.getHardwareName(className, subClassName, address);
 		} catch (Exception ignore){
-			connected = false;
 			hardwareName = null;
 			return false;
 		}

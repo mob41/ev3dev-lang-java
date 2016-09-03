@@ -175,10 +175,12 @@ public class Sysclass {
 	public static String getHardwareName(String classname, String subclassname, String address){
 		File[] sub = Sysclass.getAllSubClass(classname);
 		File file;
+		String data;
 		for (File asub : sub){
 			file = new File(asub.getAbsolutePath() + "/address");
 			try {
-				if(readFile(file).equals(address)){
+				data = readFile(file);
+				if(data.equals(address)){
 					return asub.getName();
 				}
 			} catch (Exception ignore){}
