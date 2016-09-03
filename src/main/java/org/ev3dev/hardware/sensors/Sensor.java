@@ -23,6 +23,16 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public class Sensor extends Device{
+	
+	/**
+	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
+	 */
+	public static final String SENSOR_CLASS_NAME = "lego-sensor";
+	
+	/**
+	 * This Sysfs's class name prefix (e.g. <code>/sys/class/lego-sensor/sensor0</code>, and <code>sensor</code> is the class name prefix without the [N] value.)
+	 */
+	public static final String SENSOR_CLASS_NAME_PREFIX = "sensor";
 
 	/**
 	 * Creates a new Sensor instance using a LegoPort
@@ -31,7 +41,7 @@ public class Sensor extends Device{
 	 * @throws InvalidPortException If the specified LegoPort was invalid
 	 */
 	public Sensor(LegoPort port) throws IOException, InvalidPortException{
-		super(port, Def.SENSOR_CLASS_NAME, Def.SUB_SENSOR_CLASS_NAME);
+		super(port, SENSOR_CLASS_NAME, SENSOR_CLASS_NAME_PREFIX);
 	}
 	
 	/**

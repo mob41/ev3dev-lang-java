@@ -11,25 +11,7 @@ public class Def {
 	
 	public static final String SYSTEM_CLASS_PATH = "/sys/class/";
 	
-	//Class names
-	
-	public static final String MOTOR_CLASS_NAME = "tacho-motor";
-	
-	public static final String DC_MOTOR_CLASS_NAME = "dc-motor";
-	
-	public static final String SERVO_MOTOR_CLASS_NAME = "servo-motor";
-	
-	public static final String LED_CLASS_NAME = "leds";
-	
-	public static final String SENSOR_CLASS_NAME = "lego-sensor";
-	
-	public static final String SUB_SENSOR_CLASS_NAME = "sensor";
-	
-	public static final String SUB_MOTOR_CLASS_NAME = "motor";
-	
-	public static final String SUB_LINEAR_CLASS_NAME = "linear";
-	
-	public static final String POWER_SUPPLY_CLASS_NAME = "power_supply";
+	//Class names REMOVAL DONE!
 	
 	//Driver names
 	

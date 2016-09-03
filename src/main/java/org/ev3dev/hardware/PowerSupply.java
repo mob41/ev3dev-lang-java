@@ -12,13 +12,18 @@ import org.ev3dev.io.Sysfs;
  */
 public class PowerSupply{
 	
+	/**
+	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
+	 */
+	public static final String POWER_SUPPLY_CLASS_NAME = "power_supply";
+	
 	/***
 	 * The measured current that the battery is supplying (in microamps)
 	 * @return Measured Current
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMeasuredCurrent() throws IOException{
-		String str = Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MEASURED_CURRENT);
+		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MEASURED_CURRENT);
 		return Integer.parseInt(str);
 	}
 	
@@ -28,7 +33,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMeasuredVoltage() throws IOException{
-		String str = Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MEASURED_VOLTAGE);
+		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MEASURED_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -38,7 +43,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMaxVoltage() throws IOException{
-		String str = Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MAX_VOLTAGE);
+		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MAX_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -48,7 +53,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static int getMinVoltage() throws IOException{
-		String str = Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MIN_VOLTAGE);
+		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_MIN_VOLTAGE);
 		return Integer.parseInt(str);
 	}
 	
@@ -58,7 +63,7 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static String getTechnology() throws IOException{
-		return Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_TECHNOLOGY);
+		return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_TECHNOLOGY);
 	}
 	
 	/***
@@ -67,6 +72,6 @@ public class PowerSupply{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public static String getType() throws IOException{
-		return Sysfs.getAttribute(Def.POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_TYPE);
+		return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, Def.PROPERTY_TYPE);
 	}
 }

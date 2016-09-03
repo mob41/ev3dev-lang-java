@@ -39,13 +39,18 @@ public class LED extends Device{
 	public static final int RED = 1;
 	
 	/**
+	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
+	 */
+	public static final String LED_CLASS_NAME = "leds";
+	
+	/**
 	 * Creates a new LED instance.
 	 * @param leftRightField The integer field from <code>LED</code> class (e.g. <code>Button.LEFT</code>, <code>Button.RIGHT</code>)
 	 * @param colorField The integer field from <code>LED</code> class (e.g. <code>Button.GREEN</code>, <code>Button.RED</code>)
 	 * @throws InvalidLEDException If the specified LEFT RIGHT field or color field isn't valid.
 	 */
 	public LED(int leftRightField, int colorField) throws InvalidLEDException{
-		super(Def.LED_CLASS_NAME);
+		super(LED_CLASS_NAME);
 		if (leftRightField != 0 && leftRightField != 1){
 			throw new InvalidLEDException("You are not specifying a EV3_LEFT_LED or EV3_RIGHT_LED field!");
 		} else if (colorField != 0 && colorField != 1){
@@ -68,8 +73,8 @@ public class LED extends Device{
 	 * @throws InvalidLEDException If the specified <code>ledName</code> does not exist
 	 */
 	public LED(String ledName) throws InvalidLEDException{
-		super(Def.LED_CLASS_NAME);
-		File file = new File(Def.SYSTEM_CLASS_PATH + Def.LED_CLASS_NAME + "/" + ledName);
+		super(LED_CLASS_NAME);
+		File file = new File(Def.SYSTEM_CLASS_PATH + LED_CLASS_NAME + "/" + ledName);
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
 		}

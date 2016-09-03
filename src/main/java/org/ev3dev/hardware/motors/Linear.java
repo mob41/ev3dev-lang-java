@@ -32,6 +32,16 @@ import org.ev3dev.io.Sysfs;
  */
 public class Linear extends Device{
 	
+	/**
+	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
+	 */
+	public static final String MOTOR_CLASS_NAME = "tacho-motor";
+	
+	/**
+	 * This Sysfs's class name prefix (e.g. <code>/sys/class/lego-sensor/sensor0</code>, and <code>sensor</code> is the class name prefix without the [N] value.)
+	 */
+	public static final String LINEAR_MOTOR_CLASS_NAME_PREFIX = "linear";
+	
 //-----------------------------------------------------------------------------
 
 	private String address;
@@ -45,7 +55,7 @@ public class Linear extends Device{
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
 	public Linear(LegoPort port) throws InvalidPortException, IOException{
-		super(port, Def.MOTOR_CLASS_NAME, Def.SUB_LINEAR_CLASS_NAME);
+		super(port, MOTOR_CLASS_NAME, LINEAR_MOTOR_CLASS_NAME_PREFIX);
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
