@@ -53,4 +53,4 @@ branches:
     - develop
 
 env:
-- projectversion=0.0.2-SNAPSHOT
+- projectversion=1.0.0-SNAPSHOT

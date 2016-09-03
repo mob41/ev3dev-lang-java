@@ -4,7 +4,7 @@
   <artifactId>ev3dev-lang-java</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>ev3dev-lang-java</name>
-  <description>A ev3dev programming language binding for Java.</description>
+  <description>An ev3dev programming language binding for Java.</description>
   <properties>
   	<maven.compiler.source>1.7</maven.compiler.source>
   	<maven.compiler.target>1.7</maven.compiler.target>
