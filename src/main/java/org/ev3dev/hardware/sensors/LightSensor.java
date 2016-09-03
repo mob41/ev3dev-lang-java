@@ -15,6 +15,11 @@ import org.ev3dev.io.Def;
  */
 public class LightSensor extends Sensor {
 	
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "lego-nxt-light";
+	
 	public boolean autoSwitchMode = true;
 
 	/**
@@ -26,7 +31,7 @@ public class LightSensor extends Sensor {
 	 */
 	public LightSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
-		if(!this.getDriverName().equals(Def.LIGHT_SENSOR_DRIVER_NAME)){
+		if(!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a LightSensor instance if the port isn't connected to a light sensor!");
 		}
 	}

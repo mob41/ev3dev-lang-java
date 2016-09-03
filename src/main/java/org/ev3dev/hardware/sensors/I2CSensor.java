@@ -13,6 +13,11 @@ import org.ev3dev.io.Def;
  *
  */
 public class I2CSensor extends Sensor {
+	
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "nxt-i2c-color";
 
 	/**
 	 * Creates a new I2CSensor instance.
@@ -23,7 +28,7 @@ public class I2CSensor extends Sensor {
 	 */
 	public I2CSensor(LegoPort port) throws InvalidPortException, InvalidSensorException, IOException {
 		super(port);
-		if (!this.getDriverName().equals(Def.I2CSENSOR_DRIVER_NAME)){
+		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("The specified port is not a I2C sensor.");
 		}
 	}

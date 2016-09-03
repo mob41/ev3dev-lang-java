@@ -13,29 +13,25 @@ public class Def {
 	
 	//Driver names
 	
-	public static final String MEDIUM_MOTOR_DRIVER_NAME = "lego-ev3-m-motor";
+	public static final String oI2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
 	
-	public static final String LARGE_MOTOR_DRIVER_NAME = "lego-ev3-l-motor";
+	public static final String oTOUCH_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-touch";
 	
-	public static final String I2CSENSOR_DRIVER_NAME = "nxt-i2c-sensor";
+	public static final String oTOUCH_SENSOR_DRIVER_NAME_NXT = "lego-nxt-touch";
 	
-	public static final String TOUCH_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-touch";
+	public static final String oCOLOR_SENSOR_DRIVER_NAME = "lego-ev3-color";
 	
-	public static final String TOUCH_SENSOR_DRIVER_NAME_NXT = "lego-nxt-touch";
+	public static final String oULTRASONIC_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-us";
 	
-	public static final String COLOR_SENSOR_DRIVER_NAME = "lego-ev3-color";
+	public static final String oULTRASONIC_SENSOR_DRIVER_NAME_NXT = "lego-nxt-us";
 	
-	public static final String ULTRASONIC_SENSOR_DRIVER_NAME_EV3 = "lego-ev3-us";
+	public static final String oGYRO_SENSOR_DRIVER_NAME = "lego-ev3-gyro";
 	
-	public static final String ULTRASONIC_SENSOR_DRIVER_NAME_NXT = "lego-nxt-us";
+	public static final String oINFRARED_SENSOR_DRIVER_NAME = "lego-ev3-ir";
 	
-	public static final String GYRO_SENSOR_DRIVER_NAME = "lego-ev3-gyro";
+	public static final String oSOUND_SENSOR_DRIVER_NAME = "lego-nxt-sound";
 	
-	public static final String INFRARED_SENSOR_DRIVER_NAME = "lego-ev3-ir";
-	
-	public static final String SOUND_SENSOR_DRIVER_NAME = "lego-nxt-sound";
-	
-	public static final String LIGHT_SENSOR_DRIVER_NAME = "lego-nxt-light";
+	public static final String oLIGHT_SENSOR_DRIVER_NAME = "lego-nxt-light";
 	
 	//Properties defaults
 	

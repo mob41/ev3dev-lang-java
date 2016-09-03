@@ -15,6 +15,11 @@ import org.ev3dev.io.Def;
  */
 public class ColorSensor extends Sensor {
 	
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "lego-ev3-color";
+	
 	private boolean autoSwitchMode = true;
 	
 	/**
@@ -26,7 +31,7 @@ public class ColorSensor extends Sensor {
 	 */
 	public ColorSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
-		if (!Def.COLOR_SENSOR_DRIVER_NAME.equals(this.getDriverName())){
+		if (!DRIVER_NAME.equals(this.getDriverName())){
 			throw new InvalidSensorException("The specified device is not a color sensor.");
 		}
 		port.getAddress();

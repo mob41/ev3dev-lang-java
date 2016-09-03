@@ -10,6 +10,16 @@ import org.ev3dev.io.Def;
 
 public class UltrasonicSensor extends Sensor {
 	
+	/**
+	 * This device's default driver name (EV3 Ultrasonic Sensor)
+	 */
+	public static final String DRIVER_NAME_EV3 = "lego-ev3-us";
+	
+	/**
+	 * This device's default driver name (NXT Ultrasonic Sensor)
+	 */
+	public static final String DRIVER_NAME_NXT = "lego-nxt-us"; 
+	
 	public boolean autoSwitchMode = true;
 
 	/**
@@ -22,8 +32,8 @@ public class UltrasonicSensor extends Sensor {
 	public UltrasonicSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
 		String driverName = this.getDriverName();
-		if (!driverName.equals(Def.ULTRASONIC_SENSOR_DRIVER_NAME_EV3) && 
-				!driverName.equals(Def.ULTRASONIC_SENSOR_DRIVER_NAME_NXT)){
+		if (!driverName.equals(DRIVER_NAME_EV3) && 
+				!driverName.equals(DRIVER_NAME_NXT)){
 			throw new InvalidSensorException("Can't create a UltrasonicSensor instance if it is not a ultrasonic sensor! Yours: " + driverName);
 		}
 	}

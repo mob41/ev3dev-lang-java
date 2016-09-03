@@ -14,6 +14,11 @@ import org.ev3dev.io.Def;
  *
  */
 public class InfraredSensor extends Sensor {
+	
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "lego-ev3-ir";
 
 	private boolean autoSwitchMode = true;
 	
@@ -26,7 +31,7 @@ public class InfraredSensor extends Sensor {
 	 */
 	public InfraredSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
-		if (!this.getDriverName().equals(Def.INFRARED_SENSOR_DRIVER_NAME)){
+		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a InfraredSensor instance if the port isn't connected a infrared sensor!");
 		}
 	}

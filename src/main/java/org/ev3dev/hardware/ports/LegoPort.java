@@ -3,7 +3,6 @@ package org.ev3dev.hardware.ports;
 import java.io.IOException;
 
 import org.ev3dev.exception.InvalidPortException;
-import org.ev3dev.hardware.Device;
 import org.ev3dev.io.Sysfs;
 
 /***
@@ -33,7 +32,7 @@ public class LegoPort{
 	/**
 	 * The sysfs class name of LegoPort
 	 */
-	public static final String SYSTEM_CLASS_NAME = "lego-port";
+	public static final String CLASS_NAME = "lego-port";
 	
 	/**
 	 * Sensor Port 1 on the EV3
@@ -95,7 +94,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getAddress() throws IOException{
-		String address = Sysfs.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "address");
+		String address = Sysfs.getAttribute(CLASS_NAME, "port" + port, "address");
 		return address;
 	}
 	
@@ -105,7 +104,7 @@ public class LegoPort{
 	 * @throws IOException if I/O goes wrong
 	 */
 	public String getDriverName() throws IOException{
-		String drivername = Sysfs.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "driver_name");
+		String drivername = Sysfs.getAttribute(CLASS_NAME, "port" + port, "driver_name");
 		return drivername;
 	}
 	
@@ -115,7 +114,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String[] getModes() throws IOException{
-		String modesstr = Sysfs.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "modes");
+		String modesstr = Sysfs.getAttribute(CLASS_NAME, "port" + port, "modes");
 		return Sysfs.separateSpace(modesstr);
 	}
 	
@@ -128,7 +127,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getMode() throws IOException{
-		String mode = Sysfs.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "mode");
+		String mode = Sysfs.getAttribute(CLASS_NAME, "port" + port, "mode");
 		return mode;
 	}
 	
@@ -141,7 +140,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setMode(String mode) throws IOException{
-		Sysfs.setAttribute(SYSTEM_CLASS_NAME, "port" + port, "mode", mode);
+		Sysfs.setAttribute(CLASS_NAME, "port" + port, "mode", mode);
 	}
 	
 	/**
@@ -152,7 +151,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setDevice(String driver) throws IOException{
-		Sysfs.setAttribute(SYSTEM_CLASS_NAME, "port" + port, "set_device", driver);
+		Sysfs.setAttribute(CLASS_NAME, "port" + port, "set_device", driver);
 	}
 	
 	/**
@@ -163,7 +162,7 @@ public class LegoPort{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStatus() throws IOException{
-		String status = Sysfs.getAttribute(SYSTEM_CLASS_NAME, "port" + port, "status");
+		String status = Sysfs.getAttribute(CLASS_NAME, "port" + port, "status");
 		return status;
 	}
 }

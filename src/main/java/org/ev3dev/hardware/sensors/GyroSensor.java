@@ -15,6 +15,11 @@ import org.ev3dev.io.Def;
  */
 public class GyroSensor extends Sensor {
 	
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "lego-ev3-gyro";
+	
 	private boolean autoSwitchMode = true;
 
 	/**
@@ -26,7 +31,7 @@ public class GyroSensor extends Sensor {
 	 */
 	public GyroSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
-		if (!this.getDriverName().equals(Def.GYRO_SENSOR_DRIVER_NAME)){
+		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a GyroSensor instance if port isn't connected to a GyroSensor!");
 		}
 	}

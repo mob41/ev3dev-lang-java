@@ -10,6 +10,16 @@ import org.ev3dev.io.Def;
 
 public class TouchSensor extends Sensor {
 	
+	/**
+	 * This device's default driver name (EV3 Touch Sensor)
+	 */
+	public static final String DRIVER_NAME_EV3 = "lego-ev3-touch";
+	
+	/**
+	 * This device's default driver name (NXT Touch Sensor)
+	 */
+	public static final String DRIVER_NAME_NXT = "lego-nxt-touch"; 
+	
 	public boolean autoSwitchMode = true;
 	
 	/**
@@ -21,8 +31,8 @@ public class TouchSensor extends Sensor {
 	 */
 	public TouchSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
 		super(port);
-		if (!this.getDriverName().equals(Def.TOUCH_SENSOR_DRIVER_NAME_EV3) &&
-				!this.getDriverName().equals(Def.TOUCH_SENSOR_DRIVER_NAME_NXT)){
+		if (!this.getDriverName().equals(DRIVER_NAME_EV3) &&
+				!this.getDriverName().equals(DRIVER_NAME_NXT)){
 			throw new InvalidSensorException("Can't create a TouchSensor instance that isn't a touch sensor!");
 		}
 		port.getAddress();

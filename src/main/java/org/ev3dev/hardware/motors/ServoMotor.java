@@ -19,12 +19,12 @@ public class ServoMotor extends Device{
 	/**
 	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
 	 */
-	public static final String SERVO_MOTOR_CLASS_NAME = "servo-motor";
+	public static final String CLASS_NAME = "servo-motor";
 	
 	/**
 	 * This Sysfs's class name prefix (e.g. <code>/sys/class/lego-sensor/sensor0</code>, and <code>sensor</code> is the class name prefix without the [N] value.)
 	 */
-	public static final String SERVO_MOTOR_CLASS_NAME_PREFIX = "motor";
+	public static final String CLASS_NAME_PREFIX = "motor";
 
 	private String address;
 	
@@ -36,13 +36,13 @@ public class ServoMotor extends Device{
 	 * @throws InvalidMotorException The specified motor wasn't a motor
 	 */
 	public ServoMotor(LegoPort port) throws InvalidPortException, InvalidMotorException, IOException{
-		super(port, SERVO_MOTOR_CLASS_NAME, SERVO_MOTOR_CLASS_NAME_PREFIX);
+		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
 		if (!address.contains("out")){
 			throw new InvalidPortException("The specified port (" + port.getAddress() + ") isn't a output.");
-		} else if (!port.getStatus().equals(SERVO_MOTOR_CLASS_NAME)){
+		} else if (!port.getStatus().equals(CLASS_NAME)){
 			throw new InvalidMotorException("The specified port (" + port.getAddress() + ") isn't a motor (" + port.getStatus() + ")");
 		}
 	}
