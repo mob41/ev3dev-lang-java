@@ -7,7 +7,7 @@ import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Def;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 /**
  * The servo motor class provides a uniform interface for using hobby type servo motors.
@@ -227,6 +227,6 @@ public class ServoMotor extends Device{
 	 */
 	public String[] getState() throws IOException{
 		String str = getStateViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 }

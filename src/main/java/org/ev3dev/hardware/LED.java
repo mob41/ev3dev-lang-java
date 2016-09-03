@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.ev3dev.exception.InvalidLEDException;
 import org.ev3dev.io.Def;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 /***
  * Any device controlled by the generic LED driver. <br>
@@ -54,7 +54,7 @@ public class LED extends Device{
 		String direction = leftRightField == 0 ? "left" : "right";
 		String color = colorField == 0 ? "green" : "red";
 		
-		this.setSubClassName("ev3:" + direction + ":" + color + ":ev3dev");
+		this.setClassName("ev3:" + direction + ":" + color + ":ev3dev");
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class LED extends Device{
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
 		}
-		this.setSubClassName(ledName);
+		this.setClassName(ledName);
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class LED extends Device{
 	 */
 	public String[] getTriggers() throws IOException{
 		String str = getTriggersViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -203,5 +203,15 @@ public class LED extends Device{
 	 */
 	public void setDelay_Off(int delay_off) throws IOException{
 		this.setAttribute(Def.PROPERTY_DELAY_OFF, Integer.toString(delay_off));
+	}
+
+	@Override
+	public String getAddress() throws IOException {
+		return null;
+	}
+
+	@Override
+	public String getDriverName() throws IOException {
+		return null;
 	}
 }

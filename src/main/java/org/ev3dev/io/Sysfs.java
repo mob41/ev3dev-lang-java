@@ -16,7 +16,7 @@ import java.util.List;
  * @author Anthony
  *
  */
-public class Sysclass {
+public class Sysfs {
 	
 	/**
 	 * Get all sub-class files
@@ -166,14 +166,14 @@ public class Sysclass {
 	}
 	
 	/**
-	 * Get the hardware name, using a class name, sub-class name and a address
-	 * @param classname A Main Class Name (e.g. lego-port, tacho-motor)
-	 * @param subclassname A Sub-Class Name, without the value [N] (e.g. motor, sensor)
-	 * @param address Address (e.g. outA, in1)
-	 * @return A hardware name that with equal address, if none, returns null
+	 * Search the full class name, using a class name, FS folder prefix and an address
+	 * @param classname The class Name (e.g. lego-port, tacho-motor)
+	 * @param fsFolderPrefix The FS folder prefix, without the value [N] (e.g. motor, sensor)
+	 * @param address Port address (e.g. outA, in1)
+	 * @return The full FS class folder name, with the same port address, if none, returns null
 	 */
-	public static String getHardwareName(String classname, String subclassname, String address){
-		File[] sub = Sysclass.getAllSubClass(classname);
+	public static String searchClassFullName(String classname, String fsFolderPrefix, String address){
+		File[] sub = Sysfs.getAllSubClass(classname);
 		File file;
 		String data;
 		for (File asub : sub){

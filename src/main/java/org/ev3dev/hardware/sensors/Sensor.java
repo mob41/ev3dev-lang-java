@@ -6,7 +6,7 @@ import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Def;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 /**
  * The sensor class provides a uniform interface for using most of the sensors available for the EV3.
@@ -74,7 +74,7 @@ public class Sensor extends Device{
 	 */
 	public String[] getCommands() throws IOException{
 		String str = getCommandsViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -135,7 +135,7 @@ public class Sensor extends Device{
 	 */
 	public String[] getModes() throws IOException{
 		String str = getModesViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**

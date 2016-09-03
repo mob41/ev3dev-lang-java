@@ -7,7 +7,7 @@ import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Def;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 /**
  * The DC motor class provides a uniform interface for using regular DC motors
@@ -91,7 +91,7 @@ public class DCMotor extends Device{
 	 */
 	public String[] getCommands() throws IOException{
 		String str = this.getAttribute(Def.PROPERTY_COMMANDS);
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class DCMotor extends Device{
 	 */
 	public String[] getState() throws IOException{
 		String str = getStateViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -287,7 +287,7 @@ public class DCMotor extends Device{
 	 */
 	public String[] getStopCommands() throws IOException{
 		String str = getStopCommandsViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**

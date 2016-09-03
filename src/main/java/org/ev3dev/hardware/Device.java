@@ -3,7 +3,7 @@ package org.ev3dev.hardware;
 import java.io.IOException;
 
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 /**
  * This is the base class that handles control tasks for a single port or index. The class must chose one device out of the available ports to control. Given an IO port (in the constructor), an implementation should:<br>
@@ -21,11 +21,11 @@ public abstract class Device {
 	
 	private String className;
 	
-	private String subClassName = null;
+	private String classNamePrefix = null;
 	
 	private String address;
 	
-	private String hardwareName = null;
+	private String classFullName = null;
 	
 	private LegoPort port;
 	
@@ -41,16 +41,16 @@ public abstract class Device {
 	}
 
 	/**
-	 * Create a new device with a <b>LegoPort</b>, <b>ClassName</b>, <b>SubClassName</b>
+	 * Create a new device with a <b>LegoPort</b>, <b>ClassName</b>, <b>classNamePrefix</b>
 	 * @param port A LegoPort delared before.
 	 * @param className Sysfs class name
-	 * @param subClassName The filename inside the "Sysfs class" (I called it sub-class)
+	 * @param classNamePrefix The filename inside the "Sysfs class" (I called it sub-class)
 	 * @throws IOException If I/O goes wrong
 	 */
-	public Device(LegoPort port, String className, String subClassName) throws IOException{
+	public Device(LegoPort port, String className, String classNamePrefix) throws IOException{
 		this.port = port;
 		this.className = className;
-		this.subClassName = subClassName;
+		this.classNamePrefix = classNamePrefix;
 		try {
 			address = port.getAddress();
 		} catch (IOException e){
@@ -68,20 +68,24 @@ public abstract class Device {
 		System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
 	}
 	
+	public abstract String getAddress() throws IOException;
+	
+	public abstract String getDriverName() throws IOException;
+	
 	/**
-	 * Set the Sysfs class name(location) of this Device
-	 * @param className A Sysfs class name located in <b>/sys/class</b>
+	 * Set the Sysfs class name (location) of this Device
+	 * @param className The Sysfs class name located in <b>/sys/class</b>
 	 */
 	public void setClassName(String className){
 		this.className = className;
 	}
 	
 	/**
-	 * Set the filename inside the Sysfs class (sub-class) of this Device
-	 * @param subClassName A filename inside the Sysfs class (e.g. "/sys/class/motor/motor0" <b>motor0</b> is sub-class name)
+	 * Set the filename prefix inside the Sysfs class (prefix (e.g. motor)) of this Device
+	 * @param classNamePrefix The filename inside the Sysfs class (e.g. "/sys/class/motor/motor0" <b>motor</b> is a prefix)
 	 */
-	public void setSubClassName(String subClassName){
-		this.subClassName = subClassName;
+	public void setClassNamePrefix(String classNamePrefix){
+		this.classNamePrefix = classNamePrefix;
 	}
 	
 	/**
@@ -101,21 +105,29 @@ public abstract class Device {
 	}
 	
 	/**
-	 * Get the sub-class name of this Device
-	 * @return A filename inside the Sysfs class (e.g. "/sys/class/motor/motor0" <b>motor0</b> is sub-class name)
+	 * Get the filename prefix inside the Sysfs class (prefix (e.g. motor)) of this Device
+	 * @return The filename inside the Sysfs class (e.g. "/sys/class/motor/motor0" <b>motor</b> is a prefix)
 	 */
-	public String getSubClassName(){
-		return hardwareName;
+	public String getClassNamePrefix(){
+		return classNamePrefix;
+	}
+	
+	/**
+	 * Get the full filename (not prefix) inside the Sysfs class of this Device. This must be already searched by the <code>checkIsConnected()</code> method
+	 * @return The filename inside the Sysfs class (e.g. "/sys/class/motor/motor0" <b>motor0</b> is the full name)
+	 */
+	public String getClassFullName(){
+		return classNamePrefix;
 	}
 	
 	/***
-	 * Reads the property of the class specified.
-	 * @param property The property name of the class.
+	 * Reads the property specified.
+	 * @param property The property name
 	 * @return The value of the property
 	 */
 	public final String getAttribute(String property){
 		try {
-			String str = Sysclass.getAttribute(className, hardwareName, property);
+			String str = Sysfs.getAttribute(className, classFullName, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
@@ -126,14 +138,14 @@ public abstract class Device {
 	}
 	
 	/***
-	 * Writes the property of the class specified.
-	 * @param property The property name of the class
+	 * Writes the property specified.
+	 * @param property The property name
 	 * @param new_value The new value of the property
 	 * @return Boolean whether the attribute was successfully written
 	 */
 	public final boolean setAttribute(String property, String new_value){
 		try {
-			Sysclass.setAttribute(className, hardwareName, property, new_value);
+			Sysfs.setAttribute(className, classFullName, property, new_value);
 			connected = true;
 		} catch (IOException e){
 			e.printStackTrace();
@@ -144,11 +156,11 @@ public abstract class Device {
 	
 	private boolean checkIsConnected(){
 		try {
-			hardwareName = Sysclass.getHardwareName(className, subClassName, address);
+			classFullName = Sysfs.searchClassFullName(className, classNamePrefix, address);
 		} catch (Exception ignore){
-			hardwareName = null;
+			classFullName = null;
 			return false;
 		}
-		return hardwareName != null;
+		return classFullName != null;
 	}
 }

@@ -14,7 +14,7 @@ import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Def;
-import org.ev3dev.io.Sysclass;
+import org.ev3dev.io.Sysfs;
 
 //-----------------------------------------------------------------------------
 
@@ -180,7 +180,7 @@ public class Motor extends Device{
 			return null;
 		}
 		String str = this.getAttribute(Def.PROPERTY_COMMANDS);
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -617,7 +617,7 @@ public class Motor extends Device{
 			return null;
 		}
 		String str = getStateViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
@@ -687,7 +687,7 @@ public class Motor extends Device{
 			return null;
 		}
 		String str = getStopCommandsViaString();
-		return Sysclass.separateSpace(str);
+		return Sysfs.separateSpace(str);
 	}
 	
 	/**
