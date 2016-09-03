@@ -7,9 +7,7 @@ package org.ev3dev.io;
  */
 public class Def {
 	
-	//System class path
-	
-	public static final String SYSTEM_CLASS_PATH = "/sys/class/";
+	//System class path REMOVAL DONE!
 	
 	//Class names REMOVAL DONE!
 	

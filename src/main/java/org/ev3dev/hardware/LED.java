@@ -74,7 +74,7 @@ public class LED extends Device{
 	 */
 	public LED(String ledName) throws InvalidLEDException{
 		super(LED_CLASS_NAME);
-		File file = new File(Def.SYSTEM_CLASS_PATH + LED_CLASS_NAME + "/" + ledName);
+		File file = new File(Sysfs.SYSTEM_CLASS_PATH + LED_CLASS_NAME + "/" + ledName);
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
 		}

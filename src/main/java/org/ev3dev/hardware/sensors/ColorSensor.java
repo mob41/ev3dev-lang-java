@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
-import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Def;
 

@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.security.AccessControlException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +18,17 @@ import java.util.List;
 public class Sysfs {
 	
 	/**
+	 * The Sysfs class path (/sys/class)
+	 */
+	public static final String SYSTEM_CLASS_PATH = "/sys/class";
+	
+	/**
 	 * Get all sub-class files
 	 * @param class_name Main Class Name
 	 * @return File Array
 	 */
 	public static File[] getAllSubClass(String class_name){
-		File file = new File(Def.SYSTEM_CLASS_PATH + class_name);
+		File file = new File(SYSTEM_CLASS_PATH + class_name);
 		File[] files = file.listFiles();
 		return files;
 	}
@@ -38,7 +42,7 @@ public class Sysfs {
 	 * @throws IOException If the API couldn't read the class's property
 	 */
 	public static String getAttribute(String class_name, String property) throws FileNotFoundException, IOException{
-		File file = new File(Def.SYSTEM_CLASS_PATH + class_name + "/" + property);
+		File file = new File(SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();
 		FileInputStream in = new FileInputStream(file);
@@ -100,7 +104,7 @@ public class Sysfs {
 	 * @throws IOException If the API couldn't read the class's property
 	 */
 	public static void setAttribute(String class_name, String property, String new_value) throws FileNotFoundException, IOException{
-		PrintWriter out = new PrintWriter(Def.SYSTEM_CLASS_PATH + class_name + "/" + property);
+		PrintWriter out = new PrintWriter(SYSTEM_CLASS_PATH + class_name + "/" + property);
 		class_name = class_name.toLowerCase();
 		property = property.toLowerCase();
 		new_value = new_value.toLowerCase();
