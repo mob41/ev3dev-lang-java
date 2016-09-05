@@ -44,7 +44,7 @@ public abstract class Device {
 	 * Create a new device with a <b>LegoPort</b>, <b>ClassName</b>, <b>classNamePrefix</b>
 	 * @param port A LegoPort delared before.
 	 * @param className Sysfs class name
-	 * @param classNamePrefix The filename inside the "Sysfs class" (I called it sub-class)
+	 * @param classNamePrefix The filename prefix inside the "Sysfs class" (e.g. motor[n], which "motor" is the prefix)
 	 * @throws IOException If I/O goes wrong
 	 */
 	public Device(LegoPort port, String className, String classNamePrefix) throws IOException{

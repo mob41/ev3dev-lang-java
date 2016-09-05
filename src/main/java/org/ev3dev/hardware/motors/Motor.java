@@ -189,11 +189,32 @@ public class Motor extends Device{
 	
 	/***
 	 * Creates a new motor object.
+	 * @param portField a LegoPort field (e.g. LegoPort.INPUT_1)
+	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
+	 * @throws IOException If the LegoPort specified goes wrong
+	 */
+	public Motor(int portField) throws InvalidPortException, IOException{
+		this(new LegoPort(portField));
+	}
+	
+	/***
+	 * Creates a new motor object.
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
 	 */
 	public Motor(LegoPort port) throws InvalidPortException, IOException{
+		this(port, CLASS_NAME_PREFIX);
+	}
+	
+	/***
+	 * Creates a new motor object.
+	 * @param port LegoPort
+	 * @param class_name_prefix Specify a class name prefix (e.g. motor[N], which "motor" is the prefix)
+	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
+	 * @throws IOException If the LegoPort specified goes wrong
+	 */
+	public Motor(LegoPort port, String class_name_prefix) throws InvalidPortException, IOException{
 		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
 		address = port.getAddress();
 		
