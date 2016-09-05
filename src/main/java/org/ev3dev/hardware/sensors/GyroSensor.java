@@ -6,7 +6,6 @@ import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 
 /**
  * LEGO EV3 gyro sensor.
@@ -14,6 +13,26 @@ import org.ev3dev.io.Def;
  *
  */
 public class GyroSensor extends Sensor {
+	
+	/**
+	 * Gyro angle required Sysfs mode
+	 */
+	private static final String SYSFS_ANGLE_MODE = "GYRO-ANG";
+	
+	/**
+	 * Gyro angle Sysfs value index
+	 */
+	private static final int SYSFS_ANGLE_VALUE_INDEX = 0;
+	
+	/**
+	 * Gyro rate required Sysfs mode
+	 */
+	private static final String SYSFS_RATE_MODE = "GYRO-RATE";
+	
+	/**
+	 * Gyro angle Sysfs value index
+	 */
+	private static final int SYSFS_RATE_VALUE_INDEX = 0;
 	
 	/**
 	 * This device's default driver name
@@ -43,14 +62,14 @@ public class GyroSensor extends Sensor {
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
 	public int getAngle() throws InvalidModeException, IOException{
-		if (!this.getMode().equals(Def.PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE)){
+		if (!this.getMode().equals(SYSFS_ANGLE_MODE)){
 			if (autoSwitchMode){
-				this.setMode(Def.PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE);
+				this.setMode(SYSFS_ANGLE_MODE);
 			} else {
-				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + Def.PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE + ")! Yours: " + this.getMode());
+				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + SYSFS_ANGLE_MODE + ")! Yours: " + this.getMode());
 			}
 		}
-		String str = this.getAttribute("value" + Def.PROPERTY_GYRO_SENSOR_ANGLE_VALUE_INDEX);
+		String str = this.getAttribute("value" + SYSFS_ANGLE_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 	
@@ -61,14 +80,14 @@ public class GyroSensor extends Sensor {
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
 	public int getRate() throws InvalidModeException, IOException{
-		if (!this.getMode().equals(Def.PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE)){
+		if (!this.getMode().equals(SYSFS_RATE_MODE)){
 			if (autoSwitchMode){
-				this.setMode(Def.PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE);
+				this.setMode(SYSFS_RATE_MODE);
 			} else {
-				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + Def.PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE + ")! Yours: " + this.getMode());
+				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + SYSFS_RATE_MODE + ")! Yours: " + this.getMode());
 			}
 		}
-		String str = this.getAttribute("value" + Def.PROPERTY_GYRO_SENSOR_RATE_VALUE_INDEX);
+		String str = this.getAttribute("value" + SYSFS_RATE_VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
 

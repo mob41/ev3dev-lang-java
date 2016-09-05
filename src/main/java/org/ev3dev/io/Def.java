@@ -7,36 +7,6 @@ package org.ev3dev.io;
  */
 public class Def { 	//Partial: Move properties constants to classes
 	
-	//System class path REMOVAL DONE!
-	
-	//Class names REMOVAL DONE!
-	
-	//Driver names REMOVAL DONE!
-	
-	//Motor Properties defaults REMOVAL DONE!
-	
-	//LED Properties defaults REMOVAL DONE!
-	
-	//Sensor Properties defaults REMOVAL DONE!
-	
-	//I2C Sensor properties REMOVAL DONE!
-	
-	//Touch Sensor properties REMOVAL DONE!
-	
-	//Color Sensor properties REMOVAL DONE!
-	
-	//Ultrasonic sensor properties REMOVAL DONE!
-	
-	//Gyro sensor properties
-	
-	public static final String PROPERTY_GYRO_SENSOR_ANGLE_REQUIRED_MODE = "GYRO-ANG";
-	
-	public static final int PROPERTY_GYRO_SENSOR_ANGLE_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_GYRO_SENSOR_RATE_REQUIRED_MODE = "GYRO-RATE";
-	
-	public static final int PROPERTY_GYRO_SENSOR_RATE_VALUE_INDEX = 0;
-	
 	//Infrared Sensor properties
 	
 	public static final String PROPERTY_INFRARED_SENSOR_PROXIMITY_REQUIRED_MODE = "IR-PROX";
