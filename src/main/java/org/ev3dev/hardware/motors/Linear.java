@@ -190,6 +190,16 @@ public class Linear extends Device{
 	 */
 	public static final String LINEAR_MOTOR_CLASS_NAME_PREFIX = "linear";
 	
+	/**
+	 * The driver name for the L12 EV3 100mm by Actuonix
+	 */
+	public static final String DRIVER_NAME_100MM = "act-l12-ev3-100";
+	
+	/**
+	 * The driver name for the L12 EV3 100mm by Actuonix
+	 */
+	public static final String DRIVER_NAME_50MM = "act-l12-ev3-50";
+	
 //-----------------------------------------------------------------------------
 
 	private String address;
@@ -204,6 +214,10 @@ public class Linear extends Device{
 	 */
 	public Linear(LegoPort port) throws InvalidPortException, IOException{
 		super(port, MOTOR_CLASS_NAME, LINEAR_MOTOR_CLASS_NAME_PREFIX);
+		if (!port.getDriverName().equals(DRIVER_NAME_100MM) && !port.getDriverName().equals(DRIVER_NAME_50MM)){
+			throw new InvalidPortException("The port does not connect to a Actuonix L12 EV3 100mm or 50mm linear motor!");
+		}
+		
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
