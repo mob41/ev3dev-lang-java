@@ -6,7 +6,6 @@ import org.ev3dev.exception.InvalidMotorException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 import org.ev3dev.io.Sysfs;
 
 /**
@@ -15,6 +14,66 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public class ServoMotor extends Device{
+	
+	/**
+	 * The Sysfs class's <code>address</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_ADDRESS = "address";
+	
+	/**
+	 * The Sysfs class's <code>command</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_COMMAND = "command";
+	
+	/**
+	 * The Sysfs class's <code>driver_name</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_DRIVER_NAME = "driver_name";
+	
+	/**
+	 * The Sysfs class's <code>polarity</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_POLARITY = "polarity";
+	
+	/**
+	 * The Sysfs class's <code>position_sp</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_POSITION_SP = "position_sp";
+	
+	/**
+	 * The Sysfs class's <code>state</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_STATE = "state";
+	
+	/**
+	 * The Sysfs class's <code>max_pulse_sp</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_MAX_PULSE_SP = "max_pulse_sp";
+	
+	/**
+	 * The Sysfs class's <code>mid_pulse_sp</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_MID_PULSE_SP = "mid_pulse_sp";
+	
+	/**
+	 * The Sysfs class's <code>min_pulse_sp</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_MIN_PULSE_SP = "min_pulse_sp";
+	
+	/**
+	 * The Sysfs class's <code>rate_sp</code> property name
+	 */
+	private static final String SYSFS_PROPERTY_RATE_SP = "rate_sp";
+	
+	/**
+	 * The Sysfs class's <code>run</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN = "run";
+
+	/**
+	 * The Sysfs class's <code>float</code> command
+	 */
+	public static final String SYSFS_COMMAND_FLOAT = "float";
 	
 	/**
 	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
@@ -53,7 +112,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return this.getAttribute(Def.PROPERTY_ADDRESS);
+		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -62,7 +121,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setAttribute(Def.PROPERTY_COMMAND, command);
+		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -70,7 +129,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void run() throws IOException{
-		sendCommand(Def.COMMAND_RUN);
+		sendCommand(SYSFS_COMMAND_RUN);
 	}
 	
 	/***
@@ -79,7 +138,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void Float() throws IOException{
-		sendCommand(Def.COMMAND_FLOAT);
+		sendCommand(SYSFS_COMMAND_FLOAT);
 	}
 	
 	/**
@@ -88,7 +147,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getDriverName() throws IOException{
-		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	/**
@@ -98,7 +157,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getMaxPulse_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_MAX_PULSE_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_MAX_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -109,7 +168,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setMaxPulse_SP(int max_pulse_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
+		this.setAttribute(SYSFS_PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
 	}
 	
 	/**
@@ -121,7 +180,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getMidPulse_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_MID_PULSE_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_MID_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -134,7 +193,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setMidPulse_SP(int mid_pulse_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
+		this.setAttribute(SYSFS_PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
 	}
 	
 	/**
@@ -145,7 +204,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getMinPulse_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_MIN_PULSE_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_MIN_PULSE_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -157,7 +216,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setMinPulse_SP(int min_pulse_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
+		this.setAttribute(SYSFS_PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
 	}
 	
 	/**
@@ -167,7 +226,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getPolarity() throws IOException{
-		return this.getAttribute(Def.PROPERTY_POLARITY);
+		return this.getAttribute(SYSFS_PROPERTY_POLARITY);
 	}
 	
 	/**
@@ -177,7 +236,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPolarity(String polarity) throws IOException{
-		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
+		this.setAttribute(SYSFS_PROPERTY_POLARITY, polarity);
 	}
 	
 	/**
@@ -188,7 +247,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getPosition_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_POSITION_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
@@ -200,7 +259,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPosition_SP(int position_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		this.setAttribute(SYSFS_PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	/**
@@ -213,7 +272,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setRate_SP(int rate_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_RATE_SP, Integer.toString(rate_sp));
+		this.setAttribute(SYSFS_PROPERTY_RATE_SP, Integer.toString(rate_sp));
 	}
 	
 	/**
@@ -227,7 +286,7 @@ public class ServoMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStateViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STATE);
+		return this.getAttribute(SYSFS_PROPERTY_STATE);
 	}
 
 	/**

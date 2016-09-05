@@ -6,7 +6,6 @@ import org.ev3dev.exception.InvalidMotorException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 import org.ev3dev.io.Sysfs;
 
 /**
@@ -16,6 +15,91 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public class DCMotor extends Device{
+	
+	/**
+	 * The Sysfs class's <code>address</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_ADDRESS = "address";
+	
+	/**
+	 * The Sysfs class's <code>command</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMAND = "command";
+	
+	/**
+	 * The Sysfs class's <code>commands</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMANDS = "commands";
+	
+	/**
+	 * The Sysfs class's <code>driver_name</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DRIVER_NAME = "driver_name";
+	
+	/**
+	 * The Sysfs class's <code>duty_cycle</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DUTY_CYCLE = "duty_cycle";
+	
+	/**
+	 * The Sysfs class's <code>duty_cycle_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DUTY_CYCLE_SP = "duty_cycle_sp";
+	
+	/**
+	 * The Sysfs class's <code>polarity</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POLARITY = "polarity";
+	
+	/**
+	 * The Sysfs class's <code>ramp_up_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_RAMP_UP_SP = "ramp_up_sp";
+	
+	/**
+	 * The Sysfs class's <code>ramp_down_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_RAMP_DOWN_SP = "ramp_down_sp";
+	
+	/**
+	 * The Sysfs class's <code>state</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STATE = "state";
+	
+	/**
+	 * The Sysfs class's <code>stop_action</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STOP_ACTION = "stop_action";
+	
+	/**
+	 * The Sysfs class's <code>stop_actions</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STOP_ACTIONS = "stop_actions";
+	
+	/**
+	 * The Sysfs class's <code>time_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_TIME_SP = "time_sp";
+	
+	/**
+	 * The Sysfs class's <code>run-forever</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_FOREVER = "run-forever";
+	
+	/**
+	 * The Sysfs class's <code>run-timed</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_TIMED = "run-timed";
+	
+	/**
+	 * The Sysfs class's <code>run-direct</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_DIRECT = "run-direct";
+	
+	/**
+	 * The Sysfs class's <code>stop</code> command
+	 */
+	public static final String SYSFS_COMMAND_STOP = "stop";
 	
 	/**
 	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
@@ -54,7 +138,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If the motor doesn't exist or IO ERROR
 	 */
 	public String getAddress() throws IOException{
-		return this.getAttribute(Def.PROPERTY_ADDRESS);
+		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -63,7 +147,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setAttribute(Def.PROPERTY_COMMAND, command);
+		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -71,7 +155,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void runForever() throws IOException{
-		sendCommand(Def.COMMAND_RUN_FOREVER);
+		sendCommand(SYSFS_COMMAND_RUN_FOREVER);
 	}
 	
 	/***
@@ -81,7 +165,17 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void runTimed() throws IOException{
-		sendCommand(Def.COMMAND_RUN_TIMED);
+		sendCommand(SYSFS_COMMAND_RUN_TIMED);
+	}
+	
+	/**
+	 * Runs the motor at the duty cycle specified by duty_cycle_sp.
+	 *  Unlike other run commands, changing duty_cycle_sp while running
+	 *   will take effect immediately.
+	 * @throws IOException If I/O goes wrong
+	 */
+	public void runDirect() throws IOException{
+		sendCommand(SYSFS_COMMAND_RUN_DIRECT);
 	}
 	
 	/**
@@ -89,7 +183,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void stop() throws IOException{
-		sendCommand(Def.COMMAND_STOP);
+		sendCommand(SYSFS_COMMAND_STOP);
 	}
 	
 	/**
@@ -100,7 +194,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String[] getCommands() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_COMMANDS);
+		String str = this.getAttribute(SYSFS_PROPERTY_COMMANDS);
 		return Sysfs.separateSpace(str);
 	}
 	
@@ -110,7 +204,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getDriverName() throws IOException{
-		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	/**
@@ -119,7 +213,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDutyCycle() throws IOException{
-		String dutycycle = this.getAttribute(Def.PROPERTY_DUTY_CYCLE);
+		String dutycycle = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
@@ -131,7 +225,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDutyCycleSP() throws IOException{
-		String dutycyclesp = this.getAttribute(Def.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
@@ -143,7 +237,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setDutyCycleSP(int sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		this.setAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	/**
@@ -153,7 +247,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getPolarity() throws IOException{
-		return this.getAttribute(Def.PROPERTY_POLARITY);
+		return this.getAttribute(SYSFS_PROPERTY_POLARITY);
 	}
 	
 	/**
@@ -163,7 +257,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPolarity(String polarity) throws IOException{
-		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
+		this.setAttribute(SYSFS_PROPERTY_POLARITY, polarity);
 	}
 	
 	/**
@@ -176,7 +270,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getRamp_Up_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_RAMP_UP_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -190,7 +284,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		this.setAttribute(SYSFS_PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	/**
@@ -202,7 +296,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getRamp_Down_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_RAMP_DOWN_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -215,7 +309,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
+		this.setAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	/**
@@ -229,7 +323,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getStateViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STATE);
+		return this.getAttribute(SYSFS_PROPERTY_STATE);
 	}
 	
 	/**
@@ -245,11 +339,11 @@ public class DCMotor extends Device{
 	/**
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
-	 * @return A stop command that listed using <code>getStopCommands()</code>
+	 * @return A stop command that listed using <code>getStopActions()</code>
 	 * @throws IOException If I/O goes wrong
 	 */
-	public String getStopCommand() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STOP_ACTION);
+	public String getStopAction() throws IOException{
+		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTION);
 	}
 	
 	/**
@@ -258,8 +352,8 @@ public class DCMotor extends Device{
 	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
 	 * @throws IOException If I/O goes wrong
 	 */
-	public void setStopCommand(String stop_command) throws IOException{
-		this.setAttribute(Def.PROPERTY_STOP_ACTION, stop_command);
+	public void setStopAction(String stop_command) throws IOException{
+		this.setAttribute(SYSFS_PROPERTY_STOP_ACTION, stop_command);
 	}
 	
 	/**
@@ -279,8 +373,8 @@ public class DCMotor extends Device{
 	 * @return A list of stop modes supported by the motor controller
 	 * @throws IOException If I/O goes wrong
 	 */
-	public String getStopCommandsViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_STOP_ACTIONS);
+	public String getStopActionsViaString() throws IOException{
+		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTIONS);
 	}
 	
 	/**
@@ -295,8 +389,8 @@ public class DCMotor extends Device{
 	 * @return A list of stop modes supported by the motor controller
 	 * @throws IOException If I/O goes wrong
 	 */
-	public String[] getStopCommands() throws IOException{
-		String str = getStopCommandsViaString();
+	public String[] getStopActions() throws IOException{
+		String str = getStopActionsViaString();
 		return Sysfs.separateSpace(str);
 	}
 	
@@ -306,7 +400,7 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getTime_SP() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_TIME_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -316,6 +410,6 @@ public class DCMotor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setTime_SP(int time_sp) throws IOException{
-		this.setAttribute(Def.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		this.setAttribute(SYSFS_PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 }

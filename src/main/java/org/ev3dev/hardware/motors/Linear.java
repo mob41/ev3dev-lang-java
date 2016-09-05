@@ -13,7 +13,6 @@ import java.io.IOException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 import org.ev3dev.io.Sysfs;
 
 //-----------------------------------------------------------------------------
@@ -25,12 +24,161 @@ import org.ev3dev.io.Sysfs;
 
 
 /**
- * The motor class provides a uniform interface for using motors with positional and directional feedback such as the EV3 and NXT motors.
- *  This feedback allows for precise control of the motors. This is the most common type of motor, so we just call it motor.
+ * The motor class for Firgelli linear actuators.
  * @author Anthony
  *
  */
 public class Linear extends Device{
+	
+	/**
+	 * The Sysfs class's <code>address</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_ADDRESS = "address";
+	
+	/**
+	 * The Sysfs class's <code>command</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMAND = "command";
+	
+	/**
+	 * The Sysfs class's <code>commands</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMANDS = "commands";
+	
+	/**
+	 * The Sysfs class's <code>driver_name</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DRIVER_NAME = "driver_name";
+	
+	/**
+	 * The Sysfs class's <code>duty_cycle</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DUTY_CYCLE = "duty_cycle";
+	
+	/**
+	 * The Sysfs class's <code>duty_cycle_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DUTY_CYCLE_SP = "duty_cycle_sp";
+	
+	/**
+	 * The Sysfs class's <code>polarity</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POLARITY = "polarity";
+	
+	/**
+	 * The Sysfs class's <code>position</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POSITION = "position";
+	
+	/**
+	 * The Sysfs class's <code>position_p</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POSITION_P = "hold_pid/Kp";
+	
+	/**
+	 * The Sysfs class's <code>position_i</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POSITION_I = "hold_pid/Ki";
+	
+	/**
+	 * The Sysfs class's <code>position_d</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POSITION_D = "hold_pid/Kd";
+	
+	/**
+	 * The Sysfs class's <code>position_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POSITION_SP = "position_sp";
+	
+	/**
+	 * The Sysfs class's <code>speed</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_SPEED = "speed";
+	
+	/**
+	 * The Sysfs class's <code>speed_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_SPEED_SP = "speed_sp";
+	
+	/**
+	 * The Sysfs class's <code>ramp_up_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_RAMP_UP_SP = "ramp_up_sp";
+	
+	/**
+	 * The Sysfs class's <code>ramp_down_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_RAMP_DOWN_SP = "ramp_down_sp";
+	
+	/**
+	 * The Sysfs class's <code>state</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STATE = "state";
+	
+	/**
+	 * The Sysfs class's <code>stop_action</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STOP_ACTION = "stop_action";
+	
+	/**
+	 * The Sysfs class's <code>stop_actions</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_STOP_ACTIONS = "stop_actions";
+	
+	/**
+	 * The Sysfs class's <code>time_sp</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_TIME_SP = "time_sp";
+	
+	/**
+	 * The Sysfs class's <code>max_speed</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_MAX_SPEED = "max_speed";
+	
+	/**
+	 * The Sysfs class's <code>count_per_m</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COUNT_PER_M = "count_per_m";
+	
+	/**
+	 * The Sysfs class's <code>full_travel_count</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_FULL_TRAVEL_COUNT = "full_travel_count";
+	
+	/**
+	 * The Sysfs class's <code>run-forever</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_FOREVER = "run-forever";
+	
+	/**
+	 * The Sysfs class's <code>run-to-abs-pos</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_TO_ABS_POS = "run-to-abs-pos";
+	
+	/**
+	 * The Sysfs class's <code>run-to-rel-pos</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_TO_REL_POS = "run-to-rel-pos";
+	
+	/**
+	 * The Sysfs class's <code>run-timed</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_TIMED = "run-timed";
+	
+	/**
+	 * The Sysfs class's <code>run-direct</code> command
+	 */
+	public static final String SYSFS_COMMAND_RUN_DIRECT = "run-direct";
+	
+	/**
+	 * The Sysfs class's <code>stop</code> command
+	 */
+	public static final String SYSFS_COMMAND_STOP = "stop";
+	
+	/**
+	 * The Sysfs class's <code>reset</code> command
+	 */
+	public static final String SYSFS_COMMAND_RESET = "reset";
 	
 	/**
 	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
@@ -76,7 +224,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_ADDRESS);
+		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -88,7 +236,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_COMMAND, command);
+		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/***
@@ -99,7 +247,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RUN_FOREVER);
+		sendCommand(SYSFS_COMMAND_RUN_FOREVER);
 	}
 	
 	/***
@@ -111,7 +259,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RUN_TO_ABS_POS);
+		sendCommand(SYSFS_COMMAND_RUN_TO_ABS_POS);
 	}
 	
 	/***
@@ -125,7 +273,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RUN_TO_REL_POS);
+		sendCommand(SYSFS_COMMAND_RUN_TO_REL_POS);
 	}
 	
 	/***
@@ -138,7 +286,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RUN_TIMED);
+		sendCommand(SYSFS_COMMAND_RUN_TIMED);
 	}
 	
 	/***
@@ -151,7 +299,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RUN_DIRECT);
+		sendCommand(SYSFS_COMMAND_RUN_DIRECT);
 	}
 	
 	/**
@@ -162,7 +310,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_STOP);
+		sendCommand(SYSFS_COMMAND_STOP);
 	}
 	
 	/**
@@ -173,7 +321,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		sendCommand(Def.COMMAND_RESET);
+		sendCommand(SYSFS_COMMAND_RESET);
 	}
 	
 	/**
@@ -187,7 +335,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		String str = this.getAttribute(Def.PROPERTY_COMMANDS);
+		String str = this.getAttribute(SYSFS_PROPERTY_COMMANDS);
 		return Sysfs.separateSpace(str);
 	}
 	
@@ -200,7 +348,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String countpermetre = this.getAttribute(Def.PROPERTY_COUNT_PER_M);
+		String countpermetre = this.getAttribute(SYSFS_PROPERTY_COUNT_PER_M);
 		return Integer.parseInt(countpermetre);
 	}
 	
@@ -213,7 +361,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	
@@ -226,7 +374,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String dutycycle = this.getAttribute(Def.PROPERTY_DUTY_CYCLE);
+		String dutycycle = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
 	
@@ -241,7 +389,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String dutycyclesp = this.getAttribute(Def.PROPERTY_DUTY_CYCLE_SP);
+		String dutycyclesp = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
 	
@@ -256,7 +404,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
+		this.setAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
 	/**
@@ -269,7 +417,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_POLARITY);
+		return this.getAttribute(SYSFS_PROPERTY_POLARITY);
 	}
 	
 	/**
@@ -282,7 +430,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POLARITY, polarity);
+		this.setAttribute(SYSFS_PROPERTY_POLARITY, polarity);
 	}
 	
 	/**
@@ -309,7 +457,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POSITION, Integer.toString(position));
+		this.setAttribute(SYSFS_PROPERTY_POSITION, Integer.toString(position));
 	}
 	
 	/**
@@ -321,7 +469,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_POSITION_P);
+		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_P);
 		return Integer.parseInt(str);
 	}
 	
@@ -334,7 +482,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_POSITION_I);
+		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_I);
 		return Integer.parseInt(str);
 	}
 	
@@ -347,7 +495,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_POSITION_D);
+		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_D);
 		return Integer.parseInt(str);
 	}
 	
@@ -360,7 +508,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POSITION_P, Integer.toString(position_p));
+		this.setAttribute(SYSFS_PROPERTY_POSITION_P, Integer.toString(position_p));
 	}
 	
 	/**
@@ -372,7 +520,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POSITION_I, Integer.toString(position_i));
+		this.setAttribute(SYSFS_PROPERTY_POSITION_I, Integer.toString(position_i));
 	}
 	
 	/**
@@ -384,7 +532,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POSITION_D, Integer.toString(position_d));
+		this.setAttribute(SYSFS_PROPERTY_POSITION_D, Integer.toString(position_d));
 	}
 	
 	/**
@@ -397,7 +545,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_POSITION_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
 
@@ -411,7 +559,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_POSITION_SP, Integer.toString(position_sp));
+		this.setAttribute(SYSFS_PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
 	/**
@@ -424,7 +572,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_SPEED);
+		String str = this.getAttribute(SYSFS_PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
@@ -438,7 +586,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_SPEED);
+		String str = this.getAttribute(SYSFS_PROPERTY_SPEED);
 		return Integer.parseInt(str);
 	}
 	
@@ -452,7 +600,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_SPEED_SP, Integer.toString(speed_sp));
+		this.setAttribute(SYSFS_PROPERTY_SPEED_SP, Integer.toString(speed_sp));
 	}
 	
 	/**
@@ -468,7 +616,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_RAMP_UP_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -485,7 +633,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
+		this.setAttribute(SYSFS_PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
 	/**
@@ -500,7 +648,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_RAMP_DOWN_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -516,82 +664,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
-	}
-	
-	/**
-	 * Get the proportional constant for the speed regulation PID.
-	 * @return The proportional constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public int getSpeedRegulation_P() throws IOException{
-		if (!this.isConnected()){
-			return -1;
-		}
-		String str = this.getAttribute(Def.PROPERTY_SPEED_REGULATION_P);
-		return Integer.parseInt(str);
-	}
-	
-	/**
-	 * Set the proportional constant for the speed regulation PID.
-	 * @param p The proportional constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public void setSpeedRegulation_P(int p) throws IOException{
-		if (!this.isConnected()){
-			return;
-		}
-		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_P, Integer.toString(p));
-	}
-	
-	/**
-	 * Get the integral constant for the speed regulation PID.
-	 * @return The integral constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public int getSpeedRegulation_I() throws IOException{
-		if (!this.isConnected()){
-			return -1;
-		}
-		String str = this.getAttribute(Def.PROPERTY_SPEED_REGULATION_I);
-		return Integer.parseInt(str);
-	}
-	
-	/**
-	 * Set The integral constant for the speed regulation PID.
-	 * @param i The integral constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public void setSpeedRegulation_I(int i) throws IOException{
-		if (!this.isConnected()){
-			return;
-		}
-		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_I, Integer.toString(i));
-	}
-	
-	/**
-	 * Get the derivative constant for the speed regulation PID.
-	 * @return The derivative constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public int getSpeedRegulation_D() throws IOException{
-		if (!this.isConnected()){
-			return -1;
-		}
-		String str = this.getAttribute(Def.PROPERTY_SPEED_REGULATION_D);
-		return Integer.parseInt(str);
-	}
-	
-	/**
-	 * Set the derivative constant for the speed regulation PID.
-	 * @param d The derivative constant for the speed regulation PID.
-	 * @throws IOException If I/O goes wrong
-	 */
-	public void setSpeedRegulation_D(int d) throws IOException{
-		if (!this.isConnected()){
-			return;
-		}
-		this.setAttribute(Def.PROPERTY_SPEED_REGULATION_D, Integer.toString(d));
+		this.setAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
 	/**
@@ -608,7 +681,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_STATE);
+		return this.getAttribute(SYSFS_PROPERTY_STATE);
 	}
 	
 	/**
@@ -634,7 +707,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_STOP_ACTION);
+		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTION);
 	}
 	
 	/**
@@ -647,7 +720,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_STOP_ACTION, stop_action);
+		this.setAttribute(SYSFS_PROPERTY_STOP_ACTION, stop_action);
 	}
 	
 	/**
@@ -671,7 +744,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return null;
 		}
-		return this.getAttribute(Def.PROPERTY_STOP_ACTIONS);
+		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTIONS);
 	}
 	
 	/**
@@ -703,7 +776,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_TIME_SP);
+		String str = this.getAttribute(SYSFS_PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
 	
@@ -716,7 +789,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return;
 		}
-		this.setAttribute(Def.PROPERTY_TIME_SP, Integer.toString(time_sp));
+		this.setAttribute(SYSFS_PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 	
 	/**
@@ -728,7 +801,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_MAX_SPEED);
+		String str = this.getAttribute(SYSFS_PROPERTY_MAX_SPEED);
 		return Integer.parseInt(str);
 	}
 	
@@ -736,7 +809,7 @@ public class Linear extends Device{
 		if (!this.isConnected()){
 			return -1;
 		}
-		String str = this.getAttribute(Def.PROPERTY_FULL_TRAVEL_COUNT);
+		String str = this.getAttribute(SYSFS_PROPERTY_FULL_TRAVEL_COUNT);
 		return Integer.parseInt(str);
 	}
 	

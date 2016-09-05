@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 import org.ev3dev.io.Sysfs;
 
 /**
@@ -23,6 +22,51 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public class Sensor extends Device{
+	
+	/**
+	 * The Sysfs class's <code>address</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_ADDRESS = "address";
+	
+	/**
+	 * The Sysfs class's <code>command</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMAND = "command";
+	
+	/**
+	 * The Sysfs class's <code>commands</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_COMMANDS = "commands";
+	
+	/**
+	 * The Sysfs class's <code>driver_name</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DRIVER_NAME = "driver_name";
+	
+	/**
+	 * The Sysfs class's <code>decimals</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DECIMALS = "decimals";
+	
+	/**
+	 * The Sysfs class's <code>mode</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_MODE = "mode";
+	
+	/**
+	 * The Sysfs class's <code>modes</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_MODES = "modes";
+	
+	/**
+	 * The Sysfs class's <code>num_values</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_NUM_VALUES = "num_values";
+	
+	/**
+	 * The Sysfs class's <code>units</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_UNITS = "units";
 	
 	/**
 	 * This Sysfs's class name (e.g. <code>/sys/class/lego-sensor</code>, and <code>lego-sensor</code> is the class name)
@@ -51,7 +95,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getAddress() throws IOException{
-		return this.getAttribute(Def.PROPERTY_ADDRESS);
+		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
@@ -60,7 +104,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void sendCommand(String command) throws IOException{
-		this.setAttribute(Def.PROPERTY_COMMAND, command);
+		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/**
@@ -74,7 +118,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getCommandsViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_COMMANDS);
+		return this.getAttribute(SYSFS_PROPERTY_COMMANDS);
 	}
 	
 	/**
@@ -93,7 +137,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDecimals() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_DECIMALS);
+		String str = this.getAttribute(SYSFS_PROPERTY_DECIMALS);
 		return Integer.parseInt(str);
 	}
 	
@@ -103,7 +147,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getDriverName() throws IOException{
-		return this.getAttribute(Def.PROPERTY_DRIVER_NAME);
+		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	/**
@@ -112,7 +156,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getMode() throws IOException{
-		return this.getAttribute(Def.PROPERTY_MODE);
+		return this.getAttribute(SYSFS_PROPERTY_MODE);
 	}
 	
 	/**
@@ -121,7 +165,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setMode(String mode) throws IOException{
-		this.setAttribute(Def.PROPERTY_MODE, mode);
+		this.setAttribute(SYSFS_PROPERTY_MODE, mode);
 	}
 	
 	/**
@@ -135,7 +179,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getModesViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_MODES);
+		return this.getAttribute(SYSFS_PROPERTY_MODES);
 	}
 	
 	/**
@@ -154,7 +198,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getNumValues() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_NUM_VALUES);
+		String str = this.getAttribute(SYSFS_PROPERTY_NUM_VALUES);
 		return Integer.parseInt(str);
 	}
 	
@@ -164,7 +208,7 @@ public class Sensor extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getUnits() throws IOException{
-		return this.getAttribute(Def.PROPERTY_UNITS);
+		return this.getAttribute(SYSFS_PROPERTY_UNITS);
 	}
 	
 }
