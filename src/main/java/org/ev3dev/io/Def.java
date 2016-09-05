@@ -7,12 +7,6 @@ package org.ev3dev.io;
  */
 public class Def { 	//Partial: Move properties constants to classes
 	
-	//Infrared Sensor properties
-	
-	public static final String PROPERTY_INFRARED_SENSOR_PROXIMITY_REQUIRED_MODE = "IR-PROX";
-	
-	public static final int PROPERTY_INFRARED_SENSOR_PROXIMITY_VALUE_INDEX = 0;
-	
 	//Sound Sensor properties
 	
 	public static final String PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE = "DB";

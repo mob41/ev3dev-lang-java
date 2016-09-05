@@ -17,22 +17,22 @@ public class GyroSensor extends Sensor {
 	/**
 	 * Gyro angle required Sysfs mode
 	 */
-	private static final String SYSFS_ANGLE_MODE = "GYRO-ANG";
+	public static final String SYSFS_ANGLE_MODE = "GYRO-ANG";
 	
 	/**
 	 * Gyro angle Sysfs value index
 	 */
-	private static final int SYSFS_ANGLE_VALUE_INDEX = 0;
+	public static final int SYSFS_ANGLE_VALUE_INDEX = 0;
 	
 	/**
 	 * Gyro rate required Sysfs mode
 	 */
-	private static final String SYSFS_RATE_MODE = "GYRO-RATE";
+	public static final String SYSFS_RATE_MODE = "GYRO-RATE";
 	
 	/**
 	 * Gyro angle Sysfs value index
 	 */
-	private static final int SYSFS_RATE_VALUE_INDEX = 0;
+	public static final int SYSFS_RATE_VALUE_INDEX = 0;
 	
 	/**
 	 * This device's default driver name
