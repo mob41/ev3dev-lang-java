@@ -207,7 +207,7 @@ public class Linear extends Device{
 //-----------------------------------------------------------------------------
 	
 	/***
-	 * Creates a new motor object.
+	 * Creates a new Linear motor object.
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
 	 * @throws IOException If the LegoPort specified goes wrong
