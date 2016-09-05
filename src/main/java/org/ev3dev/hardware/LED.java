@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.ev3dev.exception.InvalidLEDException;
-import org.ev3dev.io.Def;
 import org.ev3dev.io.Sysfs;
 
 /***
@@ -17,6 +16,31 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public class LED extends Device{
+	
+	/**
+	 * The Sysfs class's <code>max_brightness</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_MAX_BRIGHTNESS = "max_brightness";
+	
+	/**
+	 * The Sysfs class's <code>brightness</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_BRIGHTNESS = "brightness";
+	
+	/**
+	 * The Sysfs class's <code>trigger</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_TRIGGER = "trigger";
+	
+	/**
+	 * The Sysfs class's <code>delay_on</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DELAY_ON = "delay_on";
+	
+	/**
+	 * The Sysfs class's <code>delay_off</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_DELAY_OFF = "delay_off";
 	
 	/**
 	 * Left EV3 Button
@@ -87,7 +111,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getMaxBrightness() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_MAX_BRIGHTNESS);
+		String str = this.getAttribute(SYSFS_PROPERTY_MAX_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
@@ -97,7 +121,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getBrightness() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_BRIGHTNESS);
+		String str = this.getAttribute(SYSFS_PROPERTY_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
 	
@@ -107,7 +131,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setBrightness(int brightness) throws IOException{
-		this.setAttribute(Def.PROPERTY_BRIGHTNESS, Integer.toString(brightness));
+		this.setAttribute(SYSFS_PROPERTY_BRIGHTNESS, Integer.toString(brightness));
 	}
 	
 	/**
@@ -121,7 +145,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getTriggersViaString() throws IOException{
-		return this.getAttribute(Def.PROPERTY_TRIGGER);
+		return this.getAttribute(SYSFS_PROPERTY_TRIGGER);
 	}
 	
 	/**
@@ -148,7 +172,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getTrigger() throws IOException{
-		return this.getAttribute(Def.PROPERTY_TRIGGER);
+		return this.getAttribute(SYSFS_PROPERTY_TRIGGER);
 	}
 	
 	/**
@@ -165,7 +189,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setTrigger(String selector) throws IOException{
-		this.setAttribute(Def.PROPERTY_TRIGGER, selector);
+		this.setAttribute(SYSFS_PROPERTY_TRIGGER, selector);
 	}
 	
 	/**
@@ -175,7 +199,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDelay_On() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_DELAY_ON);
+		String str = this.getAttribute(SYSFS_PROPERTY_DELAY_ON);
 		return Integer.parseInt(str);
 	}
 	
@@ -186,7 +210,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getDelay_Off() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_DELAY_OFF);
+		String str = this.getAttribute(SYSFS_PROPERTY_DELAY_OFF);
 		return Integer.parseInt(str);
 	}
 	
@@ -197,7 +221,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setDelay_On(int delay_on) throws IOException{
-		this.setAttribute(Def.PROPERTY_DELAY_ON, Integer.toString(delay_on));
+		this.setAttribute(SYSFS_PROPERTY_DELAY_ON, Integer.toString(delay_on));
 	}
 	
 	/**
@@ -207,7 +231,7 @@ public class LED extends Device{
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setDelay_Off(int delay_off) throws IOException{
-		this.setAttribute(Def.PROPERTY_DELAY_OFF, Integer.toString(delay_off));
+		this.setAttribute(SYSFS_PROPERTY_DELAY_OFF, Integer.toString(delay_off));
 	}
 
 	@Override

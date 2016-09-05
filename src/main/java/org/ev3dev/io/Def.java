@@ -17,16 +17,6 @@ public class Def {
 	
 	//LED Properties defaults
 	
-	public static final String PROPERTY_MAX_BRIGHTNESS = "max_brightness";
-	
-	public static final String PROPERTY_BRIGHTNESS = "brightness";
-	
-	public static final String PROPERTY_TRIGGER = "trigger";
-	
-	public static final String PROPERTY_DELAY_ON = "delay_on";
-	
-	public static final String PROPERTY_DELAY_OFF = "delay_off";
-	
 	//Sensor Properties defaults
 	
 	public static final String PROPERTY_DECIMALS = "decimals";
