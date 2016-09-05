@@ -16,18 +16,18 @@ You can build your own library with some steps.
 
 2. Clone this repository
 
-```git clone https://github.com/mob41/ev3dev-lang-java.git```
+    ```git clone https://github.com/mob41/ev3dev-lang-java.git```
 
 3. Switch to the repository directory
 
-```cd ev3dev-lang-java```
+    ```cd ev3dev-lang-java```
 
 4. Build!
 
-```maven package```
+    ```maven package```
 
 5. Switch to the ```target``` directory
 
-```cd target```
+    ```cd target```
 
 6. There should have ```ev3dev-lang-java-x.x.x-x.jar``` and ```ev3dev-lang-java-x.x.x-x-jar-with-dependencies.jar``` in the directory.
