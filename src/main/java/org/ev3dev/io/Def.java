@@ -25,25 +25,7 @@ public class Def { 	//Partial: Move properties constants to classes
 	
 	//Color Sensor properties REMOVAL DONE!
 	
-	//Ultrasonic sensor properties
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_CM = "distance_centimeters";
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_CM_REQUIRED_MODE = "US-DIST-CM";
-	
-	public static final int PROPERTY_ULTRASONIC_SENSOR_CM_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_IN = "distance_inches";
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_IN_REQUIRED_MODE = "US-DIST-IN";
-	
-	public static final int PROPERTY_ULTRASONIC_SENSOR_IN_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT = "other_sensor_present";
-	
-	public static final String PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_REQUIRED_MODE = "US-LISTEN";
-	
-	public static final int PROPERTY_ULTRASONIC_SENSOR_OTHER_PRESENT_VALUE_INDEX = 0;
+	//Ultrasonic sensor properties REMOVAL DONE!
 	
 	//Gyro sensor properties
 	
