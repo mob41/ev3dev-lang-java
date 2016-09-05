@@ -5,7 +5,7 @@ package org.ev3dev.io;
  * @author Anthony
  *
  */
-public class Def {
+public class Def { 	//Partial: Move properties constants to classes
 	
 	//System class path REMOVAL DONE!
 	
@@ -15,25 +15,11 @@ public class Def {
 	
 	//Motor Properties defaults REMOVAL DONE!
 	
-	//LED Properties defaults
+	//LED Properties defaults REMOVAL DONE!
 	
-	//Sensor Properties defaults
+	//Sensor Properties defaults REMOVAL DONE!
 	
-	public static final String PROPERTY_DECIMALS = "decimals";
-	
-	public static final String PROPERTY_MODE = "mode";
-	
-	public static final String PROPERTY_MODES = "modes";
-	
-	public static final String PROPERTY_NUM_VALUES = "num_values";
-	
-	public static final String PROPERTY_UNITS = "units";
-	
-	//I2C Sensor properties
-	
-	public static final String PROPERTY_FIRMWARE_VERSION = "fw_version";
-	
-	public static final String PROPERTY_POLL_MS = "poll_ms";
+	//I2C Sensor properties REMOVAL DONE!
 	
 	//Touch Sensor properties
 	

@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 
 /**
  * A generic interface to control I2C-type EV3 sensors.
@@ -15,9 +14,19 @@ import org.ev3dev.io.Def;
 public class I2CSensor extends Sensor {
 	
 	/**
+	 * The Sysfs class's <code>fw_version</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_FIRMWARE_VERSION = "fw_version";
+	
+	/**
+	 * The Sysfs class's <code>poll_ms</code> property name
+	 */
+	public static final String SYSFS_PROPERTY_POLL_MS = "poll_ms";
+	
+	/**
 	 * This device's default driver name
 	 */
-	public static final String DRIVER_NAME = "nxt-i2c-color";
+	public static final String DRIVER_NAME = "nxt-i2c-sensor";
 
 	/**
 	 * Creates a new I2CSensor instance.
@@ -39,7 +48,7 @@ public class I2CSensor extends Sensor {
 	 * @throws IOException If I/O goes wrong
 	 */
 	public String getFirmwareVersion() throws IOException{
-		return this.getAttribute(Def.PROPERTY_FIRMWARE_VERSION);
+		return this.getAttribute(SYSFS_PROPERTY_FIRMWARE_VERSION);
 	}
 	
 	/**
@@ -50,7 +59,7 @@ public class I2CSensor extends Sensor {
 	 * @throws IOException If I/O goes wrong
 	 */
 	public int getPollMs() throws IOException{
-		String str = this.getAttribute(Def.PROPERTY_POLL_MS);
+		String str = this.getAttribute(SYSFS_PROPERTY_POLL_MS);
 		return Integer.parseInt(str);
 	}
 	
@@ -62,6 +71,6 @@ public class I2CSensor extends Sensor {
 	 * @throws IOException If I/O goes wrong
 	 */
 	public void setPollMs(int ms) throws IOException{
-		this.setAttribute(Def.PROPERTY_POLL_MS, Integer.toString(ms));
+		this.setAttribute(SYSFS_PROPERTY_POLL_MS, Integer.toString(ms));
 	}
 }
