@@ -1,9 +1,9 @@
 # ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
 
-A ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
+An ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
-# Outdated library
+# Library
 
-This library is currently outdated, and only support few drivers. Please consider using another [Java-compatible library](https://github.com/ev3dev-lang-java/ev3dev-lang-java/) or wait few weeks to let this library to be ready up.
+This library currently legacy supports ev3dev kernel version 15, but does not support new drivers listed since kernel version 11, and optional drivers in [http://www.ev3dev.org/docs/sensors/](http://www.ev3dev.org/docs/sensors/). 
 
-Check out #15 for more details.
+Still in heavy development, see issue [#15](https://github.com/mob41/ev3dev-lang-java/issues/15) for more details or tracking development stage.
