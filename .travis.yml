@@ -34,22 +34,11 @@ deploy:
         - target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar
     on:
         tags: false
-        branch: unstable
-  - provider: releases
-    skip_cleanup: true
-    api_key: $GITPERM
-    file:
-        - target/ev3dev-lang-java-$projectversion.jar
-        - target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar
-    on:
-        tags: false
-        branch: develop
+        branch: master
 
 branches:
   only:
     - master
-    - unstable
-    - stable
     - develop
 
 env:

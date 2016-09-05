@@ -6,9 +6,18 @@ import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 
 public class TouchSensor extends Sensor {
+	
+	/**
+	 * Sysfs class TouchSensor required mode
+	 */
+	public static final String SYSFS_REQUIRED_MODE = "TOUCH";
+	
+	/**
+	 * Sysfs class TouchSensor Value Index
+	 */
+	public static final int SYSFS_VALUE_INDEX = 0;
 	
 	/**
 	 * This device's default driver name (EV3 Touch Sensor)
@@ -36,8 +45,8 @@ public class TouchSensor extends Sensor {
 			throw new InvalidSensorException("Can't create a TouchSensor instance that isn't a touch sensor!");
 		}
 		port.getAddress();
-		if (!this.getMode().equals(Def.PROPERTY_TOUCH_REQUIRED_MODE)){
-			throw new InvalidSensorException("Can't create a TouchSensor instance that does not support: " + Def.PROPERTY_TOUCH_REQUIRED_MODE);
+		if (!this.getMode().equals(SYSFS_REQUIRED_MODE)){
+			throw new InvalidSensorException("Can't create a TouchSensor instance that does not support: " + SYSFS_REQUIRED_MODE);
 		}
 	}
 	
@@ -48,14 +57,14 @@ public class TouchSensor extends Sensor {
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
 	public boolean isPressed() throws IOException, InvalidModeException{
-		if (!this.getMode().equals(Def.PROPERTY_TOUCH_REQUIRED_MODE)){
+		if (!this.getMode().equals(SYSFS_REQUIRED_MODE)){
 			if (autoSwitchMode){
-				this.setMode(Def.PROPERTY_TOUCH_REQUIRED_MODE);
+				this.setMode(SYSFS_REQUIRED_MODE);
 			} else {
-				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + Def.PROPERTY_TOUCH_REQUIRED_MODE + ")! Yours: " + this.getMode());
+				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + SYSFS_REQUIRED_MODE + ")! Yours: " + this.getMode());
 			}
 		}
-		String str = this.getAttribute("value" + Def.PROPERTY_TOUCH_VALUE_INDEX);
+		String str = this.getAttribute("value" + SYSFS_VALUE_INDEX);
 		return str.equals("1");
 	}
 	

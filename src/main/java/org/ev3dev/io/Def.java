@@ -21,11 +21,7 @@ public class Def { 	//Partial: Move properties constants to classes
 	
 	//I2C Sensor properties REMOVAL DONE!
 	
-	//Touch Sensor properties
-	
-	public static final String PROPERTY_TOUCH_REQUIRED_MODE = "TOUCH";
-	
-	public static final int PROPERTY_TOUCH_VALUE_INDEX = 0;
+	//Touch Sensor properties REMOVAL DONE!
 	
 	//Color Sensor properties
 	
