@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.ev3dev.exception.InvalidButtonException;
-import org.ev3dev.io.Def;
 
 /***
  * Provides a generic button reading mechanism that can be adapted to platform specific implementations.
@@ -16,17 +15,19 @@ import org.ev3dev.io.Def;
  */
 public class Button {
 	
-	public static final int UP = Def.PROPERTY_EV3_BUTTON_UP;
+	public static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio-keys.0-event";
 	
-	public static final int DOWN = Def.PROPERTY_EV3_BUTTON_DOWN;
+	public static final int BUTTON_UP = 103;
 	
-	public static final int LEFT = Def.PROPERTY_EV3_BUTTON_LEFT;
+	public static final int BUTTON_DOWN = 108;
 	
-	public static final int RIGHT = Def.PROPERTY_EV3_BUTTON_RIGHT;
+	public static final int BUTTON_LEFT = 105;
 	
-	public static final int ENTER = Def.PROPERTY_EV3_BUTTON_ENTER;
+	public static final int BUTTON_RIGHT = 106;
 	
-	public static final int BACKSPACE = Def.PROPERTY_EV3_BUTTON_BACKSPACE;
+	public static final int BUTTON_ENTER = 28;
+	
+	public static final int BUTTON_BACKSPACE = 14;
 	
 	private int button;
 	
@@ -36,10 +37,10 @@ public class Button {
 	 * @throws InvalidButtonException If the specified button isn't a valid button.
 	 */
 	public Button(int button) throws InvalidButtonException{
-		if (button != UP && button != DOWN && button != LEFT &&
-				button != RIGHT && button != ENTER && button != ENTER &&
-				button != BACKSPACE){
-			throw new InvalidButtonException("The button that you specified does not exist. Better use the integer fields like Button.UP");
+		if (button != BUTTON_UP && button != BUTTON_DOWN && button != BUTTON_LEFT &&
+				button != BUTTON_RIGHT && button != BUTTON_ENTER && button != BUTTON_ENTER &&
+				button != BUTTON_BACKSPACE){
+			throw new InvalidButtonException("The button that you specified does not exist. Better use the integer fields like Button.BUTTON_UP");
 		}
 		this.button = button;
 	}
@@ -50,7 +51,7 @@ public class Button {
 	 */
 	public boolean isPressed(){
 		try {
-			DataInputStream in = new DataInputStream(new FileInputStream(Def.PROPERTY_EV3_BUTTON_SYSTEM_EVENT_PATH));
+			DataInputStream in = new DataInputStream(new FileInputStream(SYSTEM_EVENT_PATH));
 			byte[] val = new byte[16];
 			in.readFully(val);
 			in.close();
