@@ -23,43 +23,7 @@ public class Def { 	//Partial: Move properties constants to classes
 	
 	//Touch Sensor properties REMOVAL DONE!
 	
-	//Color Sensor properties
-	
-	public static final String PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY = "reflected_light_intensity";
-	
-	public static final String PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_REQUIRED_MODE = "COL-REFLECT";
-	
-	public static final int PROPERTY_COLOR_SENSOR_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY = "ambient_light_intensity";
-	
-	public static final String PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_REQUIRED_MODE = "COL-AMBIENT";
-	
-	public static final int PROPERTY_COLOR_SENSOR_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_COLOR_SENSOR_COLOR = "color";
-	
-	public static final String PROPERTY_COLOR_SENSOR_COLOR_REQUIRED_MODE = "COL-COLOR";
-	
-	public static final int PROPERTY_COLOR_SENSOR_COLOR_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_R = "red";
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_R_REQUIRED_MODE = "RGB-RAW";
-	
-	public static final int PROPERTY_COLOR_SENSOR_RGB_R_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_G = "green";
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_G_REQUIRED_MODE = "RGB-RAW";
-	
-	public static final int PROPERTY_COLOR_SENSOR_RGB_G_VALUE_INDEX = 1;
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_B = "blue";
-	
-	public static final String PROPERTY_COLOR_SENSOR_RGB_B_REQUIRED_MODE = "RGB-RAW";
-	
-	public static final int PROPERTY_COLOR_SENSOR_RGB_B_VALUE_INDEX = 2;
+	//Color Sensor properties REMOVAL DONE!
 	
 	//Ultrasonic sensor properties
 	

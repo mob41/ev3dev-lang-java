@@ -7,7 +7,7 @@ package org.ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidButtonException extends InvalidException {
+public class InvalidButtonException extends EV3LibraryException {
 
 	/**
 	 * 

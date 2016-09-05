@@ -9,7 +9,7 @@ package org.ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidSensorException extends InvalidException {
+public class InvalidSensorException extends EV3LibraryException {
 
 	/**
 	 * 

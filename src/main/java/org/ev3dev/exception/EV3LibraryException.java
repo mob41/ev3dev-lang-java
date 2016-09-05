@@ -5,26 +5,26 @@ package org.ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidException extends Exception {
+public class EV3LibraryException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public InvalidException(){
+	public EV3LibraryException(){
 		super();
 	}
 	
-	public InvalidException(String message){
+	public EV3LibraryException(String message){
 		super(message);
 	}
 	
-	public InvalidException(String message, Throwable cause){
+	public EV3LibraryException(String message, Throwable cause){
 		super(message, cause);
 	}
 	
-	public InvalidException(Throwable cause){
+	public EV3LibraryException(Throwable cause){
 		super(cause);
 	}
 }

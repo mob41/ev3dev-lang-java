@@ -7,7 +7,7 @@ package org.ev3dev.exception;
  * @author Anthony
  *
  */
-public class InvalidPortException extends InvalidException {
+public class InvalidPortException extends EV3LibraryException {
 
 	/**
 	 * 
