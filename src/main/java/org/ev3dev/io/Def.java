@@ -7,16 +7,6 @@ package org.ev3dev.io;
  */
 public class Def { 	//Partial: Move properties constants to classes
 	
-	//Sound Sensor properties
-	
-	public static final String PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE = "DB";
-
-	public static final int PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_VALUE_INDEX = 0;
-
-	public static final String PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_REQUIRED_MODE = "DBA";
-	
-	public static final int PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_VALUE_INDEX = 0;
-	
 	//Light Sensor properties
 
 	public static final String PROPERTY_LIGHT_SENSOR_REFLECTED_REQUIRED_MODE = "REFLECT";

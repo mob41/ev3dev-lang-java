@@ -6,7 +6,6 @@ import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
 import org.ev3dev.hardware.ports.LegoPort;
-import org.ev3dev.io.Def;
 
 /**
  * LEGO NXT Sound Sensor
@@ -14,6 +13,26 @@ import org.ev3dev.io.Def;
  *
  */
 public class SoundSensor extends Sensor {
+	
+	/**
+	 * Sound pressure Sysfs required mode
+	 */
+	public static final String SYSFS_SOUND_PRESSURE_REQUIRED_MODE = "DB";
+
+	/**
+	 * Sound pressure Sysfs value index
+	 */
+	public static final int SYSFS_SOUND_PRESSURE_VALUE_INDEX = 0;
+
+	/**
+	 * Sound pressure Low Sysfs required mode
+	 */
+	public static final String SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE = "DBA";
+	
+	/**
+	 * Sound pressure Low Sysfs value index
+	 */
+	public static final int SYSFS_SOUND_PRESSURE_LOW_VALUE_INDEX = 0;
 	
 	/**
 	 * This device's default driver name
@@ -43,14 +62,14 @@ public class SoundSensor extends Sensor {
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
 	public float getSoundPressure() throws InvalidModeException, IOException{
-		if (!this.getMode().equals(Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE)){
+		if (!this.getMode().equals(SYSFS_SOUND_PRESSURE_REQUIRED_MODE)){
 			if (autoSwitchMode){
-				this.setMode(Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE);
+				this.setMode(SYSFS_SOUND_PRESSURE_REQUIRED_MODE);
 			} else {
-				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_REQUIRED_MODE + ")! Yours: " + this.getMode());
+				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + SYSFS_SOUND_PRESSURE_REQUIRED_MODE + ")! Yours: " + this.getMode());
 			}
 		}
-		String str = this.getAttribute("value" + Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_VALUE_INDEX);
+		String str = this.getAttribute("value" + SYSFS_SOUND_PRESSURE_VALUE_INDEX);
 		return Float.parseFloat(str);
 	}
 	
@@ -61,14 +80,14 @@ public class SoundSensor extends Sensor {
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
 	public float getSoundPressureLow() throws InvalidModeException, IOException{
-		if (!this.getMode().equals(Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_REQUIRED_MODE)){
+		if (!this.getMode().equals(SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE)){
 			if (autoSwitchMode){
-				this.setMode(Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_REQUIRED_MODE);
+				this.setMode(SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE);
 			} else {
-				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_REQUIRED_MODE + ")! Yours: " + this.getMode());
+				throw new InvalidModeException("[Auto-switch is off] You are not using a correct mode(" + SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE + ")! Yours: " + this.getMode());
 			}
 		}
-		String str = this.getAttribute("value" + Def.PROPERTY_SOUND_SENSOR_SOUND_PRESSURE_LOW_VALUE_INDEX);
+		String str = this.getAttribute("value" + SYSFS_SOUND_PRESSURE_LOW_VALUE_INDEX);
 		return Float.parseFloat(str);
 	}
 	
