@@ -7,16 +7,6 @@ package org.ev3dev.io;
  */
 public class Def { 	//Partial: Move properties constants to classes
 	
-	//Light Sensor properties
-
-	public static final String PROPERTY_LIGHT_SENSOR_REFLECTED_REQUIRED_MODE = "REFLECT";
-
-	public static final int PROPERTY_LIGHT_SENSOR_REFLECTED_VALUE_INDEX = 0;
-	
-	public static final String PROPERTY_LIGHT_SENSOR_AMBIENT_REQUIRED_MODE = "AMBIENT";
-
-	public static final int PROPERTY_LIGHT_SENSOR_AMBIENT_VALUE_INDEX = 0;
-	
 	//Power supply properties
 	
 	public static final String PROPERTY_MEASURED_CURRENT = "measured_current";
