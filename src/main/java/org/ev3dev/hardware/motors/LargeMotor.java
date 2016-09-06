@@ -13,11 +13,15 @@ public class LargeMotor extends Motor {
 	 */
 	public static final String DRIVER_NAME = "lego-ev3-l-motor";
 	
+	public LargeMotor(int portField) throws InvalidPortException, IOException {
+		this(new LegoPort(portField));
+	}
+	
 	public LargeMotor(LegoPort port) throws InvalidPortException, IOException, InvalidMotorException {
 		super(port);
 		String drivername = this.getDriverName();
 		if (!drivername.equals(DRIVER_NAME)){
-			throw new InvalidMotorException("It is not a LargeMotor (" + DRIVER_NAME + "): " + drivername);
+			throw new InvalidMotorException("The port is not connected to a LargeMotor (" + DRIVER_NAME + "): " + drivername);
 		}
 	}
 
