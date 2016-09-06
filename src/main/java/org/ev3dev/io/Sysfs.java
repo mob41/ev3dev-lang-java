@@ -18,9 +18,9 @@ import java.util.List;
 public class Sysfs {
 	
 	/**
-	 * The Sysfs class path (/sys/class)
+	 * The Sysfs class path (/sys/class/)
 	 */
-	public static final String SYSTEM_CLASS_PATH = "/sys/class";
+	public static final String SYSTEM_CLASS_PATH = "/sys/class/";
 	
 	/**
 	 * Get all sub-class files
@@ -105,9 +105,6 @@ public class Sysfs {
 	 */
 	public static void setAttribute(String class_name, String property, String new_value) throws FileNotFoundException, IOException{
 		PrintWriter out = new PrintWriter(SYSTEM_CLASS_PATH + class_name + "/" + property);
-		class_name = class_name.toLowerCase();
-		property = property.toLowerCase();
-		new_value = new_value.toLowerCase();
 		out.write(new_value);
 		out.flush();
 		out.close();

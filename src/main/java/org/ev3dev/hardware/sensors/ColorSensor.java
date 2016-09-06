@@ -17,52 +17,52 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Reflected Light Intensity required Sysfs mode
 	 */
-	private static final String SYSFS_REFLECTED_LIGHT_INTENSITY_MODE = "COL-REFLECT";
+	public static final String SYSFS_REFLECTED_LIGHT_INTENSITY_MODE = "COL-REFLECT";
 	
 	/**
 	 * Reflected Light Intensity Sysfs value index
 	 */
-	private static final int SYSFS_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX = 0;
+	public static final int SYSFS_REFLECTED_LIGHT_INTENSITY_VALUE_INDEX = 0;
 	
 	/**
 	 * Ambient Light Intensity required Sysfs mode
 	 */
-	private static final String SYSFS_AMBIENT_LIGHT_INTENSITY_MODE = "COL-AMBIENT";
+	public static final String SYSFS_AMBIENT_LIGHT_INTENSITY_MODE = "COL-AMBIENT";
 	
 	/**
 	 * Ambient Light Intensity Sysfs value index
 	 */
-	private static final int SYSFS_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX = 0;
+	public static final int SYSFS_AMBIENT_LIGHT_INTENSITY_VALUE_INDEX = 0;
 	
 	/**
 	 * Color required Sysfs mode
 	 */
-	private static final String SYSFS_COLOR_MODE = "COL-COLOR";
+	public static final String SYSFS_COLOR_MODE = "COL-COLOR";
 	
 	/**
 	 * Color Sysfs value index
 	 */
-	private static final int SYSFS_COLOR_VALUE_INDEX = 0;
+	public static final int SYSFS_COLOR_VALUE_INDEX = 0;
 	
 	/**
 	 * RGB required Sysfs mode
 	 */
-	private static final String SYSFS_RGB_MODE = "RGB-RAW";
+	public static final String SYSFS_RGB_MODE = "RGB-RAW";
 	
 	/**
 	 * RGB Red Sysfs value index
 	 */
-	private static final int SYSFS_RGB_R_VALUE_INDEX = 0;
+	public static final int SYSFS_RGB_R_VALUE_INDEX = 0;
 	
 	/**
 	 * RGB Green Sysfs value index
 	 */
-	private static final int SYSFS_RGB_G_VALUE_INDEX = 1;
+	public static final int SYSFS_RGB_G_VALUE_INDEX = 1;
 	
 	/**
 	 * RGB Blue Sysfs value index
 	 */
-	private static final int SYSFS_RGB_B_VALUE_INDEX = 2;
+	public static final int SYSFS_RGB_B_VALUE_INDEX = 2;
 	
 	/**
 	 * This device's default driver name
