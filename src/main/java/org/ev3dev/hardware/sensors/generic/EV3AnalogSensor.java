@@ -5,6 +5,11 @@ import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.hardware.sensors.Sensor;
 
+/**
+ * Generic NXT Analog Sensor driver
+ * @author Anthony
+ *
+ */
 public class EV3AnalogSensor extends Sensor {
 
 	/**
