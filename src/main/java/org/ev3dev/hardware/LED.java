@@ -83,7 +83,7 @@ public class LED extends Device{
 		String direction = leftRightField == 0 ? "left" : "right";
 		String color = colorField == 0 ? "green" : "red";
 		
-		this.setClassName("ev3:" + direction + ":" + color + ":ev3dev");
+		this.setClassFullname("ev3:" + direction + ":" + color + ":ev3dev");
 	}
 	
 	/**
