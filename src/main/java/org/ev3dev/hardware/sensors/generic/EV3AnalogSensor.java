@@ -10,6 +10,16 @@ import org.ev3dev.hardware.sensors.Sensor;
  *
  */
 public class EV3AnalogSensor extends Sensor {
+	
+	/**
+	 * <code>ANALOG</code> Mode - Raw analog value
+	 */
+	public static final String MODE_ANALOG = "ANALOG";
+	
+	/**
+	 * The Sysfs value index
+	 */
+	public static final int VALUE_INDEX = 0;
 
 	/**
 	 * The EV3 Analog sensor driver name
@@ -29,5 +39,42 @@ public class EV3AnalogSensor extends Sensor {
 			throw new EV3LibraryException("The port is not connected to a EV3 analog sensor with type id \"" + typeId + "\": " + drivername);
 		}
 	}
+	
+	/**
+	 * Set mode as <code>ANALOG</code> Mode - Raw analog value
+	 * @throws EV3LibraryException If I/O goes wrong
+	 */
+	public void setModeAnalog() throws EV3LibraryException{
+		setMode(MODE_ANALOG);
+	}
+	
+	/**
+	 * Returns the raw analog voltage / value (0-5000).<br>
+	 * <br>
+	 * This function does not calculate decimal places.
+	 * @throws EV3LibraryException If I/O goes wrong
+	 * @return The voltage
+	 */
+	public int getRawValue() throws EV3LibraryException{
+		String str = getAttribute("value" + VALUE_INDEX);
+		return Integer.parseInt(str);
+	}
+	
+	/**
+	 * Returns the raw analog voltage / value (0-5000), and with decimal places<br>
+	 * @throws EV3LibraryException If I/O goes wrong
+	 * @return The voltage
+	 */
+	public float getValue() throws EV3LibraryException{
+		float out = getRawValue();
+		
+		int dec = getDecimals();
+		for (int i = 1; i <= dec; i++){
+			out /= 10;
+		}
+		
+		return out;
+	}
 
+	
 }

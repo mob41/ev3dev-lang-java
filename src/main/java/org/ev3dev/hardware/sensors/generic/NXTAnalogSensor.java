@@ -83,13 +83,11 @@ public class NXTAnalogSensor extends Sensor {
 		float out = getRawValue();
 		
 		int dec = getDecimals();
-		for (int i = 0; i <= dec; i++){
+		for (int i = 1; i <= dec; i++){
 			out /= 10;
 		}
 		
 		return out;
 	}
-	
-	//TODO Decimal places http://www.ev3dev.org/docs/sensors/generic-nxt-analog-sensor/
 
 }
