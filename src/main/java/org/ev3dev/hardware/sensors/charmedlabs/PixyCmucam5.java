@@ -253,7 +253,7 @@ public class PixyCmucam5 extends I2CSensor {
 	 * @author Anthony
 	 *
 	 */
-	class ModeAll {
+	public class ModeAll {
 		
 		private final String mode;
 		
@@ -370,7 +370,7 @@ public class PixyCmucam5 extends I2CSensor {
 	 * @author Anthony
 	 *
 	 */
-	class ModeSig {
+	public class ModeSig {
 		
 		private final String mode;
 		
