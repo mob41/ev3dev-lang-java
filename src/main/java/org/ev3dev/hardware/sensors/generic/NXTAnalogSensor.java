@@ -12,6 +12,21 @@ import org.ev3dev.hardware.sensors.Sensor;
 public class NXTAnalogSensor extends Sensor {
 
 	/**
+	 * <code>ANALOG-0</code> Mode - Raw analog value
+	 */
+	public static final String MODE_ANALOG_0 = "ANALOG-0";
+	
+	/**
+	 * <code>ANALOG-1</code> Mode - Raw analog value, Pin 5 high
+	 */
+	public static final String MODE_ANALOG_1 = "ANALOG-1";
+	
+	/**
+	 * The Sysfs value index
+	 */
+	public static final int VALUE_INDEX = 0;
+	
+	/**
 	 * The NXT Analog sensor driver name
 	 */
 	public static final String DRIVER_NAME = "nxt-analog";
@@ -29,6 +44,31 @@ public class NXTAnalogSensor extends Sensor {
 		}
 	}
 	
+	/**
+	 * Set mode as <code>ANALOG-0</code> Mode - Raw analog value
+	 * @throws EV3LibraryException If I/O goes wrong
+	 */
+	public void setModeAnalog0() throws EV3LibraryException{
+		setMode(MODE_ANALOG_0);
+	}
 	
+	/**
+	 * Set mode as <code>ANALOG-1</code> Mode - Raw analog value, Pin 5 high
+	 * @throws EV3LibraryException If I/O goes wrong
+	 */
+	public void setModeAnalog1() throws EV3LibraryException{
+		setMode(MODE_ANALOG_1);
+	}
+	
+	/**
+	 * Returns the raw analog voltage / value.<br>
+	 * Both mode uses the same value index (value0)
+	 * @throws EV3LibraryException If I/O goes wrong
+	 * @return The voltage
+	 */
+	public int getValue() throws EV3LibraryException{
+		String str = getAttribute("value" + VALUE_INDEX);
+		return Integer.parseInt(str);
+	}
 
 }
