@@ -34,7 +34,7 @@ public class FirgelliL1250Motor extends Motor {
 	public FirgelliL1250Motor(LegoPort port) throws InvalidPortException, IOException {
 		super(port, LINEAR_MOTOR_CLASS_NAME_PREFIX);
 		if (!port.getDriverName().equals(DRIVER_NAME_50MM)){
-			throw new InvalidPortException("The port does not connect to a Firgelli L12 50 Motor");
+			throw new InvalidPortException("The port does not have a Firgelli L12 50 Motor driver.");
 		}
 	}
 	
