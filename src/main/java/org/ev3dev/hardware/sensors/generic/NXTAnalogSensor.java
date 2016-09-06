@@ -61,14 +61,35 @@ public class NXTAnalogSensor extends Sensor {
 	}
 	
 	/**
-	 * Returns the raw analog voltage / value.<br>
-	 * Both mode uses the same value index (value0)
+	 * Returns the raw analog voltage / value (0-5000).<br>
+	 * Both mode uses the same value index (value0)<br>
+	 * <br>
+	 * This function does not calculate decimal places.
 	 * @throws EV3LibraryException If I/O goes wrong
 	 * @return The voltage
 	 */
-	public int getValue() throws EV3LibraryException{
+	public int getRawValue() throws EV3LibraryException{
 		String str = getAttribute("value" + VALUE_INDEX);
 		return Integer.parseInt(str);
 	}
+	
+	/**
+	 * Returns the raw analog voltage / value (0-5000), and with decimal places<br>
+	 * Both mode uses the same value index (value0)<br>
+	 * @throws EV3LibraryException If I/O goes wrong
+	 * @return The voltage
+	 */
+	public float getValue() throws EV3LibraryException{
+		float out = getRawValue();
+		
+		int dec = getDecimals();
+		for (int i = 0; i <= dec; i++){
+			out /= 10;
+		}
+		
+		return out;
+	}
+	
+	//TODO Decimal places http://www.ev3dev.org/docs/sensors/generic-nxt-analog-sensor/
 
 }
