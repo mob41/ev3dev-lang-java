@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
@@ -81,10 +80,10 @@ public class Sensor extends Device{
 	/**
 	 * Creates a new Sensor instance using a LegoPort
 	 * @param port LegoPort
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidPortException If the specified LegoPort was invalid
 	 */
-	public Sensor(LegoPort port) throws IOException, InvalidPortException{
+	public Sensor(LegoPort port) throws EV3LibraryException{
 		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
 	}
 	
@@ -92,18 +91,18 @@ public class Sensor extends Device{
 	 * Returns the name of the port that the sensor is connected to, e.g. ev3:in1.
 	 *  I2C sensors also include the I2C address (decimal), e.g. ev3:in1:i2c8.
 	 * @return A sensor address
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getAddress() throws IOException{
+	public String getAddress() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
 	 * Generic method to send commands to the sensor controller.
 	 * @param command Command that suits for the sensor driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void sendCommand(String command) throws IOException{
+	public void sendCommand(String command) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
@@ -115,18 +114,18 @@ public class Sensor extends Device{
 	 * </pre>
 	 * Returns a list of the valid commands for the sensor. Returns -EOPNOTSUPP if no commands are supported.
 	 * @return A list of valid commands
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getCommandsViaString() throws IOException{
+	public String getCommandsViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_COMMANDS);
 	}
 	
 	/**
 	 * Returns a list of the valid commands for the sensor. Returns -EOPNOTSUPP if no commands are supported.
 	 * @return A list of valid commands
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getCommands() throws IOException{
+	public String[] getCommands() throws EV3LibraryException{
 		String str = getCommandsViaString();
 		return Sysfs.separateSpace(str);
 	}
@@ -134,9 +133,9 @@ public class Sensor extends Device{
 	/**
 	 * Returns the number of decimal places for the values in the value[N] attributes of the current mode.
 	 * @return The number of decimal places
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDecimals() throws IOException{
+	public int getDecimals() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_DECIMALS);
 		return Integer.parseInt(str);
 	}
@@ -144,27 +143,27 @@ public class Sensor extends Device{
 	/**
 	 * Returns the name of the sensor device/driver. See the list of [supported sensors] for a complete list of drivers.
 	 * @return The name of the sensor device or driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getDriverName() throws IOException{
+	public String getDriverName() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	/**
 	 * Returns the current mode. Writing one of the values returned by modes sets the sensor to that mode.
 	 * @return The current mode
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getMode() throws IOException{
+	public String getMode() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_MODE);
 	}
 	
 	/**
 	 * Sets the current mode. Writing one of the values returned by modes sets the sensor to that mode.
 	 * @param mode The mode listed using <code>getModes()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setMode(String mode) throws IOException{
+	public void setMode(String mode) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_MODE, mode);
 	}
 	
@@ -176,18 +175,18 @@ public class Sensor extends Device{
 	 * </pre>
 	 * Returns a list of the valid modes for the sensor.
 	 * @return A list of valid modes for the sensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getModesViaString() throws IOException{
+	public String getModesViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_MODES);
 	}
 	
 	/**
 	 * Returns a list of the valid modes for the sensor.
 	 * @return A list of valid modes for the sensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getModes() throws IOException{
+	public String[] getModes() throws EV3LibraryException{
 		String str = getModesViaString();
 		return Sysfs.separateSpace(str);
 	}
@@ -195,9 +194,9 @@ public class Sensor extends Device{
 	/**
 	 * Returns the number of value[N] attributes that will return a valid value for the current mode.
 	 * @return The number if value[N] attributes
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getNumValues() throws IOException{
+	public int getNumValues() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_NUM_VALUES);
 		return Integer.parseInt(str);
 	}
@@ -205,9 +204,9 @@ public class Sensor extends Device{
 	/**
 	 * Returns the units of the measured value for the current mode. May return empty string
 	 * @return The units of measured value
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getUnits() throws IOException{
+	public String getUnits() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_UNITS);
 	}
 	

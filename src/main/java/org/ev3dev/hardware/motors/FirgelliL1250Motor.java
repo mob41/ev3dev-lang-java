@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.motors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.ports.LegoPort;
 
@@ -27,11 +26,11 @@ public class FirgelliL1250Motor extends Motor {
 	 */
 	public static final String DRIVER_NAME_50MM = "act-l12-ev3-50";
 
-	public FirgelliL1250Motor(int portField) throws InvalidPortException, IOException {
+	public FirgelliL1250Motor(int portField) throws EV3LibraryException {
 		this(new LegoPort(portField));
 	}
 
-	public FirgelliL1250Motor(LegoPort port) throws InvalidPortException, IOException {
+	public FirgelliL1250Motor(LegoPort port) throws EV3LibraryException {
 		super(port, LINEAR_MOTOR_CLASS_NAME_PREFIX);
 		if (!port.getDriverName().equals(DRIVER_NAME_50MM)){
 			throw new InvalidPortException("The port does not have a Firgelli L12 50 Motor driver.");
@@ -43,7 +42,7 @@ public class FirgelliL1250Motor extends Motor {
 	 * <code>-1</code> will be returned instead, use <code>getCountPerMetre()</code>
 	 */
 	@Override
-	public int getCountPerRot() throws IOException{
+	public int getCountPerRot() throws EV3LibraryException{
 		return -1;
 	}
 	
@@ -52,9 +51,9 @@ public class FirgelliL1250Motor extends Motor {
 	 * Tacho counts are used by the position and speed attributes, so you can
 	 *  use this value to convert from distance to tacho counts. (linear motors only)
 	 * @return Counts per metre
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getCountPerMetre() throws IOException{
+	public int getCountPerMetre() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -68,9 +67,9 @@ public class FirgelliL1250Motor extends Motor {
 	 *  to calculate the maximum travel distance of the motor. 
 	 *  (linear motors only)
 	 * @return Full Travel Count
-	 * @throws IOException
+	 * @throws EV3LibraryException
 	 */
-	public int getFullTravelCount() throws IOException{
+	public int getFullTravelCount() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}

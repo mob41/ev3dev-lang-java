@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -46,9 +45,9 @@ public class GyroSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a GyroSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public GyroSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public GyroSensor(LegoPort port) throws EV3LibraryException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a GyroSensor instance if port isn't connected to a GyroSensor!");
@@ -58,10 +57,10 @@ public class GyroSensor extends Sensor {
 	/**
 	 * The number of degrees that the sensor has been rotated since it was put into this mode.
 	 * @return The number of degrees
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getAngle() throws InvalidModeException, IOException{
+	public int getAngle() throws InvalidModeException, EV3LibraryException{
 		if (!this.getMode().equals(SYSFS_ANGLE_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_ANGLE_MODE);
@@ -76,10 +75,10 @@ public class GyroSensor extends Sensor {
 	/**
 	 * The rate at which the sensor is rotating, in degrees/second.
 	 * @return The rate at which the sensor is rotating
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getRate() throws InvalidModeException, IOException{
+	public int getRate() throws InvalidModeException, EV3LibraryException{
 		if (!this.getMode().equals(SYSFS_RATE_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_RATE_MODE);

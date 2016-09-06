@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -36,9 +35,9 @@ public class TouchSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a TouchSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public TouchSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public TouchSensor(LegoPort port) throws EV3LibraryException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(DRIVER_NAME_EV3) &&
 				!this.getDriverName().equals(DRIVER_NAME_NXT)){
@@ -53,10 +52,10 @@ public class TouchSensor extends Sensor {
 	/**
 	 * A boolean indicating whether the current touch sensor is being pressed.
 	 * @return The touch sensor is pressed or not.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public boolean isPressed() throws IOException, InvalidModeException{
+	public boolean isPressed() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_REQUIRED_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_REQUIRED_MODE);

@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -76,9 +75,9 @@ public class ColorSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a ColorSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public ColorSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public ColorSensor(LegoPort port) throws EV3LibraryException {
 		super(port);
 		if (!DRIVER_NAME.equals(this.getDriverName())){
 			throw new InvalidSensorException("The specified device is not a color sensor.");
@@ -89,10 +88,10 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Reflected light intensity as a percentage. Light on sensor is red.
 	 * @return Reflected Light Intensity in percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getReflectedLightIntensity() throws IOException, InvalidModeException{
+	public int getReflectedLightIntensity() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_REFLECTED_LIGHT_INTENSITY_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_REFLECTED_LIGHT_INTENSITY_MODE);
@@ -107,10 +106,10 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Ambient light intensity. Light on sensor is dimly lit blue.
 	 * @return Ambient light intensity in percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getAmbientLightIntensity() throws IOException, InvalidModeException{
+	public int getAmbientLightIntensity() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_AMBIENT_LIGHT_INTENSITY_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_AMBIENT_LIGHT_INTENSITY_MODE);
@@ -133,10 +132,10 @@ public class ColorSensor extends Sensor {
 	 * - 6: White<br>
 	 * - 7: Brown
 	 * @return Color value
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getColor() throws IOException, InvalidModeException{
+	public int getColor() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_COLOR_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_COLOR_MODE);
@@ -151,10 +150,10 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Red component of the detected color, in the range 0-1020
 	 * @return RGB Red component
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getRGB_Red() throws IOException, InvalidModeException{
+	public int getRGB_Red() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_RGB_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_RGB_MODE);
@@ -169,10 +168,10 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Green component of the detected color, in the range 0-1020
 	 * @return Green Red component
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getRGB_Green() throws IOException, InvalidModeException{
+	public int getRGB_Green() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_RGB_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_RGB_MODE);
@@ -187,10 +186,10 @@ public class ColorSensor extends Sensor {
 	/**
 	 * Blue component of the detected color, in the range 0-1020
 	 * @return Blue Red component
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getRGB_Blue() throws IOException, InvalidModeException{
+	public int getRGB_Blue() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_RGB_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_RGB_MODE);

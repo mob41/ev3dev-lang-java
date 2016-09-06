@@ -1,7 +1,9 @@
 package org.ev3dev.hardware;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.io.Sysfs;
 
 /***
@@ -49,58 +51,86 @@ public class PowerSupply{
 	/***
 	 * The measured current that the battery is supplying (in microamps)
 	 * @return Measured Current
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static int getMeasuredCurrent() throws IOException{
-		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MEASURED_CURRENT);
+	public static int getMeasuredCurrent() throws EV3LibraryException{
+		String str;
+		try {
+			str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MEASURED_CURRENT);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get measured current attribute failed", e);
+		}
 		return Integer.parseInt(str);
 	}
 	
 	/***
 	 * The measured voltage that the battery is supplying (in microvolts)
 	 * @return Measured Voltage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static int getMeasuredVoltage() throws IOException{
-		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MEASURED_VOLTAGE);
+	public static int getMeasuredVoltage() throws EV3LibraryException{
+		String str;
+		try {
+			str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MEASURED_VOLTAGE);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get measured voltage attribute failed", e);
+		}
 		return Integer.parseInt(str);
 	}
 	
 	/***
 	 * Get the maximum voltage
 	 * @return Maximum Voltage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static int getMaxVoltage() throws IOException{
-		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MAX_VOLTAGE);
+	public static int getMaxVoltage() throws EV3LibraryException{
+		String str;
+		try {
+			str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MAX_VOLTAGE);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get max voltage attribute failed", e);
+		}
 		return Integer.parseInt(str);
 	}
 	
 	/***
 	 * Get the minimum voltage
 	 * @return Minimum Voltage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static int getMinVoltage() throws IOException{
-		String str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MIN_VOLTAGE);
+	public static int getMinVoltage() throws EV3LibraryException{
+		String str;
+		try {
+			str = Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_MIN_VOLTAGE);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get min voltage attribute failed", e);
+		}
 		return Integer.parseInt(str);
 	}
 	
 	/***
 	 * Get the technology of this power supply
 	 * @return String
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static String getTechnology() throws IOException{
-		return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_TECHNOLOGY);
+	public static String getTechnology() throws EV3LibraryException{
+		try {
+			return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_TECHNOLOGY);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get technology attribute failed", e);
+		}
 	}
 	
 	/***
 	 * Get the type of this power supply
 	 * @return String
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public static String getType() throws IOException{
-		return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_TYPE);
+	public static String getType() throws EV3LibraryException{
+		try {
+			return Sysfs.getAttribute(POWER_SUPPLY_CLASS_NAME, SYSFS_TYPE);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get type attribute failed", e);
+		}
 	}
 }

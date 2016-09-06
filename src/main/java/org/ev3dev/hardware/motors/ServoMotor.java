@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.motors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidMotorException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
@@ -91,10 +90,10 @@ public class ServoMotor extends Device{
 	 * Creates a new motor object.
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
-	 * @throws IOException If the LegoPort specified goes wrong
+	 * @throws EV3LibraryException If the LegoPort specified goes wrong
 	 * @throws InvalidMotorException The specified motor wasn't a motor
 	 */
-	public ServoMotor(LegoPort port) throws InvalidPortException, InvalidMotorException, IOException{
+	public ServoMotor(LegoPort port) throws EV3LibraryException{
 		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
 		address = port.getAddress();
 		
@@ -109,44 +108,44 @@ public class ServoMotor extends Device{
 	/***
 	 * Get the address of this motor.
 	 * @return LegoPort address described in String
-	 * @throws IOException If the motor doesn't exist or IO ERROR
+	 * @throws EV3LibraryException If the motor doesn't exist or IO ERROR
 	 */
-	public String getAddress() throws IOException{
+	public String getAddress() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void sendCommand(String command) throws IOException{
+	public void sendCommand(String command) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/***
 	 * Setting to run will cause the servo to be driven to the <b>position_sp</b> set in the <b>position_sp</b> attribute. 
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void run() throws IOException{
+	public void run() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_RUN);
 	}
 	
 	/***
 	 * Run to an absolute position specified by <b>position_sp</b>
 	 *  and then stop using the command specified in <b>stop_command</b>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void Float() throws IOException{
+	public void Float() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_FLOAT);
 	}
 	
 	/**
 	 * Returns the name of the driver that provides this tacho motor device.
 	 * @return The name of the driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getDriverName() throws IOException{
+	public String getDriverName() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
@@ -154,9 +153,9 @@ public class ServoMotor extends Device{
 	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the maximum (clockwise) position_sp. Default value is 2400.
 	 *  Valid values are 2300 to 2700. You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @return The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getMaxPulse_SP() throws IOException{
+	public int getMaxPulse_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_MAX_PULSE_SP);
 		return Integer.parseInt(str);
 	}
@@ -165,9 +164,9 @@ public class ServoMotor extends Device{
 	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the maximum (clockwise) position_sp. Default value is 2400.
 	 *  Valid values are 2300 to 2700. You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @param max_pulse_sp The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setMaxPulse_SP(int max_pulse_sp) throws IOException{
+	public void setMaxPulse_SP(int max_pulse_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_MAX_PULSE_SP, Integer.toString(max_pulse_sp));
 	}
 	
@@ -177,9 +176,9 @@ public class ServoMotor extends Device{
 	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @return The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getMidPulse_SP() throws IOException{
+	public int getMidPulse_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_MID_PULSE_SP);
 		return Integer.parseInt(str);
 	}
@@ -190,9 +189,9 @@ public class ServoMotor extends Device{
 	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @param mid_pulse_sp The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setMidPulse_SP(int mid_pulse_sp) throws IOException{
+	public void setMidPulse_SP(int mid_pulse_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_MID_PULSE_SP, Integer.toString(mid_pulse_sp));
 	}
 	
@@ -201,9 +200,9 @@ public class ServoMotor extends Device{
 	 *  minimum (counter-clockwise) position_sp. Default value is 600. Valid values are 300 to 700.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @return The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getMinPulse_SP() throws IOException{
+	public int getMinPulse_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_MIN_PULSE_SP);
 		return Integer.parseInt(str);
 	}
@@ -213,9 +212,9 @@ public class ServoMotor extends Device{
 	 *  minimum (counter-clockwise) position_sp. Default value is 600. Valid values are 300 to 700.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @param min_pulse_sp The pulse size in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setMinPulse_SP(int min_pulse_sp) throws IOException{
+	public void setMinPulse_SP(int min_pulse_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_MIN_PULSE_SP, Integer.toString(min_pulse_sp));
 	}
 	
@@ -223,9 +222,9 @@ public class ServoMotor extends Device{
 	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
 	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
 	 * @return The polarity of the servo
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getPolarity() throws IOException{
+	public String getPolarity() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_POLARITY);
 	}
 	
@@ -233,9 +232,9 @@ public class ServoMotor extends Device{
 	 * Sets the polarity of the servo. Valid values are normal and inversed. Setting the value to inversed will cause the position_sp value to be inversed.
 	 *  i.e -100 will correspond to max_pulse_sp, and 100 will correspond to min_pulse_sp.
 	 * @param polarity The polarity of the servo
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPolarity(String polarity) throws IOException{
+	public void setPolarity(String polarity) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_POLARITY, polarity);
 	}
 	
@@ -244,9 +243,9 @@ public class ServoMotor extends Device{
 	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
 	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
 	 * @return The current position_sp of the servo
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPosition_SP() throws IOException{
+	public int getPosition_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_POSITION_SP);
 		return Integer.parseInt(str);
 	}
@@ -256,9 +255,9 @@ public class ServoMotor extends Device{
 	 *  Units are percent. Valid values are -100 to 100 (-100% to 100%)
 	 *  where -100 corresponds to min_pulse_sp, 0 corresponds to mid_pulse_sp and 100 corresponds to max_pulse_sp.
 	 * @param position_sp The current position_sp of the servo
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition_SP(int position_sp) throws IOException{
+	public void setPosition_SP(int position_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_POSITION_SP, Integer.toString(position_sp));
 	}
 	
@@ -269,9 +268,9 @@ public class ServoMotor extends Device{
 	 *    in which case reading and writing will fail with -EOPNOTSUPP.
 	 *  In continuous rotation servos, this value will affect the rate_sp at which the speed ramps up or down.
 	 * @param rate_sp The rate_sp value
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setRate_SP(int rate_sp) throws IOException{
+	public void setRate_SP(int rate_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_RATE_SP, Integer.toString(rate_sp));
 	}
 	
@@ -283,18 +282,18 @@ public class ServoMotor extends Device{
 	 * </pre>
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list of state flags. String spaced-array
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStateViaString() throws IOException{
+	public String getStateViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_STATE);
 	}
 
 	/**
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list(String array) of state flags.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getState() throws IOException{
+	public String[] getState() throws EV3LibraryException{
 		String str = getStateViaString();
 		return Sysfs.separateSpace(str);
 	}

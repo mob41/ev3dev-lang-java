@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -56,9 +55,9 @@ public class UltrasonicSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a UltrasonicSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public UltrasonicSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public UltrasonicSensor(LegoPort port) throws EV3LibraryException, InvalidPortException, InvalidSensorException {
 		super(port);
 		String driverName = this.getDriverName();
 		if (!driverName.equals(DRIVER_NAME_EV3) && 
@@ -70,10 +69,10 @@ public class UltrasonicSensor extends Sensor {
 	/**
 	 * Measurement of the distance detected by the sensor, in centimeters.
 	 * @return The distance in centimeters
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public float getDistanceCentimeters() throws IOException, InvalidModeException{
+	public float getDistanceCentimeters() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_CM_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_CM_MODE);
@@ -88,10 +87,10 @@ public class UltrasonicSensor extends Sensor {
 	/**
 	 * Measurement of the distance detected by the sensor, in inches.
 	 * @return The distance in inches.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public float getDistanceInches() throws IOException, InvalidModeException{
+	public float getDistanceInches() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_IN_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_IN_MODE);
@@ -106,10 +105,10 @@ public class UltrasonicSensor extends Sensor {
 	/**
 	 * Value indicating whether another ultrasonic sensor could be heard nearby.
 	 * @return Boolean
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public boolean isOtherSensorPresent() throws IOException, InvalidModeException{
+	public boolean isOtherSensorPresent() throws EV3LibraryException, InvalidModeException{
 		if (!this.getMode().equals(SYSFS_OTHER_PRESENT_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_OTHER_PRESENT_MODE);

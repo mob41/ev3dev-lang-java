@@ -8,8 +8,7 @@ package org.ev3dev.hardware.motors;
 
 //-----------------------------------------------------------------------------
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
@@ -190,20 +189,18 @@ public class Motor extends Device{
 	/***
 	 * Creates a new motor object.
 	 * @param portField a LegoPort field (e.g. LegoPort.INPUT_1)
-	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
-	 * @throws IOException If the LegoPort specified goes wrong
+	 * @throws EV3LibraryException If the LegoPort specified goes wrong
 	 */
-	public Motor(int portField) throws InvalidPortException, IOException{
+	public Motor(int portField) throws EV3LibraryException{
 		this(new LegoPort(portField));
 	}
 	
 	/***
 	 * Creates a new motor object.
 	 * @param port LegoPort
-	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
-	 * @throws IOException If the LegoPort specified goes wrong
+	 * @throws EV3LibraryException If the LegoPort specified goes wrong
 	 */
-	public Motor(LegoPort port) throws InvalidPortException, IOException{
+	public Motor(LegoPort port) throws EV3LibraryException{
 		this(port, CLASS_NAME_PREFIX);
 	}
 	
@@ -211,10 +208,9 @@ public class Motor extends Device{
 	 * Creates a new motor object.
 	 * @param port LegoPort
 	 * @param class_name_prefix Specify a class name prefix (e.g. motor[N], which "motor" is the prefix)
-	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid or a tacho-motor.
-	 * @throws IOException If the LegoPort specified goes wrong
+	 * @throws EV3LibraryException If the LegoPort specified goes wrong
 	 */
-	public Motor(LegoPort port, String class_name_prefix) throws InvalidPortException, IOException{
+	public Motor(LegoPort port, String class_name_prefix) throws EV3LibraryException{
 		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
 		address = port.getAddress();
 		
@@ -232,9 +228,9 @@ public class Motor extends Device{
 	/***
 	 * Get the address of this motor.
 	 * @return LegoPort address described in String
-	 * @throws IOException If the motor doesn't exist or IO ERROR
+	 * @throws EV3LibraryException If the motor doesn't exist or IO ERROR
 	 */
-	public String getAddress() throws IOException{
+	public String getAddress() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -244,9 +240,9 @@ public class Motor extends Device{
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void sendCommand(String command) throws IOException{
+	public void sendCommand(String command) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -255,9 +251,9 @@ public class Motor extends Device{
 	
 	/***
 	 * Cause the motor to run until another command is sent
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runForever() throws IOException{
+	public void runForever() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -267,9 +263,9 @@ public class Motor extends Device{
 	/***
 	 * Run to an absolute position specified by <b>position_sp</b>
 	 *  and then stop using the command specified in <b>stop_command</b>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runToAbsPos() throws IOException{
+	public void runToAbsPos() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -281,9 +277,9 @@ public class Motor extends Device{
 	 * The new position will be <b>current position</b> + <b>position_sp</b>.
 	 * When the new position is reached, the motor will stop
 	 *  using the command specified by <b>stop_command</b>.
-	 * @throws IOException If I/O goes wrong.
+	 * @throws EV3LibraryException If I/O goes wrong.
 	 */
-	public void runToRelPos() throws IOException{
+	public void runToRelPos() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -294,9 +290,9 @@ public class Motor extends Device{
 	 * Run the motor for the amount of time specified in <b>time_sp</b>
 	 *  and then stop the motor using the command specified by
 	 *  <b>stop_command</b>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runTimed() throws IOException{
+	public void runTimed() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -307,9 +303,9 @@ public class Motor extends Device{
 	 * Run the motor at the duty cycle specified by <b>duty_cycle_sp</b>.
 	 *  Unlike other run commands, changing <b>duty_cycle_sp</b> while
 	 *   running will take effect immediately
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runDirect() throws IOException{
+	public void runDirect() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -318,9 +314,9 @@ public class Motor extends Device{
 	
 	/**
 	 * Stop any of the run commands before they are complete using the command specified by <b>stop_command</b>.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void stop() throws IOException{
+	public void stop() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -329,9 +325,9 @@ public class Motor extends Device{
 	
 	/**
 	 * Reset all of the motor parameter attributes to their default value. This will also have the effect of stopping the motor.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void reset() throws IOException{
+	public void reset() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -343,9 +339,9 @@ public class Motor extends Device{
 	 *  Possible values are run-forever, run-to-abs-pos, run-to-rel-pos,
 	 *   run-timed, run-direct, stop and reset. Not all commands may be supported.
 	 * @return A String Arrays with all the supported commands
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getCommands() throws IOException{
+	public String[] getCommands() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -360,9 +356,9 @@ public class Motor extends Device{
 	 *    counts. In the case of linear actuators, the units here will
 	 *     be counts per centimeter.
 	 * @return Counts per cm
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getCountPerRot() throws IOException{
+	public int getCountPerRot() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -375,9 +371,9 @@ public class Motor extends Device{
 	/**
 	 * Returns the name of the driver that provides this tacho motor device.
 	 * @return The name of the driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getDriverName() throws IOException{
+	public String getDriverName() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -388,9 +384,9 @@ public class Motor extends Device{
 	/**
 	 * Returns the current duty cycle of the motor. Units are percent. Values are -100 to 100.
 	 * @return Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDutyCycle() throws IOException{
+	public int getDutyCycle() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -403,9 +399,9 @@ public class Motor extends Device{
 	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
 	 *   This value is only used when speed_regulation is off.
 	 * @return Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDutyCycleSP() throws IOException{
+	public int getDutyCycleSP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -418,9 +414,9 @@ public class Motor extends Device{
 	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
 	 *   This value is only used when speed_regulation is off.
 	 * @param sp Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setDutyCycleSP(int sp) throws IOException{
+	public void setDutyCycleSP(int sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -433,9 +429,9 @@ public class Motor extends Device{
 	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise.
 	 *  With inversed polarity, a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
 	 * @return The polarity of the motor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getPolarity() throws IOException{
+	public String getPolarity() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -446,9 +442,9 @@ public class Motor extends Device{
 	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise. With inversed polarity,
 	 *  a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
 	 * @param polarity The polarity of the motor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPolarity(String polarity) throws IOException{
+	public void setPolarity(String polarity) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -459,9 +455,9 @@ public class Motor extends Device{
 	 * Returns the current position of the motor in pulses of the rotary encoder. When the motor rotates clockwise, the position will increase. Likewise,
 	 *  rotating counter-clockwise causes the position to decrease. Writing will set the position to that value.
 	 * @return The current position
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPosition() throws IOException{
+	public int getPosition() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -473,9 +469,9 @@ public class Motor extends Device{
 	 * Returns the current position of the motor in pulses of the rotary encoder. When the motor rotates clockwise, the position will increase.
 	 *  Likewise, rotating counter-clockwise causes the position to decrease. Writing will set the position to that value.
 	 * @param position The current position
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition(int position) throws IOException{
+	public void setPosition(int position) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -485,9 +481,9 @@ public class Motor extends Device{
 	/**
 	 * The proportional constant for the position PID.
 	 * @return The proportional constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPosition_P() throws IOException{
+	public int getPosition_P() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -498,9 +494,9 @@ public class Motor extends Device{
 	/**
 	 * The integral constant for the position PID.
 	 * @return The integral constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPosition_I() throws IOException{
+	public int getPosition_I() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -511,9 +507,9 @@ public class Motor extends Device{
 	/**
 	 * The derivative constant for the position PID.
 	 * @return The derivative constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPosition_D() throws IOException{
+	public int getPosition_D() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -524,9 +520,9 @@ public class Motor extends Device{
 	/**
 	 * The proportional constant for the position PID.
 	 * @param position_p The proportional constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition_P(int position_p) throws IOException{
+	public void setPosition_P(int position_p) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -536,9 +532,9 @@ public class Motor extends Device{
 	/**
 	 * The integral constant for the position PID.
 	 * @param position_i The integral constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition_I(int position_i) throws IOException{
+	public void setPosition_I(int position_i) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -548,9 +544,9 @@ public class Motor extends Device{
 	/**
 	 * The derivative constant for the position PID.
 	 * @param position_d The derivative constant for the position PID.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition_D(int position_d) throws IOException{
+	public void setPosition_D(int position_d) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -561,9 +557,9 @@ public class Motor extends Device{
 	 * Writing specifies the target position for the run-to-abs-pos and run-to-rel-pos commands. Reading returns the current value.
 	 *  Units are in tacho counts. You can use the value returned by counts_per_rot to convert tacho counts to/from rotations or degrees.
 	 * @return The target position
-	 * @throws IOException if I/O goes wrong
+	 * @throws EV3LibraryException if I/O goes wrong
 	 */
-	public int getPosition_SP() throws IOException{
+	public int getPosition_SP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -575,9 +571,9 @@ public class Motor extends Device{
 	 * Writing specifies the target position for the run-to-abs-pos and run-to-rel-pos commands. Reading returns the current value.
 	 *  Units are in tacho counts. You can use the value returned by counts_per_rot to convert tacho counts to/from rotations or degrees.
 	 * @param position_sp The target position
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPosition_SP(int position_sp) throws IOException{
+	public void setPosition_SP(int position_sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -588,9 +584,9 @@ public class Motor extends Device{
 	 * Returns the current motor speed in tacho counts per second. Note, this is not necessarily degrees
 	 *  (although it is for LEGO motors). Use the count_per_rot attribute to convert this value to RPM or deg/sec.
 	 * @return The current speed
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getSpeed() throws IOException{
+	public int getSpeed() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -602,9 +598,9 @@ public class Motor extends Device{
 	 * Writing sets the target speed in tacho counts per second used when speed_regulation is on.
 	 *  Reading returns the current value. Use the count_per_rot attribute to convert RPM or deg/sec to tacho counts per second.
 	 * @return The target speed
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getSpeed_SP() throws IOException{
+	public int getSpeed_SP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -616,9 +612,9 @@ public class Motor extends Device{
 	 * Writing sets the target speed in tacho counts per second used when speed_regulation is on. Reading returns the current value.
 	 *  Use the count_per_rot attribute to convert RPM or deg/sec to tacho counts per second.
 	 * @param speed_sp The target speed
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setSpeed_SP(int speed_sp) throws IOException{
+	public void setSpeed_SP(int speed_sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -632,9 +628,9 @@ public class Motor extends Device{
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
 	 * @return The ramp-up set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getRamp_Up_SP() throws IOException{
+	public int getRamp_Up_SP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -649,9 +645,9 @@ public class Motor extends Device{
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
 	 * @param ramp_up_sp The ramp-up set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
+	public void setRamp_Up_SP(int ramp_up_sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -664,9 +660,9 @@ public class Motor extends Device{
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @return The ramp-down set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getRamp_Down_SP() throws IOException{
+	public int getRamp_Down_SP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -680,9 +676,9 @@ public class Motor extends Device{
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @param ramp_down_sp The ramp-down set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
+	public void setRamp_Down_SP(int ramp_down_sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -697,9 +693,9 @@ public class Motor extends Device{
 	 * </pre>
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list of state flags. String spaced-array
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStateViaString() throws IOException{
+	public String getStateViaString() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -709,9 +705,9 @@ public class Motor extends Device{
 	/**
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list(String array) of state flags.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getState() throws IOException{
+	public String[] getState() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -723,9 +719,9 @@ public class Motor extends Device{
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
 	 * @return A stop command that listed using <code>getStopCommands()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStopAction() throws IOException{
+	public String getStopAction() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -736,9 +732,9 @@ public class Motor extends Device{
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
 	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setStopAction(String stop_action) throws IOException{
+	public void setStopAction(String stop_action) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}
@@ -760,9 +756,9 @@ public class Motor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStopCommandsViaString() throws IOException{
+	public String getStopCommandsViaString() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -779,9 +775,9 @@ public class Motor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getStopCommands() throws IOException{
+	public String[] getStopCommands() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return null;
 		}
@@ -792,9 +788,9 @@ public class Motor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @return Amount of time in ms
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getTime_SP() throws IOException{
+	public int getTime_SP() throws EV3LibraryException{
 		if (!this.isConnected()){
 			return -1;
 		}
@@ -805,9 +801,9 @@ public class Motor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @param time_sp Amount of time in ms
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setTime_SP(int time_sp) throws IOException{
+	public void setTime_SP(int time_sp) throws EV3LibraryException{
 		if (!this.isConnected()){
 			return;
 		}

@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.motors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidMotorException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
@@ -116,12 +115,11 @@ public class DCMotor extends Device{
 	/***
 	 * Creates a new DC motor object.
 	 * @param port LegoPort
-	 * @throws InvalidPortException If the LegoPort isn't a OUTPUT, invalid.
-	 * @throws IOException If the LegoPort specified goes wrong
-	 * @throws InvalidMotorException If the specified port wasn't exist a ServoMotor
+	 * @throws EV3LibraryException If the LegoPort specified goes wrong
 	 */
-	public DCMotor(LegoPort port) throws InvalidPortException, IOException, InvalidMotorException{
+	public DCMotor(LegoPort port) throws EV3LibraryException{
 		super(port, CLASS_NAME, CLASS_NAME_PREFIX);
+		
 		address = port.getAddress();
 		
 		//Verify is the LegoPort connecting a motor / is a output
@@ -135,26 +133,26 @@ public class DCMotor extends Device{
 	/***
 	 * Get the address of this motor.
 	 * @return LegoPort address described in String
-	 * @throws IOException If the motor doesn't exist or IO ERROR
+	 * @throws EV3LibraryException If the motor doesn't exist or IO ERROR
 	 */
-	public String getAddress() throws IOException{
+	public String getAddress() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_ADDRESS);
 	}
 	
 	/***
 	 * Generic method to send commands to the motor controller.
 	 * @param command Command that suits for the motor driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void sendCommand(String command) throws IOException{
+	public void sendCommand(String command) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_COMMAND, command);
 	}
 	
 	/***
 	 * Cause the motor to run until another command is sent
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runForever() throws IOException{
+	public void runForever() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_RUN_FOREVER);
 	}
 	
@@ -162,9 +160,9 @@ public class DCMotor extends Device{
 	 * Run the motor for the amount of time specified in <b>time_sp</b>
 	 *  and then stop the motor using the command specified by
 	 *  <b>stop_command</b>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runTimed() throws IOException{
+	public void runTimed() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_RUN_TIMED);
 	}
 	
@@ -172,17 +170,17 @@ public class DCMotor extends Device{
 	 * Runs the motor at the duty cycle specified by duty_cycle_sp.
 	 *  Unlike other run commands, changing duty_cycle_sp while running
 	 *   will take effect immediately.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void runDirect() throws IOException{
+	public void runDirect() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_RUN_DIRECT);
 	}
 	
 	/**
 	 * Stop any of the run commands before they are complete using the command specified by <b>stop_command</b>.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void stop() throws IOException{
+	public void stop() throws EV3LibraryException{
 		sendCommand(SYSFS_COMMAND_STOP);
 	}
 	
@@ -191,9 +189,9 @@ public class DCMotor extends Device{
 	 *  Possible values are run-forever, run-to-abs-pos, run-to-rel-pos,
 	 *   run-timed, run-direct, stop and reset. Not all commands may be supported.
 	 * @return A String Arrays with all the supported commands
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getCommands() throws IOException{
+	public String[] getCommands() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_COMMANDS);
 		return Sysfs.separateSpace(str);
 	}
@@ -201,18 +199,18 @@ public class DCMotor extends Device{
 	/**
 	 * Returns the name of the driver that provides this tacho motor device.
 	 * @return The name of the driver
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getDriverName() throws IOException{
+	public String getDriverName() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_DRIVER_NAME);
 	}
 	
 	/**
 	 * Returns the current duty cycle of the motor. Units are percent. Values are -100 to 100.
 	 * @return Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDutyCycle() throws IOException{
+	public int getDutyCycle() throws EV3LibraryException{
 		String dutycycle = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE);
 		return Integer.parseInt(dutycycle);
 	}
@@ -222,9 +220,9 @@ public class DCMotor extends Device{
 	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
 	 *   This value is only used when speed_regulation is off.
 	 * @return Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDutyCycleSP() throws IOException{
+	public int getDutyCycleSP() throws EV3LibraryException{
 		String dutycyclesp = this.getAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP);
 		return Integer.parseInt(dutycyclesp);
 	}
@@ -234,9 +232,9 @@ public class DCMotor extends Device{
 	 *  Valid values are -100 to 100. A negative value causes the motor to rotate in reverse.
 	 *   This value is only used when speed_regulation is off.
 	 * @param sp Percentage
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setDutyCycleSP(int sp) throws IOException{
+	public void setDutyCycleSP(int sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_DUTY_CYCLE_SP, Integer.toString(sp));
 	}
 	
@@ -244,9 +242,9 @@ public class DCMotor extends Device{
 	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise.
 	 *  With inversed polarity, a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
 	 * @return The polarity of the motor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getPolarity() throws IOException{
+	public String getPolarity() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_POLARITY);
 	}
 	
@@ -254,9 +252,9 @@ public class DCMotor extends Device{
 	 * Sets the polarity of the motor. With normal polarity, a positive duty cycle will cause the motor to rotate clockwise. With inversed polarity,
 	 *  a positive duty cycle will cause the motor to rotate counter-clockwise. Valid values are normal and inversed.
 	 * @param polarity The polarity of the motor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPolarity(String polarity) throws IOException{
+	public void setPolarity(String polarity) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_POLARITY, polarity);
 	}
 	
@@ -267,9 +265,9 @@ public class DCMotor extends Device{
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
 	 * @return The ramp-up set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getRamp_Up_SP() throws IOException{
+	public int getRamp_Up_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_UP_SP);
 		return Integer.parseInt(str);
 	}
@@ -281,9 +279,9 @@ public class DCMotor extends Device{
 	 *    limited by duty_cycle_sp or speed regulation,
 	 *  the actual ramp time duration will be less than the setpoint.
 	 * @param ramp_up_sp The ramp-up set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setRamp_Up_SP(int ramp_up_sp) throws IOException{
+	public void setRamp_Up_SP(int ramp_up_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_RAMP_UP_SP, Integer.toString(ramp_up_sp));
 	}
 	
@@ -293,9 +291,9 @@ public class DCMotor extends Device{
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @return The ramp-down set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getRamp_Down_SP() throws IOException{
+	public int getRamp_Down_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP);
 		return Integer.parseInt(str);
 	}
@@ -306,9 +304,9 @@ public class DCMotor extends Device{
 	 *   to 0 over the span of this setpoint when stopping the motor. If the starting
 	 *  duty cycle is less than 100%, the ramp time duration will be less than the full span of the setpoint.
 	 * @param ramp_down_sp The ramp-down set-point
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setRamp_Down_SP(int ramp_down_sp) throws IOException{
+	public void setRamp_Down_SP(int ramp_down_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_RAMP_DOWN_SP, Integer.toString(ramp_down_sp));
 	}
 	
@@ -320,18 +318,18 @@ public class DCMotor extends Device{
 	 * </pre>
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list of state flags. String spaced-array
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStateViaString() throws IOException{
+	public String getStateViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_STATE);
 	}
 	
 	/**
 	 * Reading returns a list of state flags. Possible flags are running, ramping holding and stalled.
 	 * @return A list(String array) of state flags.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getState() throws IOException{
+	public String[] getState() throws EV3LibraryException{
 		String str = getStateViaString();
 		return Sysfs.separateSpace(str);
 	}
@@ -340,9 +338,9 @@ public class DCMotor extends Device{
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
 	 * @return A stop command that listed using <code>getStopActions()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStopAction() throws IOException{
+	public String getStopAction() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTION);
 	}
 	
@@ -350,9 +348,9 @@ public class DCMotor extends Device{
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
 	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setStopAction(String stop_command) throws IOException{
+	public void setStopAction(String stop_command) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_STOP_ACTION, stop_command);
 	}
 	
@@ -371,9 +369,9 @@ public class DCMotor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStopActionsViaString() throws IOException{
+	public String getStopActionsViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_STOP_ACTIONS);
 	}
 	
@@ -387,9 +385,9 @@ public class DCMotor extends Device{
 	 *       the motor. Instead it actively try to hold the motor at the current position.
 	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getStopActions() throws IOException{
+	public String[] getStopActions() throws EV3LibraryException{
 		String str = getStopActionsViaString();
 		return Sysfs.separateSpace(str);
 	}
@@ -397,9 +395,9 @@ public class DCMotor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @return Amount of time in ms
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getTime_SP() throws IOException{
+	public int getTime_SP() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_TIME_SP);
 		return Integer.parseInt(str);
 	}
@@ -407,9 +405,9 @@ public class DCMotor extends Device{
 	/**
 	 * Writing specifies the amount of time the motor will run when using the run-timed command. Reading returns the current value. Units are in milliseconds.
 	 * @param time_sp Amount of time in ms
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setTime_SP(int time_sp) throws IOException{
+	public void setTime_SP(int time_sp) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 }

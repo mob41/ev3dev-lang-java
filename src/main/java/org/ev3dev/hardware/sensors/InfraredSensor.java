@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -36,9 +35,9 @@ public class InfraredSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a InfraredSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public InfraredSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public InfraredSensor(LegoPort port) throws EV3LibraryException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a InfraredSensor instance if the port isn't connected a infrared sensor!");
@@ -48,10 +47,10 @@ public class InfraredSensor extends Sensor {
 	/**
 	 * A measurement of the distance between the sensor and the remote, as a percentage. 100% is approximately 70cm/27in.
 	 * @return A measurement of the distance
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public int getProximity() throws InvalidModeException, IOException{
+	public int getProximity() throws InvalidModeException, EV3LibraryException{
 		if (!this.getMode().equals(SYSFS_PROXIMITY_REQUIRED_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_PROXIMITY_REQUIRED_MODE);

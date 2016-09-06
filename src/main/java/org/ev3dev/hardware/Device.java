@@ -2,6 +2,8 @@ package org.ev3dev.hardware;
 
 import java.io.IOException;
 
+import org.ev3dev.exception.EV3LibraryException;
+
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Sysfs;
 
@@ -45,18 +47,14 @@ public abstract class Device {
 	 * @param port A LegoPort delared before.
 	 * @param className Sysfs class name
 	 * @param classNamePrefix The filename prefix inside the "Sysfs class" (e.g. motor[n], which "motor" is the prefix)
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public Device(LegoPort port, String className, String classNamePrefix) throws IOException{
+	public Device(LegoPort port, String className, String classNamePrefix) throws EV3LibraryException{
 		this.port = port;
 		this.className = className;
 		this.classNamePrefix = classNamePrefix;
-		try {
-			address = port.getAddress();
-		} catch (IOException e){
-			System.err.println(className + "-" + this.hashCode() + ": The lego-port system class wasn't found.");
-			throw new IOException("Cannot access to the target address. Are you using a EV3?", e);
-		}
+		
+		address = port.getAddress();
 		
 		connected = checkIsConnected();
 		if (!connected){
@@ -71,9 +69,9 @@ public abstract class Device {
 		
 	}
 	
-	public abstract String getAddress() throws IOException;
+	public abstract String getAddress() throws EV3LibraryException;
 	
-	public abstract String getDriverName() throws IOException;
+	public abstract String getDriverName() throws EV3LibraryException;
 	
 	/**
 	 * Set the Sysfs class name (location) of this Device
@@ -136,15 +134,14 @@ public abstract class Device {
 	 * @param property The property name
 	 * @return The value of the property
 	 */
-	public final String getAttribute(String property){
+	public final String getAttribute(String property) throws EV3LibraryException{
 		try {
 			String str = Sysfs.getAttribute(className, classFullName, property);
 			connected = true;
 			return str;
 		} catch (IOException e){
-			e.printStackTrace();
 			connected = false;
-			return null;
+			throw new EV3LibraryException("Get device attribute failed: " + property, e);
 		}
 	}
 	
@@ -152,17 +149,15 @@ public abstract class Device {
 	 * Writes the property specified.
 	 * @param property The property name
 	 * @param new_value The new value of the property
-	 * @return Boolean whether the attribute was successfully written
 	 */
-	public final boolean setAttribute(String property, String new_value){
+	public final void setAttribute(String property, String new_value) throws EV3LibraryException{
 		try {
 			Sysfs.setAttribute(className, classFullName, property, new_value);
 			connected = true;
 		} catch (IOException e){
-			e.printStackTrace();
 			connected = false;
+			throw new EV3LibraryException("Set device attribute failed: " + property, e);
 		}
-		return connected;
 	}
 	
 	private boolean checkIsConnected(){

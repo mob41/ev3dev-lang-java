@@ -2,6 +2,7 @@ package org.ev3dev.hardware.ports;
 
 import java.io.IOException;
 
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.io.Sysfs;
 
@@ -91,30 +92,45 @@ public class LegoPort{
 	/**
 	 * Returns the name of the port. See individual driver documentation for the name that will be returned.
 	 * @return Address (e.g. in1, outA)
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getAddress() throws IOException{
-		String address = Sysfs.getAttribute(CLASS_NAME, "port" + port, "address");
+	public String getAddress() throws EV3LibraryException{
+		String address;
+		try {
+			address = Sysfs.getAttribute(CLASS_NAME, "port" + port, "address");
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get address attribute failed", e);
+		}
 		return address;
 	}
 	
 	/**
 	 * Returns the name of the driver that loaded this device. You can find the complete list of drivers in the [list of port drivers].
 	 * @return Driver Name of this port
-	 * @throws IOException if I/O goes wrong
+	 * @throws EV3LibraryException if I/O goes wrong
 	 */
-	public String getDriverName() throws IOException{
-		String drivername = Sysfs.getAttribute(CLASS_NAME, "port" + port, "driver_name");
+	public String getDriverName() throws EV3LibraryException{
+		String drivername;
+		try {
+			drivername = Sysfs.getAttribute(CLASS_NAME, "port" + port, "driver_name");
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get driver name attribute failed", e);
+		}
 		return drivername;
 	}
 	
 	/**
 	 * Returns a list of the available modes of the port.
 	 * @return A String Array with a list of available modes
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getModes() throws IOException{
-		String modesstr = Sysfs.getAttribute(CLASS_NAME, "port" + port, "modes");
+	public String[] getModes() throws EV3LibraryException{
+		String modesstr;
+		try {
+			modesstr = Sysfs.getAttribute(CLASS_NAME, "port" + port, "modes");
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get modes attribute failed", e);
+		}
 		return Sysfs.separateSpace(modesstr);
 	}
 	
@@ -124,10 +140,15 @@ public class LegoPort{
 	 *   the port will be removed new ones loaded,
 	 *  however this this will depend on the individual driver implementing this class.
 	 * @return The currently selected mode
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getMode() throws IOException{
-		String mode = Sysfs.getAttribute(CLASS_NAME, "port" + port, "mode");
+	public String getMode() throws EV3LibraryException{
+		String mode;
+		try {
+			mode = Sysfs.getAttribute(CLASS_NAME, "port" + port, "mode");
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get mode attribute failed", e);
+		}
 		return mode;
 	}
 	
@@ -137,10 +158,14 @@ public class LegoPort{
 	 *   the port will be removed new ones loaded,
 	 *  however this this will depend on the individual driver implementing this class.
 	 * @param mode A available mode listed using <code>getModes()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setMode(String mode) throws IOException{
-		Sysfs.setAttribute(CLASS_NAME, "port" + port, "mode", mode);
+	public void setMode(String mode) throws EV3LibraryException{
+		try {
+			Sysfs.setAttribute(CLASS_NAME, "port" + port, "mode", mode);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Set mode attribute failed", e);
+		}
 	}
 	
 	/**
@@ -148,10 +173,14 @@ public class LegoPort{
 	 *  attached to this port. For example, since NXT/Analog sensors cannot be auto-detected, you must use this attribute to
 	 *   load the correct driver. Returns -EOPNOTSUPP if setting a device is not supported.
 	 * @param driver A generic driver name
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setDevice(String driver) throws IOException{
-		Sysfs.setAttribute(CLASS_NAME, "port" + port, "set_device", driver);
+	public void setDevice(String driver) throws EV3LibraryException{
+		try {
+			Sysfs.setAttribute(CLASS_NAME, "port" + port, "set_device", driver);
+		} catch (IOException e) {
+			throw new EV3LibraryException("Set device attribute failed", e);
+		}
 	}
 	
 	/**
@@ -159,10 +188,15 @@ public class LegoPort{
 	 *  auto mode additional values may be returned, such as no-device or error.
 	 *  See individual port driver documentation for the full list of possible values.
 	 * @return The same as mode or some errors like: no-device or error.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getStatus() throws IOException{
-		String status = Sysfs.getAttribute(CLASS_NAME, "port" + port, "status");
+	public String getStatus() throws EV3LibraryException{
+		String status;
+		try {
+			status = Sysfs.getAttribute(CLASS_NAME, "port" + port, "status");
+		} catch (IOException e) {
+			throw new EV3LibraryException("Get status attribute failed", e);
+		}
 		return status;
 	}
 }

@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
 import org.ev3dev.hardware.ports.LegoPort;
@@ -33,9 +32,9 @@ public class I2CSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a I2CSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public I2CSensor(LegoPort port) throws InvalidPortException, InvalidSensorException, IOException {
+	public I2CSensor(LegoPort port) throws InvalidPortException, InvalidSensorException, EV3LibraryException {
 		super(port);
 		if (!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("The specified port is not a I2C sensor.");
@@ -45,9 +44,9 @@ public class I2CSensor extends Sensor {
 	/**
 	 * Returns the firmware version of the sensor if available. Currently only I2C/NXT sensors support this.
 	 * @return The firmware version
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getFirmwareVersion() throws IOException{
+	public String getFirmwareVersion() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_FIRMWARE_VERSION);
 	}
 	
@@ -56,9 +55,9 @@ public class I2CSensor extends Sensor {
 	 * Minimum value is hard coded as 50 msec. Returns -EOPNOTSUPP if changing polling is not supported.
 	 *  Currently only I2C/NXT sensors support changing the polling period.
 	 * @return The polling period in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getPollMs() throws IOException{
+	public int getPollMs() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_POLL_MS);
 		return Integer.parseInt(str);
 	}
@@ -68,9 +67,9 @@ public class I2CSensor extends Sensor {
 	 * Minimum value is hard coded as 50 msec. Returns -EOPNOTSUPP if changing polling is not supported.
 	 *  Currently only I2C/NXT sensors support changing the polling period.
 	 * @param ms The polling period in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setPollMs(int ms) throws IOException{
+	public void setPollMs(int ms) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_POLL_MS, Integer.toString(ms));
 	}
 }

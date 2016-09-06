@@ -1,7 +1,6 @@
 package org.ev3dev.hardware.sensors;
 
-import java.io.IOException;
-
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidModeException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.exception.InvalidSensorException;
@@ -46,9 +45,9 @@ public class SoundSensor extends Sensor {
 	 * @param port LegoPort
 	 * @throws InvalidPortException If the specified port wasn't valid
 	 * @throws InvalidSensorException If the specified sensor wasn't a SoundSensor
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public SoundSensor(LegoPort port) throws IOException, InvalidPortException, InvalidSensorException {
+	public SoundSensor(LegoPort port) throws EV3LibraryException, InvalidPortException, InvalidSensorException {
 		super(port);
 		if(!this.getDriverName().equals(DRIVER_NAME)){
 			throw new InvalidSensorException("Can't create a SoundSensor instance if the port isn't connected to a sound sensor!");
@@ -58,10 +57,10 @@ public class SoundSensor extends Sensor {
 	/**
 	 * A measurement of the measured sound pressure level, as a percent. Uses a flat weighting.
 	 * @return The measured sound pressure level
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public float getSoundPressure() throws InvalidModeException, IOException{
+	public float getSoundPressure() throws InvalidModeException, EV3LibraryException{
 		if (!this.getMode().equals(SYSFS_SOUND_PRESSURE_REQUIRED_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_SOUND_PRESSURE_REQUIRED_MODE);
@@ -76,10 +75,10 @@ public class SoundSensor extends Sensor {
 	/**
 	 * A measurement of the measured sound pressure level, as a percent. Uses A-weighting, which focuses on levels up to 55 dB.
 	 * @return The measured sound pressure level, A-weighting.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 * @throws InvalidModeException The mode selected wasn't valid, or <b>Auto Switch Mode</b> has disabled.
 	 */
-	public float getSoundPressureLow() throws InvalidModeException, IOException{
+	public float getSoundPressureLow() throws InvalidModeException, EV3LibraryException{
 		if (!this.getMode().equals(SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE)){
 			if (autoSwitchMode){
 				this.setMode(SYSFS_SOUND_PRESSURE_LOW_REQUIRED_MODE);

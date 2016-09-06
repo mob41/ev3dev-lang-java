@@ -1,8 +1,8 @@
 package org.ev3dev.hardware;
 
 import java.io.File;
-import java.io.IOException;
 
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidLEDException;
 import org.ev3dev.io.Sysfs;
 
@@ -108,9 +108,9 @@ public class LED extends Device{
 	/**
 	 * Returns the maximum allowable brightness value.
 	 * @return The maximum allowable brightness value.
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getMaxBrightness() throws IOException{
+	public int getMaxBrightness() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_MAX_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
@@ -118,9 +118,9 @@ public class LED extends Device{
 	/**
 	 * Gets the brightness level. Possible values are from 0 to max_brightness.
 	 * @return The brightness level
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getBrightness() throws IOException{
+	public int getBrightness() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_BRIGHTNESS);
 		return Integer.parseInt(str);
 	}
@@ -128,9 +128,9 @@ public class LED extends Device{
 	/**
 	 * Sets the brightness level. Possible values are from 0 to max_brightness.
 	 * @param brightness The brightness level
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setBrightness(int brightness) throws IOException{
+	public void setBrightness(int brightness) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_BRIGHTNESS, Integer.toString(brightness));
 	}
 	
@@ -142,18 +142,18 @@ public class LED extends Device{
 	 * </pre>
 	 * Returns a list of available triggers.
 	 * @return A spaced-array String
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getTriggersViaString() throws IOException{
+	public String getTriggersViaString() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_TRIGGER);
 	}
 	
 	/**
 	 * Returns a list of available triggers.
 	 * @return A String Array with a list of available triggers
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String[] getTriggers() throws IOException{
+	public String[] getTriggers() throws EV3LibraryException{
 		String str = getTriggersViaString();
 		return Sysfs.separateSpace(str);
 	}
@@ -169,9 +169,9 @@ public class LED extends Device{
 	 *     change the brightness value of a LED independently of the timer trigger. However, if you set the brightness value
 	 *      to 0 it will also disable the timer trigger.
 	 * @return The LED trigger
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public String getTrigger() throws IOException{
+	public String getTrigger() throws EV3LibraryException{
 		return this.getAttribute(SYSFS_PROPERTY_TRIGGER);
 	}
 	
@@ -186,9 +186,9 @@ public class LED extends Device{
 	 *     change the brightness value of a LED independently of the timer trigger. However, if you set the brightness value
 	 *      to 0 it will also disable the timer trigger.
 	 * @param selector The LED trigger that listed using <code>getTriggers()</code>
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setTrigger(String selector) throws IOException{
+	public void setTrigger(String selector) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_TRIGGER, selector);
 	}
 	
@@ -196,9 +196,9 @@ public class LED extends Device{
 	 * The timer trigger will periodically change the LED brightness between 0 and the current brightness setting.
 	 *  The on time can be specified via delay_on attribute in milliseconds.
 	 * @return The Delay_On Value in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDelay_On() throws IOException{
+	public int getDelay_On() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_DELAY_ON);
 		return Integer.parseInt(str);
 	}
@@ -207,9 +207,9 @@ public class LED extends Device{
 	 * The timer trigger will periodically change the LED brightness between 0 and the current brightness setting.
 	 *  The off time can be specified via delay_off attribute in milliseconds.
 	 * @return The Delay_Off Value in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public int getDelay_Off() throws IOException{
+	public int getDelay_Off() throws EV3LibraryException{
 		String str = this.getAttribute(SYSFS_PROPERTY_DELAY_OFF);
 		return Integer.parseInt(str);
 	}
@@ -218,9 +218,9 @@ public class LED extends Device{
 	 * The timer trigger will periodically change the LED brightness between 0 and the current brightness setting.
 	 *  The on time can be specified via delay_on attribute in milliseconds.
 	 * @param delay_on The Delay_On Value in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setDelay_On(int delay_on) throws IOException{
+	public void setDelay_On(int delay_on) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_DELAY_ON, Integer.toString(delay_on));
 	}
 	
@@ -228,19 +228,19 @@ public class LED extends Device{
 	 * The timer trigger will periodically change the LED brightness between 0 and the current brightness setting.
 	 *  The off time can be specified via delay_off attribute in milliseconds.
 	 * @param delay_off The Delay_Off Value in milliseconds
-	 * @throws IOException If I/O goes wrong
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public void setDelay_Off(int delay_off) throws IOException{
+	public void setDelay_Off(int delay_off) throws EV3LibraryException{
 		this.setAttribute(SYSFS_PROPERTY_DELAY_OFF, Integer.toString(delay_off));
 	}
 
 	@Override
-	public String getAddress() throws IOException {
+	public String getAddress() throws EV3LibraryException {
 		return null;
 	}
 
 	@Override
-	public String getDriverName() throws IOException {
+	public String getDriverName() throws EV3LibraryException {
 		return null;
 	}
 }
