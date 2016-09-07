@@ -731,7 +731,7 @@ public class Motor extends Device{
 	/**
 	 * Reading returns the current stop command. Writing sets the stop command. The value determines the motors behavior when command is set to stop.
 	 *  Also, it determines the motors behavior when a run command completes. See stop_commands for a list of possible values.
-	 * @param stop_command A stop command that listed using <code>getStopCommands()</code>
+	 * @param stop_action A stop command that listed using <code>getStopCommands()</code>
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public void setStopAction(String stop_action) throws EV3LibraryException{

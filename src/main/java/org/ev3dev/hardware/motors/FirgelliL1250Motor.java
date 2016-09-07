@@ -67,7 +67,7 @@ public class FirgelliL1250Motor extends Motor {
 	 *  to calculate the maximum travel distance of the motor. 
 	 *  (linear motors only)
 	 * @return Full Travel Count
-	 * @throws EV3LibraryException
+	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public int getFullTravelCount() throws EV3LibraryException{
 		if (!this.isConnected()){

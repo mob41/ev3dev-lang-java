@@ -9,7 +9,7 @@ import org.ev3dev.hardware.sensors.I2CSensor;
  * @author Anthony
  *
  */
-public class PixyCmucam5 extends I2CSensor {
+public class PixyCmucam5Sensor extends I2CSensor {
 	
 	/**
 	 * <code>ALL</code> Mode - All
@@ -136,7 +136,7 @@ public class PixyCmucam5 extends I2CSensor {
 	 * @param port The LegoPort instance
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
-	public PixyCmucam5(LegoPort port) throws EV3LibraryException {
+	public PixyCmucam5Sensor(LegoPort port) throws EV3LibraryException {
 		super(port);
 	}
 	
@@ -171,6 +171,7 @@ public class PixyCmucam5 extends I2CSensor {
 	 * Set mode to <code>SIG[N]</code>, where <code>[N]</code> is the integer parameter specified<br>
 	 * <br>
 	 * And returns a <code>ModeSig</code> instance for communication.
+	 * @param sigcount The value [N] of mode <code>SIG[N]</code>. (e.g. <code>SIG1</code> specify 1)
 	 * @return ModeSig instance
 	 */
 	public ModeSig modeSig(int sigcount){

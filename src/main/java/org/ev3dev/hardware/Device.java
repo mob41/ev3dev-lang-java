@@ -83,7 +83,7 @@ public abstract class Device {
 	
 	/**
 	 * Set the Sysfs class full name (including prefix if any)
-	 * @param className The Sysfs class name located in <b>/sys/class/[className]</b>
+	 * @param classFullName The Sysfs class name located in <b>/sys/class/[className]</b>
 	 */
 	public void setClassFullname(String classFullName){
 		this.classFullName = classFullName;
