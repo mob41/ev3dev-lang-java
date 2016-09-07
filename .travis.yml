@@ -2,39 +2,8 @@ language: java
 
 install: true
 
-before_deploy:
-- echo - - - - - - - - - - - - - - - - - - -
-- echo   M a v e n   P a c k a g i n g
-- echo - - - - - - - - - - - - - - - - - - -
-- mvn package
-- echo - - - - - - - - - - - - - - - - -
-- echo   E n d   M a v e n   P k g
-- echo - - - - - - - - - - - - - - - - -
-- ls -R
-- echo =====================================
-- echo  Automatic development preparation
-- echo =====================================
-- echo This state:.$TRAVIS_BRANCH
-- echo Project Version:.$projectversion
-- git config --global user.email "builds@travis-ci.com"
-- git config --global user.name "Travis CI"
-- export GIT_TAG=$projectversion-$TRAVIS_BRANCH-B$TRAVIS_BUILD_NUMBER
-- git tag $GIT_TAG -a -m "Generated tag from TravisCI for $TRAVIS_BRANCH build $TRAVIS_BUILD_NUMBER"
-- git push -q https://$GITPERM@github.com/mob41/ev3dev-lang-java --tags
-- echo =====================================
-- echo  Deploy Preparation done.
-- echo =====================================
-
-deploy:
-  - provider: releases
-    skip_cleanup: true
-    api_key: $GITPERM
-    file:
-        - target/ev3dev-lang-java-$projectversion.jar
-        - target/ev3dev-lang-java-$projectversion-jar-with-dependencies.jar
-    on:
-        tags: false
-        branch: master
+after_success:
+- 
 
 branches:
   only:
