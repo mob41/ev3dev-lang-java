@@ -16,8 +16,6 @@ $(document).ready(function(){
 	if (verJson != null){
 		putLinks();
 		
-	} else {
-		writeError();
 	}
 });
 
@@ -30,6 +28,7 @@ function getVersions(){
 		dataType: "json",
 		error: function(){
 			verJson = null;
+			writeError("Cannot relieve \"versions.json\" from directory")
 		},
 		success: function(data){
 			verJson = data;
@@ -68,7 +67,7 @@ function writeError(reason){
 		content += '				DocGen failed to generate the document, Reason: <code>' + reasonstr + '</code>';
 		content += '			</div>';
 		content += '			<div class="panel-footer">';
-		content += '				<p>Contact the document author for more details.</p>';
+		content += '				Contact the document author for more details.';
 		content += '			</div>';
 		content += '		</div>';
 		content += '	</div>';
