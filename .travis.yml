@@ -7,7 +7,7 @@ after_success:
 - mvn deploy --settings settings.xml
 
 branches:
-  only:
+  except:
     - master
     - develop
 
