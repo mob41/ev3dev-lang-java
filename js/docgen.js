@@ -65,8 +65,9 @@ function writeError(reason){
 		content += '				<i class="fa fa-excalmation-circle"></i> DocGen: Error when generating document';
 		content += '			</div>';
 		content += '			<div class="panel-body">';
-		content += '				<p>DocGen failed to generate the document, Reason:</p>';
-		content += '				<code>' + reasonstr + '</code>';
+		content += '				DocGen failed to generate the document, Reason: <code>' + reasonstr + '</code>';
+		content += '			</div>';
+		content += '			<div class="panel-footer">';
 		content += '				<p>Contact the document author for more details.</p>';
 		content += '			</div>';
 		content += '		</div>';
