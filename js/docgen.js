@@ -46,7 +46,6 @@ function putLinks(){
 }
 
 function writeError(reason){
-	alert("DocGen Failed: Error when using \"versions.json\" as versions definition.\n\n" + "The document is currently corrupted. Contact the document author for this problem.");
 	var node = $("#docgen-error");
 	
 	var reasonstr = "Unknown error";
@@ -61,7 +60,7 @@ function writeError(reason){
 		content += '	<div class="col-lg-12">';
 		content += '		<div class="panel panel-danger">';
 		content += '			<div class="panel-heading">';
-		content += '				<i class="fa fa-excalmation-circle"></i> DocGen: Error when generating document';
+		content += '				<i class="fa fa-exclamation-circle"></i> DocGen: Error when generating document';
 		content += '			</div>';
 		content += '			<div class="panel-body">';
 		content += '				DocGen failed to generate the document, Reason: <code>' + reasonstr + '</code>';
