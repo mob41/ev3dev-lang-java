@@ -60,7 +60,7 @@ function writeError(reason){
 		var content = "";
 		content += '<div class="row">';
 		content += '	<div class="col-lg-12">';
-		content += '		<div class="panel panel-danger>';
+		content += '		<div class="panel panel-danger">';
 		content += '			<div class="panel-heading">';
 		content += '				<i class="fa fa-excalmation-circle"></i> DocGen: Error when generating document';
 		content += '			</div>';
