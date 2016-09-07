@@ -15,8 +15,9 @@ $(document).ready(function(){
 	
 	if (verJson != null){
 		putLinks();
+		
 	} else {
-		alert("DocGen Failed: Cannot find \"versions.json\" as versions definition.\n\n" + "The document is currently corrupted. Contact the document author for this problem.");
+		writeError();
 	}
 });
 
@@ -43,4 +44,34 @@ function putLinks(){
 	content += "";
 	
 	$("#docgen-nav").append(content);
+}
+
+function writeError(reason){
+	alert("DocGen Failed: Error when using \"versions.json\" as versions definition.\n\n" + "The document is currently corrupted. Contact the document author for this problem.");
+	var node = $("#docgen-error");
+	
+	var reasonstr = "Unknown error";
+	
+	if (reason != null){
+		reasonstr = reason;
+	}
+	
+	if (node != null){
+		var content = "";
+		content += '<div class="row">';
+		content += '	<div class="col-lg-12">';
+		content += '		<div class="panel panel-danger>';
+		content += '			<div class="panel-heading">';
+		content += '				<i class="fa fa-excalmation-circle"></i> DocGen: Error when generating document';
+		content += '			</div>';
+		content += '			<div class="panel-body">';
+		content += '				<p>DocGen failed to generate the document, Reason:</p>';
+		content += '				<code>' + reasonstr + '</code>';
+		content += '				<p>Contact the document author for more details.</p>';
+		content += '			</div>';
+		content += '		</div>';
+		content += '	</div>';
+		content += '</div>';
+		node.append(content);
+	}
 }
