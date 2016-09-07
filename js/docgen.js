@@ -46,7 +46,7 @@ function putLinks(){
 }
 
 function writeError(reason){
-	var node = $("#docgen-error");
+	var node = $("#docgen-status");
 	
 	var reasonstr = "Unknown error";
 	
@@ -71,6 +71,6 @@ function writeError(reason){
 		content += '		</div>';
 		content += '	</div>';
 		content += '</div>';
-		node.append(content);
+		node.html(content);
 	}
 }
