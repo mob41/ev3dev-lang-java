@@ -5,10 +5,16 @@ install: true
 before_install:
 - sudo apt-get update
 - sudo apt-get install gnupg gnupg2
+- if [[ "$TRAVIS_BRANCH" = 'master' ] ||  [ "$TRAVIS_BRANCH" = 'develop' ]] && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
+    openssl aes-256-cbc -K $encrypted_040459e821a3_key -iv $encrypted_040459e821a3_iv -in .travis/codesigning.asc.enc -out .travis/codesigning.asc -d
+    gpg --fast-import .travis/codesigning.asc
+  fi
 
 after_success:
 - ls
-- mvn deploy --settings settings.xml
+- if [[ "$TRAVIS_BRANCH" = 'master' ] ||  [ "$TRAVIS_BRANCH" = 'develop' ]] && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
+    mvn deploy --settings settings.xml
+  fi
 
 branches:
   only:
