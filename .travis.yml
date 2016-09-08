@@ -10,9 +10,8 @@ before_install:
 
 after_success:
 - ls
-- if ( [ "$TRAVIS_BRANCH" = 'master' ] ||  [ "$TRAVIS_BRANCH" = 'develop' ] ) && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
-    mvn deploy --settings settings.xml
-  fi
+- chmod +x .travis/deploy
+- .travis/deploy
 
 branches:
   only:
