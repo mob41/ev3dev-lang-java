@@ -7,7 +7,7 @@ import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.io.Sysfs;
 
 /***
- * A generic interface to read data from the system¡¦s power_supply class. Uses the built-in legoev3-battery if none is specified.
+ * A generic interface to read data from the system's power_supply class. Uses the built-in legoev3-battery if none is specified.
  * @author Anthony
  *
  */

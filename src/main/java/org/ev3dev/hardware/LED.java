@@ -160,7 +160,7 @@ public class LED extends Device{
 	
 	/**
 	 * Gets the led trigger. A trigger is a kernel based source of led events. Triggers can either be simple or complex.
-	 *  A simple trigger isn¡¦t configurable and is designed to slot into existing subsystems with minimal additional code.
+	 *  A simple trigger isn't configurable and is designed to slot into existing subsystems with minimal additional code.
 	 *   Examples are the ide-disk and nand-disk triggers.<br>
 	 *   <br>
 	 *   Complex triggers whilst available to all LEDs have LED specific parameters and work on a per LED basis. The timer

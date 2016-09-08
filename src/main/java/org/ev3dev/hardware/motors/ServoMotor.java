@@ -173,7 +173,7 @@ public class ServoMotor extends Device{
 	/**
 	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the mid position_sp.
 	 *  Default value is 1500. Valid values are 1300 to 1700. For example, on a 180 degree servo, this would be 90 degrees.
-	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
+	 *   On continuous rotation servo, this is the 'neutral' position_sp where the motor does not turn.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @return The pulse size in milliseconds
 	 * @throws EV3LibraryException If I/O goes wrong
@@ -186,7 +186,7 @@ public class ServoMotor extends Device{
 	/**
 	 * Used to set the pulse size in milliseconds for the signal that tells the servo to drive to the mid position_sp.
 	 *  Default value is 1500. Valid values are 1300 to 1700. For example, on a 180 degree servo, this would be 90 degrees.
-	 *   On continuous rotation servo, this is the ．neutral・ position_sp where the motor does not turn.
+	 *   On continuous rotation servo, this is the 'neutral' position_sp where the motor does not turn.
 	 *  You must write to the position_sp attribute for changes to this attribute to take effect.
 	 * @param mid_pulse_sp The pulse size in milliseconds
 	 * @throws EV3LibraryException If I/O goes wrong

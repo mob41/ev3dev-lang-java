@@ -15,7 +15,7 @@ import org.ev3dev.io.Sysfs;
  *  <br>
  *  Since the name of the sensor[N] device node does not correspond to the port that a sensor is plugged in
  *  to, you must look at the address attribute if you need to know which port a sensor is plugged in to.
- *  However, if you don¡¦t have more than one sensor of each type, you can just look for a matching driver_name.
+ *  However, if you don't have more than one sensor of each type, you can just look for a matching driver_name.
  *  Then it will not matter which port a sensor is plugged in to - your program will still work.
  * @author Anthony
  *

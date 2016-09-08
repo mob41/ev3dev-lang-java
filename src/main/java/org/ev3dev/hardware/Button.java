@@ -9,7 +9,7 @@ import org.ev3dev.exception.InvalidButtonException;
 
 /***
  * Provides a generic button reading mechanism that can be adapted to platform specific implementations.
- *  Each platform¡¦s specific button capabilites are enumerated in the ¡¥platforms¡¦ section of this specification.
+ *  Each platform's specific button capabilites are enumerated in the 'platforms' section of this specification.
  * @author Anthony
  *
  */

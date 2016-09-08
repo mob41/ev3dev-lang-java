@@ -10,7 +10,7 @@ import org.ev3dev.io.Sysfs;
 /**
  * This is the base class that handles control tasks for a single port or index. The class must chose one device out of the available ports to control. Given an IO port (in the constructor), an implementation should:<br>
 <br>
-- If the specified port is blank or unspecified/undefined/null, the available devices should be enumerated until a suitable device is found. Any device is suitable when it¡¦s type is known to be compatible with the controlling class, and it meets any other requirements specified by the caller.<br>
+- If the specified port is blank or unspecified/undefined/null, the available devices should be enumerated until a suitable device is found. Any device is suitable when it's type is known to be compatible with the controlling class, and it meets any other requirements specified by the caller.<br>
 <br>
 - If the specified port name is not blank, the available devices should be enumerated until a device is found that is plugged in to the specified port. The supplied port name should be compared directly to the value from the file, so that advanced port strings will match, such as in1:mux3.<br>
 <br>

@@ -367,7 +367,7 @@ public class DCMotor extends Device{
 	 *     terminals together. This load will absorb the energy from the rotation of the motors
 	 *      and cause the motor to stop more quickly than coasting. hold does not remove power from
 	 *       the motor. Instead it actively try to hold the motor at the current position.
-	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
+	 *  If an external force tries to turn the motor, the motor will 'push back' to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
@@ -383,7 +383,7 @@ public class DCMotor extends Device{
 	 *     terminals together. This load will absorb the energy from the rotation of the motors
 	 *      and cause the motor to stop more quickly than coasting. hold does not remove power from
 	 *       the motor. Instead it actively try to hold the motor at the current position.
-	 *  If an external force tries to turn the motor, the motor will ．push back・ to maintain its position.
+	 *  If an external force tries to turn the motor, the motor will 'push back' to maintain its position.
 	 * @return A list of stop modes supported by the motor controller
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
