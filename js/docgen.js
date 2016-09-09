@@ -10,16 +10,13 @@
 // License based on GPLv3
 //
 
-$(document).ready(function(){
-	getVersions();
-	
-	if (verJson != null){
-		putLinks("side-menu");
-		
-	}
-});
-
 var verJson = null;
+
+getVersions();
+	
+if (verJson != null){
+	putLinks("side-menu");	
+}
 
 function getVersions(){
 	$.ajax({
