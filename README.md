@@ -29,7 +29,7 @@ You can download the latest snapshot from the [OSSRH repository](https://oss.son
 
 1. Add the Sonatype snapshot repository.
 
-    ```
+    ```xml
     <repositories>
     	<repository>
        		<id>oss-sonatype</id>
@@ -44,7 +44,7 @@ You can download the latest snapshot from the [OSSRH repository](https://oss.son
     
 2. Add the dependency.
 
-	```
+	```xml
 	<dependency>
 		<groupId>org.ev3dev</groupId>
    		<artifactId>ev3dev-lang-java</artifactId>
