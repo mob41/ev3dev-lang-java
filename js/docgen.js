@@ -14,7 +14,7 @@ $(document).ready(function(){
 	getVersions();
 	
 	if (verJson != null){
-		putLinks();
+		putLinks("side-menu");
 		
 	}
 });
@@ -37,7 +37,7 @@ function getVersions(){
 	return verJson;
 }
 
-function putLinks(){
+function putLinks(menulist_id){
 	var jsons;
 	
 	//TODO Hook tutorials
@@ -69,7 +69,7 @@ function putLinks(){
 			content += '                            </ul>';
 			content += '                        </li>';
 			
-			$("#docgen-navlist").append(content);
+			$("#" + menulist_id).append(content);
 		}
 	}
 }
