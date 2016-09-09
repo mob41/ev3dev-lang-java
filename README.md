@@ -2,11 +2,55 @@
 
 An ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
+If you are finding a document or a tutorial for a specific version, come to https://mob41.github.io/ev3dev-lang-java
+
 ## Library
 
-This library currently legacy supports ev3dev kernel version 15, but does not support new drivers listed since kernel version 11, and optional drivers in [http://www.ev3dev.org/docs/sensors/](http://www.ev3dev.org/docs/sensors/). 
+This library supports ev3dev kernel version 15:
 
-Still in heavy development, see issue [#15](https://github.com/mob41/ev3dev-lang-java/issues/15) for more details or tracking development stage.
+- ```v4.4.19-15-ev3dev-ev3``` for EV3
+- ```v4.4.19-ti-rt-r41-15-ev3dev-bb.org``` for BeagleBone
+- ```v4.4.19-15-ev3dev-rpi``` for Raspberry Pi 0/1
+- ```v4.4.19-15-ev3dev-rpi2``` for Raspberry Pi 2/3
+
+All the drivers and functions listed in the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html) are all supported, but without confirming the stability of those devices.
+
+Other motors listed in http://www.ev3dev.org/docs/motors are also supported. ```DCMotor``` handles ```rcx-motor``` motors.
+
+Other sensors listed in http://www.ev3dev.org/docs/sensors are still in heavy development.
+
+Still in heavy development, please don't expect all things to be working, see issue [#15](https://github.com/mob41/ev3dev-lang-java/issues/15) for more details or tracking development stage.
+
+## Release
+
+This library currently **does not have any** releases, but snapshots (nightly builds) instead.
+
+You can download the latest snapshot from the [OSSRH repository](https://oss.sonatype.org/content/groups/public/org/ev3dev/ev3dev-lang-java/) directly or via Maven:
+
+1. Add the Sonatype snapshot repository.
+
+    ```
+    <repositories>
+    	<repository>
+       		<id>oss-sonatype</id>
+        	<name>oss-sonatype</name>
+        	<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        	<snapshots>
+         		<enabled>true</enabled>
+        	</snapshots>
+    	</repository>
+	</repositories>
+    ```
+    
+2. Add the dependency.
+
+	```
+	<dependency>
+		<groupId>org.ev3dev</groupId>
+   		<artifactId>ev3dev-lang-java</artifactId>
+   		<version>1.0.0-SNAPSHOT</version>
+   	</dependency>
+	```
 
 ## Build your own
 
