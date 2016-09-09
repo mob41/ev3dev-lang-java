@@ -58,7 +58,7 @@ function putLinks(menulist_id){
 			
 			content += '                        <li>';
 			content += '                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> ' + var_version + '<span class="fa arrow"></span></a>';
-			content += '                            <ul class="nav nav-second-level">';
+			content += '                            <ul class="nav nav-second-level collapse">';
 			
 			if (var_javadoc != null && var_javadoc == true){
 				content += '                                <li>';
