@@ -5,10 +5,13 @@ install: true
 before_install:
 - sudo apt-get update
 - sudo apt-get install gnupg gnupg2
+- chmod +x .travis/prepare
+- .travis/prepare
 
 after_success:
 - ls
-- mvn deploy --settings settings.xml
+- chmod +x .travis/deploy
+- .travis/deploy
 
 branches:
   only:
