@@ -38,11 +38,40 @@ function getVersions(){
 }
 
 function putLinks(){
-	var content = "";
+	var jsons;
 	
-	content += "";
+	//TODO Hook tutorials
 	
-	$("#docgen-nav").append(content);
+	var json;
+	var var_version;
+	var var_javadoc;
+	if (verJson != null){
+		jsons = verJson.versions;
+		
+		var content;
+		for (var i = 0; i < jsons.length; i++){
+			json = jsons[i];
+			var_version = jsons[i].version;
+			var_javadoc = jsons[i].javadoc;
+			
+			content = "";
+			
+			content += '                        <li>';
+			content += '                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> ' + var_version + '<span class="fa arrow"></span></a>';
+			content += '                            <ul class="nav nav-second-level">';
+			
+			if (var_javadoc != null && var_javadoc == true){
+				content += '                                <li>';
+				content += '                                    <a href="doc-' + var_version + '" target="_blank">JavaDoc</a>';
+				content += '                                </li>';
+			}
+			
+			content += '                            </ul>';
+			content += '                        </li>';
+			
+			$("#docgen-navlist").append(content);
+		}
+	}
 }
 
 function writeError(reason){

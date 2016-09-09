@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">ev3dev-lang-java <small class="text-muted">An ev3dev unified language binding for Java</small></a>
+                <a class="navbar-brand" href="index.html">ev3dev-lang-java</a>
             </div>
             <!-- /.navbar-header -->
             
@@ -15,10 +15,11 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu" id="docgen-nav">
+                    <ul class="nav" id="side-menu" id="docgen-navlist">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                            	<!-- TODO Hook searching function to JavaScript -->
+                                <input type="text" class="form-control" id="searchtext" placeholder="Search..." onchange="$('#searchtext').attr('placeholder', 'No search available')">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
