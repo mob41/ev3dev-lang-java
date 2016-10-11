@@ -48,7 +48,7 @@ public class I2CSensor extends Sensor {
 	 */
 	public I2CSensor(LegoPort port, String target_driver_name) throws InvalidPortException, InvalidSensorException, EV3LibraryException {
 		super(port);
-		if (!this.getDriverName().equals(DRIVER_NAME)){
+		if (!this.getDriverName().equals(target_driver_name)){
 			throw new InvalidSensorException("The specified port is not a I2C sensor.");
 		}
 	}
