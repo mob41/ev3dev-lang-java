@@ -22,10 +22,10 @@ public class I2CSensor extends Sensor {
 	 */
 	public static final String SYSFS_PROPERTY_POLL_MS = "poll_ms";
 	
-	///**
-	// * This device's default driver name
-	// */
-	//public static final String DRIVER_NAME = "nxt-i2c-sensor";
+	/**
+	 * This device's default driver name
+	 */
+	public static final String DRIVER_NAME = "nxt-i2c-sensor";
 
 	/**
 	 * Creates a new I2CSensor instance.
@@ -35,10 +35,22 @@ public class I2CSensor extends Sensor {
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public I2CSensor(LegoPort port) throws InvalidPortException, InvalidSensorException, EV3LibraryException {
+		this(port, DRIVER_NAME);
+	}
+	
+	/**
+	 * Creates a new I2CSensor instance, and an alternative driver name can be specified.
+	 * @param port LegoPort
+	 * @param target_driver_name The target driver name to be checked.
+	 * @throws InvalidPortException If the specified port wasn't valid
+	 * @throws InvalidSensorException If the specified sensor wasn't a I2CSensor
+	 * @throws EV3LibraryException If I/O goes wrong
+	 */
+	public I2CSensor(LegoPort port, String target_driver_name) throws InvalidPortException, InvalidSensorException, EV3LibraryException {
 		super(port);
-		//if (!this.getDriverName().equals(DRIVER_NAME)){
-		//	throw new InvalidSensorException("The specified port is not a I2C sensor.");
-		//}
+		if (!this.getDriverName().equals(DRIVER_NAME)){
+			throw new InvalidSensorException("The specified port is not a I2C sensor.");
+		}
 	}
 	
 	/**
