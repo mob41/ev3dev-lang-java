@@ -137,7 +137,7 @@ public class PixyCmucam5Sensor extends I2CSensor {
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public PixyCmucam5Sensor(LegoPort port) throws EV3LibraryException {
-		super(port);
+		super(port, DRIVER_NAME);
 	}
 	
 	/**
