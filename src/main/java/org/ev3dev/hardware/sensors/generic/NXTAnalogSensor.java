@@ -32,14 +32,24 @@ public class NXTAnalogSensor extends Sensor {
 	public static final String DRIVER_NAME = "nxt-analog";
 	
 	/**
-	 * Creates a new NXT analog sensor
+	 * Creates a new NXT analog sensor.
 	 * @param port The LegoPort instance
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public NXTAnalogSensor(LegoPort port) throws EV3LibraryException{
+		this(port, DRIVER_NAME);
+	}
+	
+	/**
+	 * Creates a new NXT analog sensor, and an alternative driver name can be specified.
+	 * @param port The LegoPort instance
+	 * @param target_driver_name The target driver name to be checked.
+	 * @throws EV3LibraryException If I/O goes wrong
+	 */
+	public NXTAnalogSensor(LegoPort port, String target_driver_name) throws EV3LibraryException{
 		super(port);
 		String drivername = port.getDriverName();
-		if (!drivername.equals(DRIVER_NAME)){
+		if (!drivername.equals(target_driver_name)){
 			throw new EV3LibraryException("The port is not connected to a NXT analog sensor: " + drivername);
 		}
 	}
