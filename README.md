@@ -8,7 +8,7 @@ If you are finding a document or a tutorial for a specific version, come to http
 
 ## Library
 
-This library supports ev3dev kernel version 15:
+This library supports ev3dev kernel version 16:
 
 - ```v4.4.24-16-ev3dev-ev3``` for EV3
 - ```v4.4.24-ti-rt-r55-16-ev3dev-bb.org``` for BeagleBone
