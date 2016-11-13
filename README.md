@@ -1,5 +1,7 @@
 # ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
 
+>This project is currently inactive in development. (Cause I don't have time...)
+
 An ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 If you are finding a document or a tutorial for a specific version, come to https://mob41.github.io/ev3dev-lang-java
@@ -8,10 +10,10 @@ If you are finding a document or a tutorial for a specific version, come to http
 
 This library supports ev3dev kernel version 15:
 
-- ```v4.4.19-15-ev3dev-ev3``` for EV3
-- ```v4.4.19-ti-rt-r41-15-ev3dev-bb.org``` for BeagleBone
-- ```v4.4.19-15-ev3dev-rpi``` for Raspberry Pi 0/1
-- ```v4.4.19-15-ev3dev-rpi2``` for Raspberry Pi 2/3
+- ```v4.4.24-16-ev3dev-ev3``` for EV3
+- ```v4.4.24-ti-rt-r55-16-ev3dev-bb.org``` for BeagleBone
+- ```v4.4.23-16-ev3dev-rpi``` for Raspberry Pi 0/1
+- ```v4.4.23-16-ev3dev-rpi2``` for Raspberry Pi 2/3
 
 All the drivers and functions listed in the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html) are all supported, but without confirming the stability of those devices.
 
