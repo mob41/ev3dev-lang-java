@@ -18,9 +18,11 @@ import java.util.List;
 public class Sysfs {
 	
 	/**
-	 * The Sysfs class path (/sys/class/)
+	 * The default ev3dev Sysfs class path (/sys/class/)
 	 */
-	public static final String SYSTEM_CLASS_PATH = "/sys/class/";
+	public static final String DEFAULT_SYSTEM_CLASS_PATH = "/sys/class/";
+	
+	private static String SYSTEM_CLASS_PATH = DEFAULT_SYSTEM_CLASS_PATH;
 	
 	/**
 	 * Get all sub-class files
@@ -31,6 +33,29 @@ public class Sysfs {
 		File file = new File(SYSTEM_CLASS_PATH + class_name);
 		File[] files = file.listFiles();
 		return files;
+	}
+	
+	/**
+	 * Returns the current ev3dev Sysfs path.
+	 * @return the current Sysfs path
+	 */
+	public static String getSysfsPath(){
+		return SYSTEM_CLASS_PATH;
+	}
+	
+	/**
+	 * Modify the current ev3dev Sysfs path in this library instance to be used. This is probably used for debugging purpose. Any invalid modification to the path will break the library.
+	 * @param path The file-system path to be used
+	 */
+	public static void setSysfsPath(String path){
+		SYSTEM_CLASS_PATH = path;
+	}
+	
+	/**
+	 * Sets the current ev3dev Sysfs path to default
+	 */
+	public static void resetSysfsPath(){
+		SYSTEM_CLASS_PATH = DEFAULT_SYSTEM_CLASS_PATH;
 	}
 	
 	/***

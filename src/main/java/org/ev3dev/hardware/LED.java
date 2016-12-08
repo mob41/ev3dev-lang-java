@@ -77,7 +77,8 @@ public class LED extends Device{
 		super(CLASS_NAME);
 		if (leftRightField != 0 && leftRightField != 1){
 			throw new InvalidLEDException("You are not specifying a EV3_LEFT_LED or EV3_RIGHT_LED field!");
-		} else if (colorField != 0 && colorField != 1){
+		}
+		if (colorField != 0 && colorField != 1){
 			throw new InvalidLEDException("You are not specifying a EV3_LED_GREEN or EV3_LED_RED field!");
 		}
 		String direction = leftRightField == 0 ? "left" : "right";
@@ -98,7 +99,7 @@ public class LED extends Device{
 	 */
 	public LED(String ledName) throws InvalidLEDException{
 		super(CLASS_NAME);
-		File file = new File(Sysfs.SYSTEM_CLASS_PATH + CLASS_NAME + "/" + ledName);
+		File file = new File(Sysfs.getSysfsPath() + CLASS_NAME + "/" + ledName);
 		if (!file.exists()){
 			throw new InvalidLEDException("The specified LED does not exist");
 		}
