@@ -152,7 +152,7 @@ var DivObject = function(){
 }
 
 DivObject.prototype = PageObject.prototype;
-DIvObject.prototype.constructor = DivObject;
+DivObject.prototype.constructor = DivObject;
 
 DivObject.prototype.getTagName = function(){
 	return "div";
