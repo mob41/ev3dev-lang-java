@@ -10,13 +10,9 @@
 // License based on GPLv3
 //
 
-var verJson = null;
+// The following code is modified to hook with the web-page.
 
-getVersions();
-	
-if (verJson != null){
-	putLinks("side-menu");	
-}
+var verJson = null;
 
 function getVersions(){
 	$.ajax({
@@ -99,4 +95,76 @@ function writeError(reason){
 		content += '</div>';
 		node.html(content);
 	}
+}
+
+var Doc = function(supportVersions, layoutRows){
+	
+	var private = {
+		vers: supportVersions,
+		rows: layoutRows,
+	};
+	
+	return {
+		getCode: function(){
+			
+		}
+	};
+};
+
+/**
+ * Creates a new PageObject<br>
+ * <br>
+ * name - (STRING) Name of the PageObject in String<br>
+ * attrs - (STRING ARRAY) An array of strings of attributes<br>
+ * end_tag_mode - (INTEGER) specify 0 (New Tag to end) or 1 (Same Tag, Slash to end)<br>
+ * newLineAfterTag - (BOOLEAN) New line after tag<br>
+ * newLineAfterBody - (BOOLEAN) New line after body<br>
+ * tabBeforeBody - (BOOLEAN) Tab (4 spaces) before body<br>
+ * autoFillTabsBeforeEndTag - (BOOLEAN) Auto fill tabs before end tag<br>
+ */
+var PageObject = function(name, attrs, end_tag_mode, newLineAfterTag, newLineAfterBody, tabBeforeBody, autoFillTabsBeforeEndTag){
+
+	var private = {
+		name: name,
+		end_tag_mode: end_tag_mode,
+		newLineAfterTag: newLineAfterTag,
+		newLineAfterBody: newLineAfterBody,
+		tabBeforeBody: tabBeforeBody,
+		autoFillTabsBeforeEndTag: autoFillTabsBeforeEndTag,
+		attrs: attrs
+	};
+	
+	return {
+		getTagName: function(){
+			return undefined;
+		},
+		getBody: function(tabLevel){
+			return undefined;
+		},
+		getCode: function(){
+			
+		}
+	}
+}
+
+var DivObject = function(){
+	PageObject.apply(this, ["DivObject", [], 0, true, false, false, true]);
+}
+
+DivObject.prototype = PageObject.prototype;
+DIvObject.prototype.constructor = DivObject;
+
+DivObject.prototype.getTagName = function(){
+	return "div";
+}
+
+DivObject.prototype.getBody = function(){
+	
+}
+
+//In-line functions
+getVersions();
+	
+if (verJson != null){
+	putLinks("side-menu");	
 }
