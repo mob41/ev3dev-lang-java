@@ -29,9 +29,11 @@ public class LCDGraphics extends Graphics {
 	private int transx = 0;
 	
 	private int transy = 0;
+	
+	private Font font;
 
-	public LCDGraphics() {
-		lcd = new LCD();
+	public LCDGraphics(LCD lcd) {
+		this.lcd = lcd;
 		buf = new byte[BUF_SIZE];
 	}
 	
@@ -42,6 +44,9 @@ public class LCDGraphics extends Graphics {
 		lcd.draw(buf);
 	}
 
+	/**
+	 * Not implemented
+	 */
 	@Override
 	public Graphics create() {
 		// TODO Auto-generated method stub
@@ -90,7 +95,10 @@ public class LCDGraphics extends Graphics {
 	public void setXORMode(Color c1) {
 		throw new EV3LibraryException("The EV3 LCD does not support XORMode");
 	}
-
+	
+	/**
+	 * Not implemented
+	 */
 	@Override
 	public Font getFont() {
 		// TODO Auto-generated method stub
@@ -103,6 +111,9 @@ public class LCDGraphics extends Graphics {
 		
 	}
 
+	/**
+	 * Not implemented
+	 */
 	@Override
 	public FontMetrics getFontMetrics(Font f) {
 		// TODO Auto-generated method stub
@@ -143,17 +154,75 @@ public class LCDGraphics extends Graphics {
 	public void copyArea(int x, int y, int width, int height, int dx, int dy) {
 		
 	}
-
+	
 	@Override
-	public void drawLine(int x1, int y1, int x2, int y2) {
+	public void drawLine(int x1, int y1, int x2, int y2) { //Uses Bresenham's line algorithm
+		boolean steep = Math.abs(y2 - y1) > Math.abs(x2 - x1);
 		
+		if (steep){
+			int tmp = x1;
+			x1 = y1;
+			y1 = tmp;
+			
+			tmp = x2;
+			x2 = y2;
+			y2 = x2;
+		}
+		
+		if (x1 > x2){
+			int tmp = x1;
+			x1 = x2;
+			x2 = tmp;
+			
+			tmp = y1;
+			y1 = y2;
+			y2 = tmp;
+		}
+		
+		double deltax = x2 - x1;
+		double deltay = Math.abs(y2 - y1);
+		
+		double err = deltax / 2;
+		
+		int xlen = x2 - x1;
+		int y = y1;
+		
+		int ystep;
+		if (y1 < y2){
+			ystep = 1;
+		} else {
+			ystep = -1;
+		}
+		
+		for (int i = 0; i < xlen; i++){
+			if (steep){
+				plot(y,i);
+			} else {
+				plot(i,y);
+			}
+			
+			err -= deltay;
+			if (err < 0){
+				y += ystep;
+				err += deltax;
+			}
+		}
+	}
+	
+	/**
+	 * Plot the specified (x,y) position with the selected color (Color.BLACK or Color.WHITE)
+	 * @param x Position x
+	 * @param y Position y
+	 */
+	public void plot(int x, int y){
+		buf[y * LINE_LEN + x / 8] = (byte) (whiteColor ? 0x00 : 0xff);
 	}
 
 	@Override
 	public void fillRect(int x, int y, int width, int height) {
 		for (int i = 0; i < height; i++){
 			for (int j = 0; j < width; j++){
-				buf[(((i+y) * LINE_LEN)) + (x + j) / 8] = (byte) 0xff;
+				buf[(((i+y) * LINE_LEN)) + (x + j) / 8] = (byte) (whiteColor ? 0x00 : 0xff);
 			}
 		}
 	}
@@ -223,12 +292,14 @@ public class LCDGraphics extends Graphics {
 
 	@Override
 	public void drawString(String str, int x, int y) {
+		System.out.println("Draw string");
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void drawString(AttributedCharacterIterator iterator, int x, int y) {
+		System.out.println("Draw string2");
 		// TODO Auto-generated method stub
 		
 	}
