@@ -1,4 +1,4 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd.dev;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +11,14 @@ import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 
 import org.ev3dev.exception.EV3LibraryException;
+import org.ev3dev.hardware.lcd.LCD;
 
+/**
+ * This is a old, incomplete implementation of LCDGraphics.
+ * This is already abandoned, just for keeping a moment.
+ * @author Anthony
+ *
+ */
 public class LCDGraphicsOld extends Graphics {
 	
 	public static final int LINE_LEN = 24;

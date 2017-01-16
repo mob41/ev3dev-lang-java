@@ -1,4 +1,4 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd.dev;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -11,18 +11,24 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-import org.ev3dev.hardware.VirtualLCD;
+import org.ev3dev.hardware.lcd.dev.VirtualLCD;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
 public class VLCDFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6540608026156477027L;
 	private JPanel contentPane;
 	private VirtualLCD lcd;
 	private Thread thread;
 	private JLabel lblImg;
 
+	private boolean running = false;
 	/**
 	 * Create the frame.
 	 */
@@ -43,7 +49,13 @@ public class VLCDFrame extends JFrame {
 		thread = new Thread(new Runnable(){
 
 			public void run() {
-				lblImg.setIcon(new ImageIcon(lcd.getImage()));
+				if (!running){
+					running = true;
+					while(running){
+						lblImg.setIcon(new ImageIcon(lcd.getImage()));
+					}
+					running = false;
+				}
 			}
 			
 		});

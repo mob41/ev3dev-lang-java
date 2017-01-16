@@ -1,6 +1,8 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd.dev;
 
 import java.awt.image.BufferedImage;
+
+import org.ev3dev.hardware.lcd.LCDGraphics;
 
 /**
  * This is a fake implementation of the VirtualLCD class

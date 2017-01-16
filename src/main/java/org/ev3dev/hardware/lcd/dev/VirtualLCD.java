@@ -1,4 +1,4 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd.dev;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.ev3dev.hardware.lcd.LCD;
+
 /**
  * Provides an interface for developers to emulate the LCD in ev3
  * @author Anthony
@@ -16,6 +18,8 @@ import javax.imageio.ImageIO;
 public class VirtualLCD extends LCD{
 
 	private BufferedImage image;
+	
+	private byte[] lastbuf = null;
 	
 	/**
 	 * Creates a new virtual LCD instance
@@ -51,9 +55,9 @@ public class VirtualLCD extends LCD{
 	@Override
 	public void draw(byte[] data){
 		if (data == null){
+			System.out.println("Null data");
 			return;
 		}
-		
 		Graphics g = image.getGraphics();
 		for (int i = 0; i < 128; i++){
 			for (int j = 0; j < 178; j++){
@@ -69,6 +73,6 @@ public class VirtualLCD extends LCD{
 				}
 			}
 		}
-		System.out.println("================== DRAWN");
+		g.dispose();
 	}
 }

@@ -1,4 +1,4 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd;
 
 import java.io.DataOutputStream;
 import java.io.File;

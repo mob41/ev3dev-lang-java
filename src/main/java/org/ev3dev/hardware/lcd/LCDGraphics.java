@@ -1,4 +1,4 @@
-package org.ev3dev.hardware;
+package org.ev3dev.hardware.lcd;
 
 import java.awt.Color;
 import java.awt.Composite;
