@@ -59,10 +59,23 @@ public class VirtualLCD extends LCD{
 			return;
 		}
 		Graphics g = image.getGraphics();
+		
+		int bitPos;
 		for (int i = 0; i < 128; i++){
+			bitPos = 0;
 			for (int j = 0; j < 178; j++){
+				if (bitPos > 7){
+					bitPos = 0;
+				}
+				
 				//System.out.println("(" + j + ", " + i + ")");
-				if (data[i * 24 + j / 8] == (byte) 0xff){
+				byte bit = (byte) ((data[i * 24 + j / 8] >> bitPos) & 1);
+				
+				if (bit != 0x00){
+					System.out.println("Draw: 0x" + Integer.toHexString(bit));
+				}
+				
+				if ((bit & 0xff) == 0){
 					//System.out.println("Black");
 					g.setColor(Color.BLACK);
 					g.drawLine(j, i, j, i);
@@ -71,6 +84,8 @@ public class VirtualLCD extends LCD{
 					g.setColor(Color.WHITE);
 					g.drawLine(j, i, j, i);
 				}
+				
+				bitPos++;
 			}
 		}
 		g.dispose();

@@ -20,12 +20,16 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.awt.image.ColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
 import java.awt.image.ImageObserver;
 import java.awt.image.IndexColorModel;
+import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
 import java.awt.image.WritableRaster;
 import java.awt.image.renderable.RenderableImage;
 import java.text.AttributedCharacterIterator;
+import java.util.Arrays;
 import java.util.Map;
 
 public class LCDGraphics extends Graphics2D {
@@ -49,7 +53,15 @@ public class LCDGraphics extends Graphics2D {
 	public LCDGraphics(LCD lcd) {
 		this.lcd = lcd;
 		
-		this.image = new BufferedImage(LCD.SCREEN_WIDTH, LCD.SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		byte[] data = new byte[BUF_SIZE];
+		
+		byte[] bwarr = {(byte) 0xff, (byte) 0x00};
+		IndexColorModel bwcm = new IndexColorModel(1, bwarr.length, bwarr, bwarr, bwarr);
+		
+		DataBuffer db = new DataBufferByte(data, data.length);
+		WritableRaster wr = Raster.createPackedRaster(db, LCD.SCREEN_WIDTH, LCD.SCREEN_HEIGHT, 1, null);
+		
+		this.image = new BufferedImage(bwcm, wr, false, null);
 		this.g2d = (Graphics2D) image.getGraphics();
 		
 		g2d.setPaint(Color.WHITE);
@@ -66,25 +78,42 @@ public class LCDGraphics extends Graphics2D {
 	public void flush(){
 		byte[] buf = new byte[BUF_SIZE];
 		
+		byte[] pixel = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+		//System.out.println("pixel[] len: " + pixel.length);
+		//System.out.println("content: " + Arrays.toString(pixel));
+		
+		int bitPos;
 		for (int i = 0; i < LCD.SCREEN_HEIGHT; i++){
+			bitPos = 0;
 			for (int j = 0; j < LCD.SCREEN_WIDTH; j++){
 				//int val = image.getRGB(j, i);
-				
 				//int cmb = val & 0xff + (val & 0xff00) >> 8 + (val & 0xff0000) >> 16;
 				
+				if (bitPos > 7){
+					//System.out.println("Overload");
+					bitPos = 0;
+				}
+				
+				
+				//TODO: Rewrite not to use getRGB()! It results in low performance
 				Color color = new Color(image.getRGB(j, i));
 				
-				int cmb = color.getRed() + color.getBlue() + color.getGreen(); //Combine all colours together 255+255+255 = 765
+				int y = (int) (0.2126 * color.getRed() + 0.7152 * color.getBlue() + 0.0722 * color.getGreen()); //Combine all colours together 255+255+255 = 765
 				//System.out.println("(" + j + ", " + i + "): " + cmb);
-				if (cmb > 573){ //Only draws white if is a half
+				
+				//System.out.println("Pixel: " + (i * LINE_LEN + j / 8) + " bit " + bitPos + ": " + y + " fill? " + (y < 128));
+				if (y < 128){
 					//System.out.println("Black");
-					buf[i * LINE_LEN + j / 8] = (byte) 0x00;
+					buf[i * LINE_LEN + j / 8] |= (1 << bitPos);
 				} else {
 					//System.out.println("White");
-					buf[i * LINE_LEN + j / 8] = (byte) 0xff;
+					buf[i * LINE_LEN + j / 8] &= ~(1 << bitPos);
 				}
+				
+				bitPos++;
 			}
 		}
+		
 		
 		lcd.draw(buf);
 	}

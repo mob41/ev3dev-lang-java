@@ -61,7 +61,7 @@ public class ADCAdapter extends Sensor {
 	public ADCAdapter(LegoPort port) throws EV3LibraryException {
 		super(port);
 		if(!this.getDriverName().equals(DRIVER_NAME)){
-			throw new InvalidSensorException("Can't create a ADCAdapter instance if the port isn't connected to a light sensor!");
+			throw new InvalidSensorException("Can't create a ADCAdapter instance if the port isn't connected to a ADCAdapter sensor!");
 		}
 	}
 	
