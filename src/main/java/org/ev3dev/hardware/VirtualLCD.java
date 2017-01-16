@@ -57,14 +57,18 @@ public class VirtualLCD extends LCD{
 		Graphics g = image.getGraphics();
 		for (int i = 0; i < 128; i++){
 			for (int j = 0; j < 178; j++){
+				//System.out.println("(" + j + ", " + i + ")");
 				if (data[i * 24 + j / 8] == (byte) 0xff){
+					//System.out.println("Black");
 					g.setColor(Color.BLACK);
 					g.drawLine(j, i, j, i);
 				} else {
+					//System.out.println("White");
 					g.setColor(Color.WHITE);
 					g.drawLine(j, i, j, i);
 				}
 			}
 		}
+		System.out.println("================== DRAWN");
 	}
 }

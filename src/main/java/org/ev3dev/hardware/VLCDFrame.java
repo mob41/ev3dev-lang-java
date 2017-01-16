@@ -30,10 +30,9 @@ public class VLCDFrame extends JFrame {
 		setTitle("ev3dev-lang-java VirtualLCD");
 		this.lcd = vlcd;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 418, 321);
+		setBounds(100, 100, 433, 318);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
-		contentPane.setBorder(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
