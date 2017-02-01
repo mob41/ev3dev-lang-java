@@ -71,6 +71,11 @@ public class Button {
 	}
 	
 	private static boolean test_bit(int bit, byte[] bytes){
-	    return ((bytes[bit / 8] & (1 << (bit % 8))) == 1 ? false : true);
+		System.out.println("Bit: " + Integer.toHexString((bytes[bit / 8] & (1 << (bit % 8))) ));
+	    return ((bytes[bit / 8] & (1 << (bit % 8))) != 1);
+	}
+	
+	private static int EVIOCGKEY(int length){
+		return 2 << (14+8+8) | length << (8+8) | ((int) 'E') << 8 | 0x18;
 	}
 }

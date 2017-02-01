@@ -65,6 +65,7 @@ public class LCDGraphics extends Graphics2D {
 		this.g2d = (Graphics2D) image.getGraphics();
 		
 		g2d.setPaint(Color.WHITE);
+		g2d.setBackground(Color.WHITE);
 		g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
 	}
 	
@@ -84,6 +85,8 @@ public class LCDGraphics extends Graphics2D {
 		
 		int bitPos;
 		for (int i = 0; i < LCD.SCREEN_HEIGHT; i++){
+			//System.out.println("rendering row " + i + "...");
+			//long t = System.currentTimeMillis();
 			bitPos = 0;
 			for (int j = 0; j < LCD.SCREEN_WIDTH; j++){
 				//int val = image.getRGB(j, i);
@@ -101,9 +104,15 @@ public class LCDGraphics extends Graphics2D {
 				int y = (int) (0.2126 * color.getRed() + 0.7152 * color.getBlue() + 0.0722 * color.getGreen()); //Combine all colours together 255+255+255 = 765
 				//System.out.println("(" + j + ", " + i + "): " + cmb);
 				
+				
+				//byte pixelBit = pixel[i * LINE_LEN + j / 8];
+				
+				//System.out.println(Integer.toHexString(pixelBit));
+				
 				//System.out.println("Pixel: " + (i * LINE_LEN + j / 8) + " bit " + bitPos + ": " + y + " fill? " + (y < 128));
 				if (y < 128){
-					//System.out.println("Black");
+					//System.out.println("pixel black: " + (i * LINE_LEN + j / 8 + "@bit" + bitPos) + "y: " + y + " r:" + color.getRed() + "g:" + color.getGreen() + "b:" + color.getBlue());
+					//System.out.println("Black: " + (pixelBit & 0xff));
 					buf[i * LINE_LEN + j / 8] |= (1 << bitPos);
 				} else {
 					//System.out.println("White");
@@ -112,6 +121,7 @@ public class LCDGraphics extends Graphics2D {
 				
 				bitPos++;
 			}
+			//System.out.println("row (" + (i) + ") getRGB used: " + (System.currentTimeMillis() - t) + " ms");
 		}
 		
 		

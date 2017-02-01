@@ -71,17 +71,13 @@ public class VirtualLCD extends LCD{
 				//System.out.println("(" + j + ", " + i + ")");
 				byte bit = (byte) ((data[i * 24 + j / 8] >> bitPos) & 1);
 				
-				if (bit != 0x00){
-					System.out.println("Draw: 0x" + Integer.toHexString(bit));
-				}
-				
 				if ((bit & 0xff) == 0){
-					//System.out.println("Black");
-					g.setColor(Color.BLACK);
-					g.drawLine(j, i, j, i);
-				} else {
 					//System.out.println("White");
 					g.setColor(Color.WHITE);
+					g.drawLine(j, i, j, i);
+				} else {
+					//System.out.println("Black");
+					g.setColor(Color.BLACK);
 					g.drawLine(j, i, j, i);
 				}
 				
