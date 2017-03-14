@@ -10,10 +10,10 @@ An ev3dev unified language binding for Java, that followed with the [language wr
 
 This library supports ev3dev kernel version 18 (latest kernel):
 
-- ```v4.4.44-18-ev3dev-ev3``` for EV3
-- ```v4.4.43-ti-rt-r84-18-ev3dev-bb.org``` for BeagleBone
-- ```v4.4.44-18-ev3dev-rpi``` for Raspberry Pi 0/1
-- ```v4.4.44-18-ev3dev-rpi2``` for Raspberry Pi 2/3
+- ```v4.4.47-19-ev3dev-ev3``` for EV3
+- ```v4.4.47-ti-rt-r87-19-ev3dev-bb.org``` for BeagleBone
+- ```v4.4.47-19-ev3dev-rpi``` for Raspberry Pi 0/1
+- ```v4.4.47-19-ev3dev-rpi2``` for Raspberry Pi 2/3
 
 All the drivers and functions listed in the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html) are all supported, but without confirming the stability of those devices.
 
