@@ -1,19 +1,19 @@
-# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java)
+# ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java) [![CodeFactor](https://www.codefactor.io/repository/github/mob41/ev3dev-lang-java/badge)](https://www.codefactor.io/repository/github/mob41/ev3dev-lang-java)
 
 >This project isn't dead. Just "not very active" in development. It works at all!
 
-An ev3dev unified language binding for Java, that followed with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
+An ev3dev unified language binding for Java, not to be confused with [jabrena/ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java/) which interfaces LeJOS. It follows with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
-~If you are finding a tutorial or document for a specific version, https://mob41.github.io/ev3dev-lang-java would be your place. :simle:~
+Library tutorials and document can be found [here](https://mob41.github.io/ev3dev-lang-java).
 
 ## Library
 
-This library supports ev3dev kernel version 18 (latest kernel):
+This library supports ev3dev kernel version 20 (latest kernel):
 
-- ```v4.4.47-19-ev3dev-ev3``` for EV3
-- ```v4.4.47-ti-rt-r87-19-ev3dev-bb.org``` for BeagleBone
-- ```v4.4.47-19-ev3dev-rpi``` for Raspberry Pi 0/1
-- ```v4.4.47-19-ev3dev-rpi2``` for Raspberry Pi 2/3
+- ```v4.4.61-20-ev3dev-ev3``` for EV3
+- ```v4.4.61-ti-rt-r98-20-ev3dev-bb.org``` for BeagleBone
+- ```v4.4.61-20-ev3dev-rpi``` for Raspberry Pi 0/1
+- ```v4.4.61-20-ev3dev-rpi2``` for Raspberry Pi 2/3
 
 All the drivers and functions listed in the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html) are all supported, but without confirming the stability of those devices.
 
