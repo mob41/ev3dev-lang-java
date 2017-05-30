@@ -69,6 +69,10 @@ public class LCDGraphics extends Graphics2D {
 		g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
 	}
 	
+	public LCD getLcd(){
+	    return lcd;
+	}
+	
 	public BufferedImage getImage(){
 		return image;
 	}

@@ -24,6 +24,24 @@ public class Sysfs {
 	
 	private static String SYSTEM_CLASS_PATH = DEFAULT_SYSTEM_CLASS_PATH;
 	
+	private static boolean incompat_check = true;
+	
+	/**
+	 * Sets the library incompatibility check to be enabled or not
+	 * @param enabled Enabled
+	 */
+	public static void setIncompatibleCheckEnabled(boolean enabled){
+		incompat_check = enabled;
+	}
+	
+	/**
+	 * Returns whether the library incompatibility check is enabled or not
+	 * @param enabled Enabled
+	 */
+	public static boolean isIncompatibleCheckEnabled(){
+		return incompat_check;
+	}
+	
 	/**
 	 * Get all sub-class files
 	 * @param class_name Main Class Name
