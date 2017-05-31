@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ev3dev-lang-java</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- w3data include HTML JavaScript -->
+    <script src="js/w3data.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script>
+    	function pagePrev(){ //Set previous page location
+    		window.location = "#";
+    	}
+    	function pageNext(){ //Set next page location
+    		window.location = "getting_started-adding_maven.html";
+    	}
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+     
+    	<div w3-include-html="nav.html"></div>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Preparation</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary disabled" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+            <br />
+            
+            <div class="row">
+            	<div class="col-lg-12">
+            		<div class="panel panel-info">
+            			<div class="panel-heading">
+            				<i class="fa fa-star-o"></i> First steps
+            			</div>
+            			<div class="panel-body">
+                        	<p>Before using this library, you have to prepare an environment to develop your ev3dev-lang-java application.</p>
+                            
+                            <ul>
+                            	<li>1. An ev3dev device with kernel version 17 or later (or with the latest kernel version 20)
+                            		<ul>
+                            			<li>To make sure this, you can do <code>ev3dev-sysinfo -m</code> or <code>uname -a</code>on your ev3dev device to check it.</li>
+                            		</ul>
+                            	</li>
+                            	<li>2. Java 7 or 8 or later installed into the ev3dev device
+                            		<ul>
+                            			<li>It is recommended to use Oracle Java 8 instead of OpenJDK.</li>
+                            			<li><i class="fa fa-exclamation-circle text-warning"></i> Java 9 is not tested for compatibility with this library.</li>
+                            		</ul>
+                            	</li>
+                            	<li>3. A Maven Development environment
+                            		<ul>
+                            			<li>Setting up <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank">Maven in five minutes</a></li>
+                            			<li>If you are not using a Maven environment, you can also download it from the <a href="https://search.maven.org/#search%7Cga%7C1%7Corg.ev3dev.ev3dev-lang-java" target="_blank">Maven Central</a> directly and import to the class-path.</li>
+                            		</ul>
+                            	</li>
+                            </ul>
+            			</div>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary disabled" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    <script>
+    w3IncludeHTML();
+    </script>
+    
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+    <!-- DocGen JavaScript -->
+    <script src="js/docgen.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script> 
+
+</body>
+
+</html>

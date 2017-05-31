@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ev3dev-lang-java</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- w3data include HTML JavaScript -->
+    <script src="js/w3data.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script>
+    	function pagePrev(){ //Set previous page location
+    		window.location = "getting_started-preparation.html";
+    	}
+    	function pageNext(){ //Set next page location
+    		window.location = "getting_started-lcd-hello_world.html";
+    	}
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+     
+    	<div w3-include-html="nav.html"></div>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Maven</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+            <br />
+            
+            <div class="row">
+            	<div class="col-lg-12">
+            		<div class="panel panel-info">
+            			<div class="panel-heading">
+            				<i class="fa fa-star-o"></i> Adding Maven dependency
+            			</div>
+            			<div class="panel-body">
+                        	<p><code>ev3dev-lang-java</code> is released publicly through the Maven Central Repository. To use the library in your development environment, you can either download from the repository directly or add a dependency to your Maven <code>pom.xml</code> file.</p>
+                            
+                            <hr />
+                            
+                            <div class="row">
+                            	<div class="col-xs-4 text-center">
+                            		<button class="btn btn-default btn-lg btn-block disabled">
+                            		<h2 class="text-success">Release</h2>
+                            		
+                            		<p>Stable and run smoothly</p>
+                            		<p id="release_version" class="text-danger">No version(s) available</p>
+                            		</button>
+                            	</div>
+                            	<div class="col-xs-4 text-center">
+                            		<button class="btn btn-default btn-lg btn-block disabled">
+                            		<h2 class="text-warning">Beta</h2>
+                            		
+                            		<p>Usable and unstable</p>
+                            		<p id="beta_version" class="text-danger">No version(s) available</p>
+                            		</button>
+                            	</div>
+                            	<div class="col-xs-4 text-center">
+                            		<button class="btn btn-default btn-lg btn-block">
+                            		<h2 class="text-danger">Snapshot</h2>
+                            		
+                            		<p>Possibly broken or unstable</p>
+                            		<p id="snapshot_version">Latest: 1.0.0-SNAPSHOT</p>
+                            		</button>
+                            	</div>
+                            </div>
+                            
+                            <hr />
+                            
+                            <p>Enter the following code to your <code>pom.xml</code>:</p>
+            
+            				<pre class="prettyprint" id="maven_pom">
+            				&lt;dependency&gt;
+                				&lt;groupId&gt;org.ev3dev&lt;/groupId&gt;
+                				&lt;artifactId&gt;ev3dev-lang-java&lt;/artifactId&gt;
+                				&lt;version&gt;1.0.1-SNAPSHOT&lt;/version&gt;
+                			&lt;/dependency&gt;</pre>
+            				
+            				<p>And you are ready to enter to the world of <code>ev3dev-lang-java</code>!</p>
+            			</div>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    <script>
+    w3IncludeHTML();
+    </script>
+    
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+    <!-- DocGen JavaScript -->
+    <script src="js/docgen.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script> 
+    
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+</body>
+
+</html>
