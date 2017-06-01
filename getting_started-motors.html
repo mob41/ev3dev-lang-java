@@ -1,0 +1,180 @@
+---
+title: Motors
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ev3dev-lang-java</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    
+    <script>
+    	function pagePrev(){ //Set previous page location
+    		window.location = "getting_started-lcd-hello_world.html";
+    	}
+    	function pageNext(){ //Set next page location
+    		window.location = "getting_started-tank.html";
+    	}
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+     
+    	{% include nav.html %}
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Motors</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+            <br />
+            
+            <div class="row">
+            	<div class="col-lg-12">
+            		<div class="panel panel-danger">
+            			<div class="panel-heading">
+            				<i class="fa fa-exclamation-circle"></i> Incomplete Guide
+            			</div>
+            			<div class="panel-body">
+                        	<strong>This page is incomplete to cover all the functionalities of the motors. Please navigate to see the <a href="guide-javadoc.html" target="_blank">JavaDoc</a> which has a completed API documentation.</strong>
+                        </div>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-lg-12">
+            		<div class="panel panel-info">
+            			<div class="panel-heading">
+            				<i class="fa fa-star-o"></i> Motors
+            			</div>
+            			<div class="panel-body">
+							<p>Printing "Hello World!" to the ev3dev device is what the easiest thing to deal with in Java.</p>
+						
+							<pre class="prettyprint">
+                            package org.ev3dev.examples;
+                            
+                            public class HelloWorldDemo { //HelloWorldDemo Class
+                            
+                                public static void main(String[] args){ //Main method
+                                    System.out.println("Hello World!"); //Print Hello World to System.out
+                                }
+                            	
+                            }</pre>
+							
+							<hr />
+							
+							<p><b>Notice: LCD Graphics processing is quite slow on the EV3.</b></p>
+							
+							<p>Besides of having "Hello World!" printed to the console, we can also write/draw it to the LCD.</p>
+						
+							<pre class="prettyprint">
+                            package org.ev3dev.examples;
+                            
+                            //Import necessary classes
+                            import org.ev3dev.hardware.lcd.LCD;
+                            import org.ev3dev.hardware.lcd.LCDGraphics;
+                            
+                            public class HelloWorldLCDDemo { //HelloWorldLCDDemo Class
+                            
+                                public static void main(String[] args){ //Main method
+                                    LCD lcd = new LCD(); //Creates an ev3dev LCD instance
+                                    
+                                    LCDGraphics g = new LCDGraphics(lcd); //Creates a LCDGraphics instance, which has the same functionality of a Graphics2D class
+									
+                                    g.drawString("Hello World!", 50, 50); //Draws Hello World, takes some time on the EV3
+									
+                                    g.flush(); //Renders the image and flush to the LCD, takes some time on the EV3
+                                }
+                            	
+                            }</pre>
+                        </div>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-xs-6 text-left">
+            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+            	</div>
+            	<div class="col-xs-6 text-right">
+            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+            	</div>
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+    <!-- DocGen JavaScript -->
+    <script src="js/docgen.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script> 
+    
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+</body>
+
+</html>

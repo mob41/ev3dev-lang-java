@@ -36,6 +36,8 @@ title: Hello World!
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    
     <script>
     	function pagePrev(){ //Set previous page location
     		window.location = "getting_started-adding_maven.html";
@@ -81,6 +83,61 @@ title: Hello World!
             			</div>
             			<div class="panel-body">
                         	As a Java library, by reading this tutorial, it is expected that you have already learned <a href="https://docs.oracle.com/javase/tutorial/index.html" target="_blank">the basis of Java</a>, and knows about <a href="https://docs.oracle.com/javase/tutorial/getStarted/cupojava/index.html" target="_blank">printing "Hello World!" to the console</a>. If not, better take a lesson in the link given above.
+                        </div>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-lg-12">
+            		<div class="panel panel-info">
+            			<div class="panel-heading">
+            				<i class="fa fa-star-o"></i> Printing "Hello World!"
+            			</div>
+            			<div class="panel-body">
+							<p>Printing "Hello World!" to the ev3dev device is what the easiest thing to deal with in Java.</p>
+						
+							<pre class="prettyprint">
+                            package org.ev3dev.examples;
+                            
+                            public class HelloWorldDemo { //HelloWorldDemo Class
+                            
+                                public static void main(String[] args){ //Main method
+                                    System.out.println("Hello World!"); //Print Hello World to System.out
+                                }
+                            	
+                            }</pre>
+							
+							<hr />
+							
+							<p><b>Notice: LCD Graphics processing is quite slow on the EV3.</b></p>
+							
+							<p>Besides of having "Hello World!" printed to the console, we can also write/draw it to the LCD.</p>
+						
+							<pre class="prettyprint">
+                            package org.ev3dev.examples;
+                            
+                            //Import necessary classes
+                            import org.ev3dev.hardware.lcd.LCD;
+                            import org.ev3dev.hardware.lcd.LCDGraphics;
+                            
+                            public class HelloWorldLCDDemo { //HelloWorldLCDDemo Class
+                            
+                                public static void main(String[] args){ //Main method
+                                    LCD lcd = new LCD(); //Creates an ev3dev LCD instance
+                                    
+                                    LCDGraphics g = new LCDGraphics(lcd); //Creates a LCDGraphics instance, which has the same functionality of a Graphics2D class
+									
+                                    g.drawString("Hello World!", 50, 50); //Draws Hello World, takes some time on the EV3
+									
+                                    g.flush(); //Renders the image and flush to the LCD, takes some time on the EV3
+                                }
+                            	
+                            }</pre>
+							
+							<hr />
+							
+							<p>That's easy right? Let's go deeper about the motors.</p>
                         </div>
             		</div>
             	</div>
