@@ -1,3 +1,26 @@
+/*******************************************************************************
+ * MIT License
+ *
+ * Copyright (c) 2016, 2017 Anthony Law
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *******************************************************************************/
 package org.ev3dev.hardware;
 
 import java.io.DataInputStream;
@@ -5,7 +28,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidButtonException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /***
  * Provides a generic button reading mechanism that can be adapted to platform specific implementations.
@@ -14,6 +40,8 @@ import org.ev3dev.exception.InvalidButtonException;
  *
  */
 public class Button {
+    
+    private static final Logger logger = LoggerFactory.getLogger(Button.class);
 	
 	public static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio-keys.0-event";
 	
@@ -37,12 +65,16 @@ public class Button {
 	 * @throws InvalidButtonException If the specified button isn't a valid button.
 	 */
 	public Button(int button) throws InvalidButtonException{
+	    logger.trace("Button Constructor starts");
+	    logger.debug("arg: int button=" + button);
 		if (button != BUTTON_UP && button != BUTTON_DOWN && button != BUTTON_LEFT &&
 				button != BUTTON_RIGHT && button != BUTTON_ENTER && button != BUTTON_ENTER &&
 				button != BUTTON_BACKSPACE){
+		    logger.error("Unknown button constant specified at constructor: " + button);
 			throw new InvalidButtonException("The button that you specified does not exist. Better use the integer fields like Button.BUTTON_UP");
 		}
 		this.button = button;
+		logger.trace("Button Constructor ends");
 	}
 	
 	/**
@@ -50,32 +82,39 @@ public class Button {
 	 * @return Boolean that the button is pressed.
 	 */
 	public boolean isPressed(){
+	    logger.trace("Method Button.isPressed() starts");
 		try {
+		    logger.debug("Reading from event path \"" + SYSTEM_EVENT_PATH + "\"");
 			DataInputStream in = new DataInputStream(new FileInputStream(SYSTEM_EVENT_PATH));
 			byte[] val = new byte[16];
 			in.readFully(val);
 			in.close();
-			return test_bit(button, val);
-		} catch (FileNotFoundException e){
-			System.err.println("Error: Are you running this on your EV3? You must run it on your EV3.\n If you still have problems, report a issue to \"mob41/ev3dev-lang-java\".");
-			e.printStackTrace();
-			System.exit(-1);
-			return false;
+			logger.debug("Read end");
+			
+			boolean result = test_bit(button, val);
+			logger.debug("Test bit result: " + result);
+			
+	        logger.trace("Method Button.isPressed() ends");
+			return result;
 		} catch (IOException e){
-			System.err.println("### ERROR MESSAGE ###\nError: Unexpected error! Report an issue to \"mob41/ev3dev-lang-java\" now, with logs!\n === STACK TRACE ===");
-			e.printStackTrace();
-			System.err.println("=== END STACK TRACE ===\nError: Unexpected error! Report an issue to \"mob41/ev3dev-lang-java\" now, with logs!\n ### END MESSAGE ###");
-			System.exit(-1);
-			return false;
+		    logger.error("IOException occurred when reading \"" + SYSTEM_EVENT_PATH + "\"" + e);
+            throw new EV3LibraryException("IOException occurred", e);
 		}
 	}
 	
 	private static boolean test_bit(int bit, byte[] bytes){
-		System.out.println("Bit: " + Integer.toHexString((bytes[bit / 8] & (1 << (bit % 8))) ));
-	    return ((bytes[bit / 8] & (1 << (bit % 8))) != 1);
+	    logger.trace("Method Button.test_bit(int bit, byte[] bytes) starts");
+	    
+	    boolean result = ((bytes[bit / 8] & (1 << (bit % 8))) != 1);
+	    logger.debug("expression \"bytes[bit/8]&(1<<bit%8)))!=1\" results " + result);
+	    
+	    logger.trace("Method Button.test_bit(int bit, byte[] bytes) ends");
+	    return result;
 	}
 	
+	/*
 	private static int EVIOCGKEY(int length){
 		return 2 << (14+8+8) | length << (8+8) | ((int) 'E') << 8 | 0x18;
 	}
+	*/
 }
