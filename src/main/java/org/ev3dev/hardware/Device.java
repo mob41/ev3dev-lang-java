@@ -29,6 +29,8 @@ import org.ev3dev.exception.EV3LibraryException;
 
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Sysfs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is the base class that handles control tasks for a single port or index. The class must chose one device out of the available ports to control. Given an IO port (in the constructor), an implementation should:<br>
@@ -43,6 +45,8 @@ import org.ev3dev.io.Sysfs;
  *
  */
 public abstract class Device {
+    
+    private static final Logger logger = LoggerFactory.getLogger(Device.class);
 	
 	private String className;
 	
@@ -61,8 +65,11 @@ public abstract class Device {
 	 * @param className The Sysfs Class name
 	 */
 	public Device(String className){
+	    logger.trace("Device Constructor starts - generic");
+	    logger.debug("className="+ className);
 		this.port = null;
 		this.className = className;
+		logger.trace("Device Constructor ends - generic");
 	}
 
 	/**
@@ -73,23 +80,28 @@ public abstract class Device {
 	 * @throws EV3LibraryException If I/O goes wrong
 	 */
 	public Device(LegoPort port, String className, String classNamePrefix) throws EV3LibraryException{
+	    logger.trace("Device Constructor starts");
 		this.port = port;
 		this.className = className;
 		this.classNamePrefix = classNamePrefix;
 		
 		address = port.getAddress();
+        
+        logger.debug("port.getAddress()=" + address);
+        logger.debug("c");
 		
 		connected = checkIsConnected();
 		if (!connected){
-			System.out.println(className + "-" + this.hashCode() + ": No port connected. Searching until port \"" + address + "\" connected...");
+			logger.info(className + "-" + this.hashCode() + ": No port connected. Searching until port \"" + address + "\" connected...");
 			
 			while (!connected){
 				connected = checkIsConnected();
 			}
 
-			System.out.println(className + "-" + this.hashCode() + ": Connected to " + address);
+			logger.info(className + "-" + this.hashCode() + ": Connected to " + address);
 		}
-		
+
+        logger.trace("Device Constructor ends");
 	}
 	
 	public abstract String getAddress() throws EV3LibraryException;
