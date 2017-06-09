@@ -36,15 +36,15 @@ title: Motors
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     
     <script>
-    	function pagePrev(){ //Set previous page location
-    		window.location = "getting_started-lcd-hello_world.html";
-    	}
-    	function pageNext(){ //Set next page location
-    		window.location = "getting_started-tank.html";
-    	}
+        function pagePrev(){ //Set previous page location
+            window.location = "getting_started-lcd-hello_world.html";
+        }
+        function pageNext(){ //Set next page location
+            window.location = "getting_started-tank.html";
+        }
     </script>
 
 </head>
@@ -53,7 +53,7 @@ title: Motors
 
     <div id="wrapper">
      
-    	{% include nav.html %}
+        {% include nav.html %}
 
         <div id="page-wrapper">
             <div class="row">
@@ -65,87 +65,182 @@ title: Motors
             <!-- /.row -->
             
             <div class="row">
-            	<div class="col-xs-6 text-left">
-            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
-            	</div>
-            	<div class="col-xs-6 text-right">
-            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
-            	</div>
+                <div class="col-xs-6 text-left">
+                    <button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+                </div>
             </div>
             
             <br />
             
             <div class="row">
-            	<div class="col-lg-12">
-            		<div class="panel panel-danger">
-            			<div class="panel-heading">
-            				<i class="fa fa-exclamation-circle"></i> Incomplete Guide
-            			</div>
-            			<div class="panel-body">
-                        	<strong>This page is incomplete to cover all the functionalities of the motors. Please navigate to see the <a href="guide-javadoc.html" target="_blank">JavaDoc</a> which has a completed API documentation.</strong>
+                <div class="col-lg-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <i class="fa fa-exclamation-circle"></i> Incomplete Guide
                         </div>
-            		</div>
-            	</div>
+                        <div class="panel-body">
+                            <strong>This page is incomplete to cover all the functionalities of the motors. Please navigate to see the <a href="guide-javadoc.html" target="_blank">JavaDoc</a> which has a completed API documentation.</strong>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="row">
-            	<div class="col-lg-12">
-            		<div class="panel panel-info">
-            			<div class="panel-heading">
-            				<i class="fa fa-star-o"></i> Motors
-            			</div>
-            			<div class="panel-body">
-							<p>Printing "Hello World!" to the ev3dev device is what the easiest thing to deal with in Java.</p>
-						
-							<pre class="prettyprint">
-                            package org.ev3dev.examples;
-                            
-                            public class HelloWorldDemo { //HelloWorldDemo Class
-                            
-                                public static void main(String[] args){ //Main method
-                                    System.out.println("Hello World!"); //Print Hello World to System.out
-                                }
-                            	
-                            }</pre>
-							
-							<hr />
-							
-							<p><b>Notice: LCD Graphics processing is quite slow on the EV3.</b></p>
-							
-							<p>Besides of having "Hello World!" printed to the console, we can also write/draw it to the LCD.</p>
-						
-							<pre class="prettyprint">
-                            package org.ev3dev.examples;
-                            
-                            //Import necessary classes
-                            import org.ev3dev.hardware.lcd.LCD;
-                            import org.ev3dev.hardware.lcd.LCDGraphics;
-                            
-                            public class HelloWorldLCDDemo { //HelloWorldLCDDemo Class
-                            
-                                public static void main(String[] args){ //Main method
-                                    LCD lcd = new LCD(); //Creates an ev3dev LCD instance
-                                    
-                                    LCDGraphics g = new LCDGraphics(lcd); //Creates a LCDGraphics instance, which has the same functionality of a Graphics2D class
-									
-                                    g.drawString("Hello World!", 50, 50); //Draws Hello World, takes some time on the EV3
-									
-                                    g.flush(); //Renders the image and flush to the LCD, takes some time on the EV3
-                                }
-                            	
-                            }</pre>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="fa fa-star-o"></i> Introduction to LegoPort
                         </div>
-            		</div>
-            	</div>
+                        <div class="panel-body">
+                            To begin with any library <code>Device</code> child classes, it is required to create a <code>LegoPort</code> instance to point the connected input/output port to the sensor/motor.
+                            
+                            Here is a list of constant fields of inputs <code>LegoPort.INPUT_*</code> and outputs <code>LegoPort.OUTPUT_*</code>
+                            
+                            <ul>
+                                <li><code>LegoPort.INPUT_1</code> for input/sensor port 1</li>
+                                <li><code>LegoPort.INPUT_2</code> for input/sensor port 2</li>
+                                <li><code>LegoPort.INPUT_3</code> for input/sensor port 3</li>
+                                <li><code>LegoPort.INPUT_4</code> for input/sensor port 4</li>
+                                <li><code>LegoPort.OUTPUT_A</code> for output/motor port A</li>
+                                <li><code>LegoPort.OUTPUT_B</code> for output/motor port B</li>
+                                <li><code>LegoPort.OUTPUT_C</code> for output/motor port C</li>
+                                <li><code>LegoPort.OUTPUT_D</code> for output/motor port D</li>
+                            </ul>
+							
+							An example to list information of a <code>LegoPort.OUTPUT_A</code> port:
+                        
+                            <pre class="prettyprint">
+package org.ev3dev.examples;
+                            
+import org.ev3dev.hardware.LegoPort; //Necessary class LegoPort
+import java.util.Arrays; //Just for this example to list port's modes
+
+public class LegoPortDemo{
+    
+    public static void main(String[] args){
+        try {
+             LegoPort port = new LegoPort(LegoPort.OUTPUT_A); //Creates an instance pointing to Output A
+             
+             System.out.println("Address: " + port.getAddress()); //Outputs the port address
+             System.out.println("Driver: " + port.getDriverName()); //Outputs the port driver (current)
+             System.out.println("Modes: " + Arrays.deepToString(port.getModes())); //Outputs a list of modes supported by this port
+             System.out.println("Current Mode: " + port.getMode());//Outputs the current mode
+             System.out.println("Status: " + port.getStatus()); //Outputs the port status
+             
+             //Set Mode (Depends on the function, port.getModes())
+             //port.setMode("");
+             
+             //Set device, writing the name of a driver
+             //port.setDevice("");
+        catch (InvalidPortException e){ //Optional, Only thrown if the specified argument is invalid
+             e.printStackTrace();
+        }
+    }
+    
+}</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="row">
-            	<div class="col-xs-6 text-left">
-            		<button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
-            	</div>
-            	<div class="col-xs-6 text-right">
-            		<button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
-            	</div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="fa fa-star-o"></i> Controlling Motors
+                        </div>
+                        <div class="panel-body">
+                            Each <code>Motor</code> instances and its childs require the developer to specify a <code>LegoPort</code> instance to let the <code>Motor</code> to know which port and device is pointing to.
+							
+                            <pre class="prettyprint">
+LegoPort port = new LegoPort(LegoPort.OUTPUT_A); //Output A
+Motor motor = new Motor(port); //Creates a Motor instance
+
+//or (it is the same as)
+
+Motor motor2 = new Motor(new LegoPort(LegoPort.OUTPUT_B); //Motor with Output B
+
+//or (1.0.1 or older)
+
+Motor motor3 = new Motor(LegoPort.OUTPUT_C);
+							</pre>
+							
+							The motor can be commanded with the following methods:
+                            
+                            <ul>
+                                <li><code>motor.runForever()</code>
+									<ul>
+										<li>Causes the motor to run util another command is sent</li>
+									</ul>
+								</li>
+                                <li><code>motor.runToAbsPos()</code>
+									<ul>
+										<li>Runs to an absolute position specified by <code>setPosition_SP(int pos)</code></li>
+									</ul>
+								</li>
+                                <li><code>motor.runToRelPos()</code>
+									<ul>
+										<li>Runs to a a position relative to the current position value</li>
+									</ul>
+								</li>
+                                <li><code>motor.runTimed()</code>
+									<ul>
+										<li>Runs the motor for the amount of time specified in <code>setTime_SP(int ms)</code></li>
+									</ul>
+								</li>
+                                <li><code>motor.runDirect()</code>
+									<ul>
+										<li>Runs the motor at the duty cycle specified by <code>setDutyCycle_SP(int dutycycle_sp)</code></li>
+									</ul>
+								</li>
+                                <li><code>motor.stop()</code>
+									<ul>
+										<li>Stops any of the run commands before they are complete using the command specified by <code>setStopCommand(String command)</code></li>
+									</ul>
+								</li>
+                                <li><code>motor.reset()</code>
+									<ul>
+										<li>Resets all of the motor parameter attributes to their default value. This will also have the effect of stopping the motor.</li>
+									</ul>
+								</li>
+                            </ul>
+							
+							An example to run a motor for 5000 ms (5 seconds):
+                        
+                            <pre class="prettyprint">
+package org.ev3dev.examples;
+                            
+import org.ev3dev.hardware.LegoPort; //Necessary class LegoPort
+import org.ev3dev.hardware.Motor; //Necessary class Motor
+import java.util.Arrays; //Just for this example to list port's modes
+
+public class MotorDemo{
+    
+    public static void main(String[] args) throws IOException, InvalidException{
+        LegoPort port = new LegoPort(LegoPort.OUTPUT_A); //Output/Motor Port A
+        Motor motor = new Motor(port);
+        motor.setTime_SP(5000); //Set time to 5000 ms
+        motor.setDutyCycle_SP(50); //Set speed to 50
+        motor.runTimed(); //Send command
+	}
+}
+    
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+                </div>
             </div>
             
         </div>
@@ -173,7 +268,7 @@ title: Motors
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script> 
     
-	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
 </body>
 
