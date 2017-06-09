@@ -1,7 +1,12 @@
 /*******************************************************************************
+ * Any modification, copies of sections of this file must be attached with this
+ * license and shown clearly in the developer's project. The code can be used
+ * as long as you state clearly you do not own it. Any violation might result in
+ *  a take-down.
+ *
  * MIT License
  *
- * Copyright (c) 2016 Anthony Law
+ * Copyright (c) 2016, 2017 Anthony Law
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +27,12 @@
  * SOFTWARE.
  *******************************************************************************/
 package org.ev3dev.hardware;
+
+//-----------------------------------------------------------------------------
+//~autogen autogen-header
+
+//~autogen
+//-----------------------------------------------------------------------------
 
 import java.io.IOException;
 

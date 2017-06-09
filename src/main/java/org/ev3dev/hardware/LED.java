@@ -23,11 +23,21 @@
  *******************************************************************************/
 package org.ev3dev.hardware;
 
+//-----------------------------------------------------------------------------
+//~autogen autogen-header
+
+//~autogen
+//-----------------------------------------------------------------------------
+
 import java.io.File;
 
 import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidLEDException;
 import org.ev3dev.io.Sysfs;
+
+//~autogen generic-class-description classes.led>currentClass
+
+//~autogen
 
 /***
  * Any device controlled by the generic LED driver. <br>

@@ -3,11 +3,12 @@
 A light-weight but powerful ev3dev unified language binding for Java, not to be confused with [jabrena/ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java/) which interfaces LeJOS. It follows with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 **No idea where to start?** Check the [getting started](https://mob41.github.io/ev3dev-lang-java/getting_started.html) guide!
+
 **How to add as Maven dependency?** Take a look at [this](https://mob41.github.io/ev3dev-lang-java/getting_started-adding_maven.html).
 
 ## Compatibility
 
-This library supports ev3dev kernel version 20 (latest kernel):
+This library usually supports the latest ev3dev kernel, unless a "breaking changes" kernel is released. This library is tested to run with ev3dev kernel version 20.
 
 - ```v4.4.61-20-ev3dev-ev3``` for EV3
 - ```v4.4.61-ti-rt-r98-20-ev3dev-bb.org``` for BeagleBone

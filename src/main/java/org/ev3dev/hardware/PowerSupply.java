@@ -23,11 +23,19 @@
  *******************************************************************************/
 package org.ev3dev.hardware;
 
+//~autogen autogen-header
+
+//~autogen
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.io.Sysfs;
+
+//~autogen generic-class-description classes.powerSupply>currentClass
+
+//~autogen
 
 /***
  * A generic interface to read data from the system's power_supply class. Uses the built-in legoev3-battery if none is specified.

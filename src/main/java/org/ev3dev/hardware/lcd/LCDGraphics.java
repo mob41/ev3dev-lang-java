@@ -55,6 +55,11 @@ import java.text.AttributedCharacterIterator;
 import java.util.Arrays;
 import java.util.Map;
 
+/**
+ * An Graphics2D implementation to draw to the ev3dev LCD
+ * @author Anthony
+ *
+ */
 public class LCDGraphics extends Graphics2D {
 	
 	public static final int LINE_LEN = 24;
@@ -69,10 +74,17 @@ public class LCDGraphics extends Graphics2D {
 	
 	private Graphics2D g2d;
 
+	/**
+	 * Creates an instance that uses the default ev3dev LCD
+	 */
 	public LCDGraphics(){
 		this(new LCD());
 	}
 	
+	/**
+	 * Creates an instance with an external LCD instance
+	 * @param lcd
+	 */
 	public LCDGraphics(LCD lcd) {
 		this.lcd = lcd;
 		
@@ -92,10 +104,18 @@ public class LCDGraphics extends Graphics2D {
 		g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
 	}
 	
+	/**
+	 * Returns the LCD instance
+	 * @return LCD
+	 */
 	public LCD getLcd(){
 	    return lcd;
 	}
 	
+	/**
+	 * Returns the rendering BufferedImage instance
+	 * @return BufferedImage
+	 */
 	public BufferedImage getImage(){
 		return image;
 	}

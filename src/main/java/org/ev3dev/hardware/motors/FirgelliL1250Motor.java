@@ -23,9 +23,17 @@
  *******************************************************************************/
 package org.ev3dev.hardware.motors;
 
+//~autogen autogen-header
+
+//~autogen
+
 import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.ports.LegoPort;
+
+//~autogen generic-class-description classes.actuonix50Motor>currentClass
+
+//~autogen
 
 public class FirgelliL1250Motor extends Motor {
 	

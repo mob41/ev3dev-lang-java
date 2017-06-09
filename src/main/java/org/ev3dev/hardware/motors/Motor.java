@@ -245,9 +245,6 @@ public class Motor extends Device{
 		}
 	}
 
-//-----------------------------------------------------------------------------
-	
-//~autogen generic-get-set classes.motor>currentClass
 	/***
 	 * Get the address of this motor.
 	 * @return LegoPort address described in String
@@ -833,6 +830,4 @@ public class Motor extends Device{
 		this.setAttribute(SYSFS_PROPERTY_TIME_SP, Integer.toString(time_sp));
 	}
 	
-//~autogen
 }
-//-----------------------------------------------------------------------------

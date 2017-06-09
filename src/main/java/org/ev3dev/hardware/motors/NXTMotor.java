@@ -23,6 +23,10 @@
  *******************************************************************************/
 package org.ev3dev.hardware.motors;
 
+//~autogen autogen-header
+
+//~autogen
+
 import java.io.IOException;
 
 import org.ev3dev.exception.InvalidMotorException;

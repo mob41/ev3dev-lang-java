@@ -23,12 +23,20 @@
  *******************************************************************************/
 package org.ev3dev.hardware.motors;
 
+//~autogen autogen-header
+
+//~autogen
+
 import org.ev3dev.exception.EV3LibraryException;
 import org.ev3dev.exception.InvalidMotorException;
 import org.ev3dev.exception.InvalidPortException;
 import org.ev3dev.hardware.Device;
 import org.ev3dev.hardware.ports.LegoPort;
 import org.ev3dev.io.Sysfs;
+
+//~autogen generic-class-description classes.servoMotor>currentClass
+
+//~autogen
 
 /**
  * The servo motor class provides a uniform interface for using hobby type servo motors.
