@@ -1,0 +1,165 @@
+---
+title: Motors
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ev3dev-lang-java</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    
+    <script>
+        function pagePrev(){ //Set previous page location
+            window.location = "getting_started-motors.html";
+        }
+        function pageNext(){ //Set next page location
+            window.location = "getting_started-sensors.html";
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+     
+        {% include nav.html %}
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Building a tank</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+                </div>
+            </div>
+            
+            <br />
+            
+            <div class="alert alert-warning">
+				<i class="fa fa-exclamation"></i> Synchronized motor starting in ev3dev is still in discussion. Details can be found at ev3dev <a href="https://github.com/ev3dev/ev3dev/issues/454)" target="_blank">Issue #454</a> and <a href="https://github.com/ev3dev/ev3dev/issues/853">Issue #853</a>. <b>Software synchronization will be used instead currently.</b>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="fa fa-star-o"></i> Building a Tank (or any with 2 motors)
+                        </div>
+                        <div class="panel-body">
+                            <p>In order to build a tank, a physical setup with two motors is required. Here is a simple design consisting 1 touch sensor, 1 colour sensor, and 2 large tacho motors for an EV3. It is designed using the LDD (Lego Digital Designer), and its download is available.</p>
+							
+							<hr />
+							
+							<div class="alert alert-danger">
+								<b>Copyright Warning:</b> Any modification, copies of the file are allowed as long as you do not re-distribute it and do not claim the original work as your work.
+							</div>
+							
+							<div class="row">
+								<div class="col-lg-6">
+									<button class="btn btn-block btn-default" onclick="window.location='ldd/Building Instructions [SimpleTank].html'">
+										<img src="ldd/SimpleTankThumbnail.png" width="68" height="70"/>
+										<br />
+										<h3>View Instructions Online</h3> 
+									</button>
+								</div>
+								<div class="col-lg-6">
+									<button class="btn btn-block btn-default" onclick="window.location='ldd/SimpleTank.lxf'">
+										<i class="text-success fa fa-download fa-5x"></i>
+										<br />
+										<h3>Download LXF File</h3> 
+									</button>
+								</div>
+							</div>
+							
+							<hr />
+							
+							<h3>Remarks:</h3>
+							
+							<p>For motors, please connect <b>output/motor port B</b> to the <b>left</b> motor, and <b>output/motor port C</b> to the <b>right</b> motor.</p>
+							
+							<p>For sensors, please also connect <b>input/sensor port 1</b> to the <b>touch sensor</b> and <b>input/sensor port 2</b> to the <b>colour sensor</b>.</p>
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <button class="btn btn-primary" onclick="pagePrev()"><i class="fa fa-angle-double-left"></i> Previous Page</button>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-primary" onclick="pageNext()">Next Page <i class="fa fa-angle-double-right" ></i></button>
+                </div>
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+    <!-- DocGen JavaScript -->
+    <script src="js/docgen.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script> 
+    
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+</body>
+
+</html>
