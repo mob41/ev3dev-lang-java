@@ -123,6 +123,198 @@ title: Motors
                     </div>
                 </div>
             </div>
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							Coding
+						</div>
+						
+						<div class="panel-body">
+							<p>We have to use two <code>Motor</code> class instance to achieve driving an ev3dev tank. To begin with, we will import two following classes:</p>
+							
+							<pre class="prettyprint">
+import org.ev3dev.hardware.motors.Motor;
+import org.ev3dev.hardware.ports.LegoPort;
+							</pre>
+							
+							<p>With the following code snippets, we will create two <code>Motor</code> instance to drive the tank.</p>
+							
+							<pre class="prettyprint">
+/*
+LegoPort.OUTPUT_* assigns the Motor to a specific port on the EV3.
+
+Available output constants are:
+
+- LegoPort.OUTPUT_A -> Assigns to Port A
+- LegoPort.OUTPUT_B -> Assigns to Port B
+- LegoPort.OUTPUT_C -> Assigns to Port C
+- LegoPort.OUTPUT_D -> Assigns to Port D
+*/
+Motor leftMotor = new Motor(new LegoPort(LegoPort.OUTPUT_B));
+Motor rightMotor = new Motor(new LegoPort(LegoPort.OUTPUT_C));
+							</pre>
+							
+							<p>We will set the speed of two motors using the following method:</p>
+							
+							<pre class="prettyprint">
+//Speed ranges from -100 to 100
+//Negative speed makes the motor to runs backwards
+leftMotor.setSpeed_SP(100);
+rightMotor.setSpeed_SP(100);
+							</pre>
+							
+							<p>Next, we will tell the two motors to run forward! And wait for 5 seconds (5000 ms).</p>
+							
+							<pre class="prettyprint">
+leftMotor.runForever();
+rightMotor.runForever();
+try {
+	Thread.sleep(5000); //Tell the thread to sleep 5000 ms
+} catch (InterruptedException ignore){} //We don't need to handle it currently
+							</pre>
+							
+							<p>Nevertheless, we will tell the two motors to run backwards! And wait for 5 seconds (5000 ms).</p>
+							
+							<pre class="prettyprint">
+//Negative speed makes the motor to runs backwards
+leftMotor.stop(); //Stop it first
+rightMotor.stop();
+
+leftMotor.setSpeed_SP(-100);
+rightMotor.setSpeed_SP(-100);
+
+leftMotor.runForever(); //Restart
+rightMotor.runForever();
+try {
+	Thread.sleep(5000); //Tell the thread to sleep 5000 ms
+} catch (InterruptedException ignore){} //We don't need to handle it currently
+							</pre>
+							
+							<p>Turn left! And wait for 5 seconds!</p>
+							
+							<pre class="prettyprint">
+leftMotor.stop(); //We have to stop it first
+leftMotor.setSpeed_SP(-100); //Negative speed means let the motor runs in a reverse direction
+leftMotor.runForever(); //Restart it!
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException ignore){}
+							</pre>
+							
+							<p>Turn right! And wait for 5 seconds!</p>
+							
+							<pre class="prettyprint">
+leftMotor.stop();
+leftMotor.setSpeed_SP(100); //Set back to positive speed to let the motor to run forward
+leftMotor.runForever(); //Restart
+
+rightMotor.stop();
+rightMotor.setSpeed_SP(-100); //Let the motor to run backwards
+rightMotor.runForever(); //Restart
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException ignore){}
+							</pre>
+							
+							<p>Finally, we stop it.</p>
+							
+							<pre class="prettyprint">
+leftMotor.stop();
+rightMotor.stop();
+							</pre>
+							
+							<p>You have completed a simple task to drive a tank! Here's the full example.</p>
+							
+							<pre class="prettyprint">
+/*
+LegoPort.OUTPUT_* assigns the Motor to a specific port on the EV3.
+
+Available output constants are:
+
+- LegoPort.OUTPUT_A -> Assigns to Port A
+- LegoPort.OUTPUT_B -> Assigns to Port B
+- LegoPort.OUTPUT_C -> Assigns to Port C
+- LegoPort.OUTPUT_D -> Assigns to Port D
+*/
+Motor leftMotor = new Motor(new LegoPort(LegoPort.OUTPUT_B));
+Motor rightMotor = new Motor(new LegoPort(LegoPort.OUTPUT_C));
+
+//
+// Set speed to 100 (Forward, Max Speed)
+//
+
+leftMotor.setSpeed_SP(100);
+rightMotor.setSpeed_SP(100);
+
+//
+// Run Forward
+//
+							
+leftMotor.runForever();
+rightMotor.runForever();
+try {
+	Thread.sleep(5000); //Tell the thread to sleep 5000 ms
+} catch (InterruptedException ignore){} //We don't need to handle it currently
+
+//
+// Run Backwards
+//
+
+//Negative speed makes the motor to runs backwards
+leftMotor.stop(); //Stop it first
+rightMotor.stop();
+
+leftMotor.setSpeed_SP(-100);
+rightMotor.setSpeed_SP(-100);
+
+leftMotor.runForever(); //Restart
+rightMotor.runForever();
+try {
+	Thread.sleep(5000); //Tell the thread to sleep 5000 ms
+} catch (InterruptedException ignore){} //We don't need to handle it currently
+
+//
+// Turn Left
+//
+
+leftMotor.stop(); //We have to stop it first
+leftMotor.setSpeed_SP(-100); //Negative speed means let the motor runs in a reverse direction
+leftMotor.runForever(); //Restart it!
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException ignore){}
+
+//
+// Turn Right
+//
+
+leftMotor.stop();
+leftMotor.setSpeed_SP(100); //Set back to positive speed to let the motor to run forward
+leftMotor.runForever(); //Restart
+
+
+rightMotor.stop();
+rightMotor.setSpeed_SP(-100); //Let the motor to run backwards
+rightMotor.runForever(); //Restart
+try {
+	Thread.sleep(5000);
+} catch (InterruptedException ignore){}
+
+//
+// Stop both motors
+//
+
+leftMotor.stop();
+rightMotor.stop();
+							</pre>
+							
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
             
             <div class="row">
                 <div class="col-xs-6 text-left">
