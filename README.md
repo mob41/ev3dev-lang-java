@@ -1,5 +1,7 @@
 # ev3dev-lang-java [![Build Status](https://travis-ci.org/mob41/ev3dev-lang-java.svg?branch=master)](https://travis-ci.org/mob41/ev3dev-lang-java) [![CodeFactor](https://www.codefactor.io/repository/github/mob41/ev3dev-lang-java/badge)](https://www.codefactor.io/repository/github/mob41/ev3dev-lang-java)
 
+> :warning: This project is no longer maintained and updated. Please use another library alternatives like [jabrena/ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java/). :warning:
+
 A light-weight but powerful ev3dev unified language binding for Java, not to be confused with [jabrena/ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java/) which interfaces LeJOS. It follows with the [language wrapper specification](http://ev3dev-lang.readthedocs.org/en/latest/spec.html).
 
 **No idea where to start?** Check the [getting started](https://mob41.github.io/ev3dev-lang-java/getting_started.html) guide!
